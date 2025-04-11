@@ -1,2 +1,2 @@
-# linuxSetup
-Create a personal startup setup for linux environment
+# Linux Setup
+Personal startup setup for linux environment

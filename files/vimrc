@@ -1,0 +1,145 @@
+set encoding=UTF-8
+
+set number
+
+set nocompatible
+
+set mouse=a
+
+set background=dark
+
+colorscheme gruvbox
+          
+syntax enable
+
+syntax on
+
+set hlsearch
+
+set expandtab
+
+set tabstop=4
+
+set shiftwidth=4
+
+set softtabstop=4
+
+set showmatch
+
+set incsearch
+
+set autoindent
+set smartindent
+
+set rnu
+
+set hidden
+
+filetype on
+filetype plugin on
+filetype indent on
+
+" When vim is opened, open NERDTree
+" autocmd VimEnter * NERDTree | wincmd p
+
+" Select the file in the NERDTree when it is opened
+autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+" Load the plugins when entering vim
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Search for a file using Ag
+map <S-f> :Files<CR>
+" Split the screen and search for a file using Ag
+map <C-Left> :vnew<CR>:Files<CR>
+map <C-Up> :new<CR>:Files<CR>
+" Toggle NERDTree using Space
+nmap <Space> :NERDTreeToggle<CR>
+
+" Move between splits using Ctrl + h/j/k/l
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Search for a word using Ctrl + f
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+
+" After selecting a file in the search, focus on it when opened
+let g:ctrlsf_auto_focus = {
+    \ "at": "start"
+    \ }
+
+" Add the filename to the status line
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'FilenameForLightline'
+      \ }
+      \ }
+
+" Show full path of filename
+function! FilenameForLightline()
+    return expand('%')
+endfunction
+
+" Search option is compact, when expaded, do it on the right
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_position = 'right'
+
+" Airline theme
+let g:airline_theme='base16_gruvbox_dark_hard'
+
+" C++ better highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+
+" Default view method for vimtex
+let g:vimtex_view_method = 'zathura'
+
+" Apply Ctags to the project when it is modified
+autocmd BufWritePost *.c,*.h,*.cpp,*.hpp silent! !ctags . &
+
+" Swap between header and source
+map <Esc>o <A-o>
+nnoremap <A-o> :call CurtineIncSw()<CR>
+
+" Call the search for the inner word under the cursor
+nnoremap <C-p> viw<Plug>CtrlSFVwordPath
+
+" Tab commands on shift + t/j/k/q
+map <S-t> :tabnew<CR>
+map <S-j> :tabnext<CR>
+map <S-k> :tabprevious<CR>
+map <S-q> :tabclose<CR>
+
+" hightlight all the words similar to the one under the cursor
+augroup hightlight_current_word
+  au!
+  au CursorHold * :exec 'match Search /\V\<' . expand ('<cword>') . '\>/'
+augroup END
+
+" set the highlight color of a search
+highlight Search cterm=bold,italic,underline ctermbg=NONE ctermfg=lightblue
+
+" set the highlight color of various components
+highlight String ctermfg=109
+highlight cCustomClass ctermfg=214
+highlight cCustomClassName ctermfg=214
+
+" set the update time to 300ms
+set updatetime=300
+
+" split buffer options
+let g:bufExplorerSplitBelow=1
+let g:bufExplorerSplitRight=1
+
+" Source the plugins in the plugins.vim file
+so ~/.vim/plugins.vim
