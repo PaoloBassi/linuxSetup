@@ -19,5 +19,5 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'lervag/vimtex', '{ 'tag': 'v2.15' }'
+    "Plug 'lervag/vimtex', '{ 'tag': 'v2.15' }'
 call plug#end()
