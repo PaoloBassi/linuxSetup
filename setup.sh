@@ -112,6 +112,9 @@ sudo chsh -s $(which zsh)
 
 check_result "default shell as zsh"
 
+# install powerlevel10k theme
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" || error "Failed to clone powerlevel10k theme"
+
 # link zsh configuration post installation
 rm -rf ~/.zshrc || error "Failed to remove old .zshrc"
 ln -s ~/linuxSetup/files/zshrc ~/.zshrc || error "Failed to link .zshrc"
