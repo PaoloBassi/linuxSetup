@@ -220,3 +220,7 @@ set -o vi
 
 # set fzf 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# source zsh-syntax-highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
