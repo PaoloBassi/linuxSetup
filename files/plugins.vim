@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-surround'
-    Plug 'w0rp/ale'
+    Plug 'dense-analysis/ale'
     Plug 'itspriddle/vim-shellcheck'
     Plug 'dyng/ctrlsf.vim'
     Plug 'ryanoasis/vim-devicons'

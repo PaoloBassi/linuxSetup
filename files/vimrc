@@ -100,6 +100,26 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
+"
+" C++ ALE options
+let g:ale_pattern_options_enabled = 1
+let g:ale_linters_explicit = 1
+let opts = '-std=c++17 -Wall -Wextra --compile-commands-dir=./build-Debug'
+let g:ale_pattern_options = {
+\   '\.h$':   { 'ale_linters': { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] } },
+\   '\.c$':   { 'ale_linters': { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] } },
+\   '\.cpp$': { 'ale_linters': { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] } },
+\   '\.hpp$': { 'ale_linters': { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] } },
+\}
+let g:ale_linters = { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] }
+let g:ale_cpp_cc_options    = opts
+let g:ale_cpp_gcc_options   = opts
+let g:ale_cpp_clang_options = opts
+let g:ale_cpp_clangd_options = opts
+let g:ale_cpp_clangtidy_options = opts
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
 
 " Default view method for vimtex
 let g:vimtex_view_method = 'zathura'
