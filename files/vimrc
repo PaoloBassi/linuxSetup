@@ -121,6 +121,18 @@ let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 
+" workspace plugin
+let g:workspace_autocreate = 1
+let g:workspace_session_directory = expand('$HOME/.vim/workspace')
+let g:workspace_undodir = expand('$HOME/.vim/workspace/.undodir')
+
+if !isdirectory(g:workspace_undodir)
+    call mkdir(g:workspace_undodir, 'p')
+endif
+
+set undofile
+set undodir^=~/.vim/workspace/.undodir
+
 " Default view method for vimtex
 let g:vimtex_view_method = 'zathura'
 
