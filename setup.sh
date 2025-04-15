@@ -24,7 +24,7 @@ function check_result() {
 }
 
 # Various packages
-declare -a apps=(curl git silversearcher-ag exuberant-ctags bat rofi flameshot unzip x11-xserver-utils gpg software-properties-common build-essential) 
+declare -a apps=(curl git silversearcher-ag exuberant-ctags bat rofi flameshot unzip x11-xserver-utils gpg software-properties-common build-essential clang cppcheck clang-tidy clangd) 
 
 info "Update package list"
 sudo apt update
