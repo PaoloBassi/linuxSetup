@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Get the current script directory path
+SCRIPT_DIR="$(cd "$(dirname "$(realpath "$0")")" && pwd)"
+
 # various colors
 ERROR_COLOR=$(tput setaf 1)
 SUCCESS_COLOR=$(tput setaf 2)
@@ -61,10 +64,10 @@ git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvb
 git clone https://github.com/bardisty/gruvbox-rofi ~/.config/rofi/themes/gruvbox || error "Failed to clone gruvbox theme for rofi"
 
 # Soft link for configuration files
-ln -s ~/linuxSetup/files/gitconfig ~/.gitconfig || error "Failed to link .gitconfig"
-ln -s ~/linuxSetup/files/vimrc ~/.vimrc || error "Failed to link .vimrc"
-ln -s ~/linuxSetup/files/config.rasi ~/.config/rofi/config.rasi || error "Failed to link rofi config"
-ln -s ~/linuxSetup/files/Xmodmap ~/.Xmodmap || error "Failed to link Xmodmap"
+ln -s $SCRIPT_DIR/files/gitconfig ~/.gitconfig || error "Failed to link .gitconfig"
+ln -s $SCRIPT_DIR/files/vimrc ~/.vimrc || error "Failed to link .vimrc"
+ln -s $SCRIPT_DIR/files/config.rasi ~/.config/rofi/config.rasi || error "Failed to link rofi config"
+ln -s $SCRIPT_DIR/files/Xmodmap ~/.Xmodmap || error "Failed to link Xmodmap"
 
 # if display is not set, set it to :0
 if [ -z "$DISPLAY" ]; then
@@ -81,8 +84,8 @@ fi
 
 # copy all plugins inside the vim folder and install them
 mkdir -p ~/.vim/plugin || error "Failed to create vim plugin directory"
-cp ~/linuxSetup/files/CurtineIncSw.vim ~/.vim/plugin/CurtineIncSw.vim || error "Failed to copy CurtineIncSw.vim"
-cp ~/linuxSetup/files/plugins.vim ~/.vim/plugins.vim || error "Failed to copy plugins.vim"
+cp $SCRIPT_DIR/files/CurtineIncSw.vim ~/.vim/plugin/CurtineIncSw.vim || error "Failed to copy CurtineIncSw.vim"
+cp $SCRIPT_DIR/files/plugins.vim ~/.vim/plugins.vim || error "Failed to copy plugins.vim"
 vim +PluginInstall +qall
 
 check_result "vim plugins"
@@ -117,7 +120,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-
 
 # link zsh configuration post installation
 rm -rf ~/.zshrc || error "Failed to remove old .zshrc"
-ln -s ~/linuxSetup/files/zshrc ~/.zshrc || error "Failed to link .zshrc"
+ln -s $SCRIPT_DIR/files/zshrc ~/.zshrc || error "Failed to link .zshrc"
 
 # check errors
 if [ $error_counter -ne 0 ]; then
