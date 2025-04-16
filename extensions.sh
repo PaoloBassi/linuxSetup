@@ -13,12 +13,9 @@ rm -rf tabby-1.0.223-linux-x64.deb
 # download and install Iosevka font
 mkdir -p ~/.local/share/fonts/
 pushd ~/.local/share/fonts/
-curl -LO https://github.com/be5invis/Iosevka/releases/download/v33.2.0/PkgTTF-Iosevka-33.2.0.zip
-curl -LO https://github.com/be5invis/Iosevka/releases/download/v33.2.0/PkgTTF-IosevkaTerm-33.2.0.zip
-unzip PkgTTF-Iosevka-33.2.0.zip
-unzip PkgTTF-IosevkaTerm-33.2.0.zip
-rm -rf PkgTTF-Iosevka-33.2.0.zip
-rm -rf PkgTTF-IosevkaTerm-33.2.0.zip
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.zip
+unzip IosevkaTerm.zip
+rm -rf IosevkaTerm.zip
 fc-cache -f -v
 popd
 #
