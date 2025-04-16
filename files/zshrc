@@ -138,7 +138,10 @@ alias br="git branch -va"
 alias ls='ls -lh --color --group-directories-first'
 alias l='ls -CF'
 alias la='ls -la'
+
+# other aliases
 alias cat='batcat --style=numbers --color=always --theme="gruvbox-dark"'
+alias sak='sakura -s'
 
 # functions
 # ff function augmented with batcat that opens the file in vim
