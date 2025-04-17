@@ -87,7 +87,10 @@ function! FilenameForLightline()
     return expand('%')
 endfunction
 
-" Search option is compact, when expaded, do it on the right
+" Map a key to preview the markdown file
+nmap <F4> :call PreviewMarkdown()<CR>clear<CR>glow $(cat ~/.lastpreview.log)<CR>
+
+" Search option is compact, when expanded, do it on the right
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_position = 'right'
@@ -100,7 +103,7 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
-"
+
 " C++ ALE options
 let g:ale_pattern_options_enabled = 1
 let g:ale_linters_explicit = 1
@@ -137,7 +140,7 @@ set undodir^=~/.vim/workspace/.undodir
 let g:vimtex_view_method = 'zathura'
 
 " Apply Ctags to the project when it is modified
-autocmd BufWritePost *.c,*.h,*.cpp,*.hpp silent! !ctags . &
+autocmd BufWritePost *.c,*.h,*.cpp,*.hpp silent! !ctags -R . &
 
 " Swap between header and source
 map <Esc>o <A-o>
@@ -169,9 +172,30 @@ highlight cCustomClassName ctermfg=214
 " set the update time to 300ms
 set updatetime=300
 
-" split buffer options
-let g:bufExplorerSplitBelow=1
-let g:bufExplorerSplitRight=1
+" Split directions
+set splitright
+set splitbelow
+
+" Command functions to search and open buffers using fzf
+command! Buffers call fzf#run(fzf#wrap('buffers', {
+      \ 'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'),
+      \ 'sink':   'edit'
+      \ }))
+
+command! BuffersSplit call fzf#run(fzf#wrap('buffers', {
+      \ 'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'),
+      \ 'sink':   { buf -> execute('split ' . buf) }
+      \ }))
+
+command! BuffersVSplit call fzf#run(fzf#wrap('buffers', {
+      \ 'source': map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'),
+      \ 'sink':   { buf -> execute('vsplit ' . buf) }
+      \ }))
+
+" Remap calls to open buffers
+nnoremap <leader>be :Buffers<CR>
+nnoremap <leader>bs :BuffersSplit<CR>
+nnoremap <leader>bv :BuffersVSplit<CR>
 
 " Source the plugins in the plugins.vim file
 so ~/.vim/plugins.vim
