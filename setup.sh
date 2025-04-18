@@ -69,6 +69,7 @@ for app in "${apps[@]}"; do
 done
 
 run_silent "Installing sakura terminal" bash -c 'git clone https://github.com/dabisu/sakura.git sakura && cd sakura && cmake . && make && sudo make install && cd .. && rm -rf sakura'
+run_silent "Create Sakura config directory" mkdir -p ~/.config/sakura
 
 run_silent "Installing glow" bash -c 'sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg && echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list > /dev/null && sudo apt update && sudo apt install -y glow'
 
@@ -81,6 +82,7 @@ ln -s $SCRIPT_DIR/files/gitconfig ~/.gitconfig || error "Failed to link .gitconf
 ln -s $SCRIPT_DIR/files/vimrc ~/.vimrc || error "Failed to link .vimrc"
 ln -s $SCRIPT_DIR/files/config.rasi ~/.config/rofi/config.rasi || error "Failed to link rofi config"
 ln -s $SCRIPT_DIR/files/Xmodmap ~/.Xmodmap || error "Failed to link Xmodmap"
+ln -s $SCRIPT_DIR/files/sakura.conf ~/.config/sakura/sakura.conf || error "Failed to link sakura config"
 
 if [ -z "$DISPLAY" ]; then
     export DISPLAY=:0
@@ -96,11 +98,10 @@ fi
 mkdir -p ~/.vim/plugin || error "Failed to create vim plugin directory"
 cp $SCRIPT_DIR/files/CurtineIncSw.vim ~/.vim/plugin/CurtineIncSw.vim || error "Failed to copy CurtineIncSw.vim"
 cp $SCRIPT_DIR/files/plugins.vim ~/.vim/plugins.vim || error "Failed to copy plugins.vim"
-run_silent "Installing vim plugins" vim +PluginInstall +qall
+# run_silent "Installing vim plugins" vim +PluginInstall +qall
 
 run_silent "Installing zsh" sudo apt install -y zsh
 run_silent "Installing oh-my-zsh" bash -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
-run_silent "Installing kimwz theme" bash -c 'curl -o - https://raw.githubusercontent.com/kimwz/kimwz-oh-my-zsh-theme/master/install.sh | zsh'
 run_silent "Installing zsh-syntax-highlighting" sudo apt install -y zsh-syntax-highlighting
 
 run_silent "Installing fzf" bash -c 'git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && printf "y\ny\nn\n" | ~/.fzf/install'
@@ -109,6 +110,16 @@ run_silent "Installing powerlevel10k theme" git clone --depth=1 https://github.c
 
 rm -rf ~/.zshrc || error "Failed to remove old .zshrc"
 ln -s $SCRIPT_DIR/files/zshrc ~/.zshrc || error "Failed to link .zshrc"
+
+info "Link executable scripts into /usr/local/bin"
+pushd /usr/local/bin
+for script in $SCRIPT_DIR/files/scripts/*; do
+    if [ -f "$script" ]; then
+        script_name=$(basename "$script" .sh)
+        run_silent "Linking $script_name" sudo ln -s $(realpath $script) $script_name
+    fi
+done
+popd
 
 echo
 if [ $error_counter -ne 0 ]; then

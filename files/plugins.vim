@@ -14,6 +14,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'dyng/ctrlsf.vim'
     Plug 'ryanoasis/vim-devicons'
     Plug 'morhetz/gruvbox'
+    Plug 'fcpg/vim-fahrenheit'
     Plug 'sheerun/vim-polyglot'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'

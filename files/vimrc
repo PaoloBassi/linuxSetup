@@ -8,8 +8,6 @@ set mouse=a
 
 set background=dark
 
-colorscheme gruvbox
-          
 syntax enable
 
 syntax on
@@ -161,17 +159,6 @@ augroup hightlight_current_word
   au CursorHold * :exec 'match Search /\V\<' . expand ('<cword>') . '\>/'
 augroup END
 
-" set the highlight color of a search
-highlight Search cterm=bold,italic,underline ctermbg=NONE ctermfg=lightblue
-
-" set the highlight color of various components
-highlight String ctermfg=109
-highlight cCustomClass ctermfg=214
-highlight cCustomClassName ctermfg=214
-
-" set the update time to 300ms
-set updatetime=300
-
 " Split directions
 set splitright
 set splitbelow
@@ -199,3 +186,18 @@ nnoremap <leader>bv :BuffersVSplit<CR>
 
 " Source the plugins in the plugins.vim file
 so ~/.vim/plugins.vim
+
+" Load the color scheme and their settings at the end of the file to allow the
+" plugins to load first
+colorscheme fahrenheit
+
+" set the highlight color of a search
+highlight Search cterm=bold,italic,underline ctermbg=NONE ctermfg=lightblue
+
+" set the highlight color of various components
+highlight String ctermfg=109
+highlight cCustomClass ctermfg=214
+highlight cCustomClassName ctermfg=214
+
+" set the update time to 300ms
+set updatetime=300
