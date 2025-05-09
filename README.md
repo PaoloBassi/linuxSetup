@@ -25,3 +25,12 @@ vim +PlugInstall +qall
 ```bash
 ./extensions.sh
 ```
+
+- The user can change the default vim color appearance by invoking the following commmand
+```bash
+vimcolors <color>
+```
+
+where <color> can be one of the following:
+- gruvbox
+- fahrenheit
