@@ -56,7 +56,7 @@ map <S-f> :Files<CR>
 map <C-Left> :vnew<CR>:Files<CR>
 map <C-Up> :new<CR>:Files<CR>
 " Toggle NERDTree using Space
-nmap <Space> :NERDTreeToggle<CR>
+nmap , :NERDTreeToggle<CR>
 
 " Move between splits using Ctrl + h/j/k/l
 map <C-h> <C-w>h
@@ -67,6 +67,22 @@ map <C-l> <C-w>l
 " Search for a word using Ctrl + f
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
+
+" Mapping for easy motion
+" Define leader as comma
+let mapleader = " "
+
+nmap f <Plug>(easymotion-overwin-f2)
+map <Leader>j <Plug>(easymotion-bd-jk)
+nmap <Leader>j <Plug>(easymotion-overwin-line)
+
+map / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+map n <Plug>(easymotion-next)
+map N <Plug>(easymotion-prev)
+
+let g:EasyMotion_smartcase = 1
 
 " After selecting a file in the search, focus on it when opened
 let g:ctrlsf_auto_focus = {
@@ -180,9 +196,9 @@ command! BuffersVSplit call fzf#run(fzf#wrap('buffers', {
       \ }))
 
 " Remap calls to open buffers
-nnoremap <leader>be :Buffers<CR>
-nnoremap <leader>bs :BuffersSplit<CR>
-nnoremap <leader>bv :BuffersVSplit<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>sp :BuffersSplit<CR>
+nnoremap <leader>vs :BuffersVSplit<CR>
 
 " Source the plugins in the plugins.vim file
 so ~/.vim/plugins.vim
