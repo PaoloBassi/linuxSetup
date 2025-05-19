@@ -18,7 +18,13 @@ unzip IosevkaTerm.zip
 rm -rf IosevkaTerm.zip
 fc-cache -f -v
 popd
-#
+
+# typewriter font
+pushd ~/.local/share/fonts/
+curl -LO https://github.com/dse/dse-typewriter-font/blob/master/ttf/dse-typewriter-font.ttf
+fc-cache -f -v
+popd
+
 # install Docker (uncomment if required)
 
 # Add Docker's official GPG key:
