@@ -202,7 +202,7 @@ so ~/.vim/plugins.vim
 
 " Load the color scheme and their settings at the end of the file to allow the
 " plugins to load first
-colorscheme fahrenheit
+colorscheme gruvbox-material
 
 " set the highlight color of a search
 highlight Search cterm=bold,italic,underline ctermbg=NONE ctermfg=lightblue
