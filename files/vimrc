@@ -70,6 +70,9 @@ map <C-l> <C-w>l
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
 
+" Map ctrl + C to copy, middle mouse button to paste
+nmap <C-c> "+y
+
 " Mapping for easy motion
 " Define leader as space
 let mapleader = " "

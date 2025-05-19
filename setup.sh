@@ -73,7 +73,22 @@ run_silent "Create Sakura config directory" mkdir -p ~/.config/sakura
 
 run_silent "Installing glow" bash -c 'sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg && echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list > /dev/null && sudo apt update && sudo apt install -y glow'
 
-run_silent "Installing vim >= 9.0" bash -c 'sudo add-apt-repository -y ppa:jonathonf/vim && sudo apt update && sudo apt install -y vim'
+# Prerequisite for vim
+run_silent "Installing vim prerequisite" bash -c 'sudo apt install -y libncurses5-dev libx11-dev libxt-dev libxpm-dev libgtk-3-dev python3-dev git'
+info "Install vim in Programs"
+pushd ~
+run_silent "Clone last vim version" git clone https://github.com/vim/vim.git && cd vim && make distclean
+
+mkdir build
+
+run_silent "Generate makefile" ./configure --enable-gui=gtk3 \
+    --prefix=$(realpath ./build)
+
+run_silent "Compile vim" make -j$(nproc) 
+run_silent "Install vim" sudo make install
+run_silent "Soft link to /usr/local/bin" sudo ln -s $(realpath ./build/bin/vim) /usr/local/bin/vim
+
+popd
 
 run_silent "Installing gruvbox theme for vim" git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
 run_silent "Installing gruvbox-material theme for vim" git clone https://github.com/sainnhe/gruvbox-material ~/.vim/pack/default/start/gruvbox-material
