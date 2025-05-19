@@ -69,7 +69,7 @@ nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
 
 " Mapping for easy motion
-" Define leader as comma
+" Define leader as space
 let mapleader = " "
 
 nmap f <Plug>(easymotion-overwin-f2)
