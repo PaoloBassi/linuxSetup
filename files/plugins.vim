@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-commentary'
     Plug 'dense-analysis/ale'
     Plug 'itspriddle/vim-shellcheck'
     Plug 'dyng/ctrlsf.vim'
@@ -21,5 +22,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'thaerkh/vim-workspace'
     Plug 'easymotion/vim-easymotion'
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'preservim/tagbar'
     "Plug 'lervag/vimtex', '{ 'tag': 'v2.15' }'
 call plug#end()

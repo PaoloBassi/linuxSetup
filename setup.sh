@@ -59,7 +59,7 @@ run_silent() {
 }
 
 # Various packages
-declare -a apps=(curl git silversearcher-ag exuberant-ctags bat rofi flameshot unzip x11-xserver-utils gpg software-properties-common build-essential cmake clang cppcheck clang-tidy clangd libglib2.0-dev libgtk-3-dev libvte-2.91-dev)
+declare -a apps=(curl git silversearcher-ag universal-ctags bat rofi flameshot unzip x11-xserver-utils gpg software-properties-common build-essential cmake clang cppcheck clang-tidy clangd libglib2.0-dev libgtk-3-dev libvte-2.91-dev)
 
 run_silent "Updating package list" sudo apt update
 
@@ -76,6 +76,7 @@ run_silent "Installing glow" bash -c 'sudo mkdir -p /etc/apt/keyrings && curl -f
 run_silent "Installing vim >= 9.0" bash -c 'sudo add-apt-repository -y ppa:jonathonf/vim && sudo apt update && sudo apt install -y vim'
 
 run_silent "Installing gruvbox theme for vim" git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
+run_silent "Installing gruvbox-material theme for vim" git clone https://github.com/sainnhe/gruvbox-material ~/.vim/pack/default/start/gruvbox-material
 run_silent "Installing gruvbox theme for rofi" git clone https://github.com/bardisty/gruvbox-rofi ~/.config/rofi/themes/gruvbox
 
 ln -s $SCRIPT_DIR/files/gitconfig ~/.gitconfig || error "Failed to link .gitconfig"

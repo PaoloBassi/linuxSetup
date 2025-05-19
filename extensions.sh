@@ -4,12 +4,12 @@
 # sudo apt install -y texlive
 # sudo apt install -y zathura
 # sudo apt install -y latexmk
-#
+
 # Tabby Terminal
-curl -LO https://github.com/Eugeny/tabby/releases/download/v1.0.223/tabby-1.0.223-linux-x64.deb
-sudo dpkg -i tabby-1.0.223-linux-x64.deb
-rm -rf tabby-1.0.223-linux-x64.deb
-#
+# curl -LO https://github.com/Eugeny/tabby/releases/download/v1.0.223/tabby-1.0.223-linux-x64.deb
+# sudo dpkg -i tabby-1.0.223-linux-x64.deb
+# rm -rf tabby-1.0.223-linux-x64.deb
+
 # download and install Iosevka font
 mkdir -p ~/.local/share/fonts/
 pushd ~/.local/share/fonts/
@@ -18,7 +18,13 @@ unzip IosevkaTerm.zip
 rm -rf IosevkaTerm.zip
 fc-cache -f -v
 popd
-#
+
+# typewriter font
+pushd ~/.local/share/fonts/
+curl -LO https://github.com/dse/dse-typewriter-font/blob/master/ttf/dse-typewriter-font.ttf
+fc-cache -f -v
+popd
+
 # install Docker (uncomment if required)
 
 # Add Docker's official GPG key:
