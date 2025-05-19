@@ -22,5 +22,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'thaerkh/vim-workspace'
     Plug 'easymotion/vim-easymotion'
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'preservim/tagbar'
     "Plug 'lervag/vimtex', '{ 'tag': 'v2.15' }'
 call plug#end()
