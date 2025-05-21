@@ -59,7 +59,7 @@ run_silent() {
 }
 
 # Various packages
-declare -a apps=(curl git silversearcher-ag universal-ctags bat rofi flameshot unzip x11-xserver-utils gpg software-properties-common build-essential cmake clang cppcheck clang-tidy clangd libglib2.0-dev libgtk-3-dev libvte-2.91-dev)
+declare -a apps=(curl tmux git silversearcher-ag universal-ctags bat rofi flameshot unzip x11-xserver-utils gpg software-properties-common build-essential cmake clang cppcheck clang-tidy clangd libglib2.0-dev libgtk-3-dev libvte-2.91-dev)
 
 run_silent "Updating package list" sudo apt update
 
@@ -84,28 +84,34 @@ mkdir build
 run_silent "Generate makefile" ./configure --enable-gui=gtk3 \
     --prefix=$(realpath ./build)
 
-run_silent "Compile vim" make -j$(nproc) 
+run_silent "Compile vim" make -j$(nproc)
 run_silent "Install vim" sudo make install
 run_silent "Soft link to /usr/local/bin" sudo ln -s $(realpath ./build/bin/vim) /usr/local/bin/vim
 
 popd
 
-run_silent "Installing gruvbox theme for vim" git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
-run_silent "Installing gruvbox-material theme for vim" git clone https://github.com/sainnhe/gruvbox-material ~/.vim/pack/default/start/gruvbox-material
-run_silent "Installing gruvbox theme for rofi" git clone https://github.com/bardisty/gruvbox-rofi ~/.config/rofi/themes/gruvbox
+# Install tmux with powerline
+run_silent "Clone tmux powerline" git clone --single-branch https://github.com/gpakosz/.tmux.git $HOME/oh-my-tmux
+run_silent "Create config folder" mkdir -p $HOME/.config/tmux
+run_silent "Link ohmytmux config to local one" ln -s $HOME/oh-my-tmux/.tmux.conf $HOME/.config/tmux/tmux.conf
+run_silent "Install local config file" cp $SCRIPT_DIR/files/tmux.conf.local $HOME/.config/tmux/tmux.conf.local
 
-ln -s $SCRIPT_DIR/files/gitconfig ~/.gitconfig || error "Failed to link .gitconfig"
-ln -s $SCRIPT_DIR/files/vimrc ~/.vimrc || error "Failed to link .vimrc"
-ln -s $SCRIPT_DIR/files/config.rasi ~/.config/rofi/config.rasi || error "Failed to link rofi config"
-ln -s $SCRIPT_DIR/files/Xmodmap ~/.Xmodmap || error "Failed to link Xmodmap"
-ln -s $SCRIPT_DIR/files/sakura.conf ~/.config/sakura/sakura.conf || error "Failed to link sakura config"
+run_silent "Installing gruvbox theme for vim" git clone https://github.com/morhetz/gruvbox.git $HOME/.vim/pack/default/start/gruvbox
+run_silent "Installing gruvbox-material theme for vim" git clone https://github.com/sainnhe/gruvbox-material $HOME/.vim/pack/default/start/gruvbox-material
+run_silent "Installing gruvbox theme for rofi" git clone https://github.com/bardisty/gruvbox-rofi $HOME/.config/rofi/themes/gruvbox
+
+ln -s $SCRIPT_DIR/files/gitconfig $HOME/.gitconfig || error "Failed to link .gitconfig"
+ln -s $SCRIPT_DIR/files/vimrc $HOME/.vimrc || error "Failed to link .vimrc"
+ln -s $SCRIPT_DIR/files/config.rasi $HOME/.config/rofi/config.rasi || error "Failed to link rofi config"
+ln -s $SCRIPT_DIR/files/Xmodmap $HOME/.Xmodmap || error "Failed to link Xmodmap"
+ln -s $SCRIPT_DIR/files/sakura.conf $HOME/.config/sakura/sakura.conf || error "Failed to link sakura config"
 
 if [ -z "$DISPLAY" ]; then
     export DISPLAY=:0
     if [ $? -ne 0 ]; then
         error "Failed to set DISPLAY variable"
     else
-        xmodmap ~/.Xmodmap || error "Failed to set keyboard layout"
+        xmodmap $HOME/.Xmodmap || error "Failed to set keyboard layout"
     fi
 else
     xmodmap ~/.Xmodmap || error "Failed to set keyboard layout"
