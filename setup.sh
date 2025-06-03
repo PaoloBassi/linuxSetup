@@ -128,6 +128,7 @@ run_silent "Installing zsh-syntax-highlighting" sudo apt install -y zsh-syntax-h
 
 run_silent "Installing fzf" bash -c 'git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && printf "y\ny\nn\n" | ~/.fzf/install'
 run_silent "Setting zsh as default shell" sudo chsh -s $(which zsh)
+run_silent "Install fzf-tab plugin for zsh" git clone https://github.com/Aloxaf/fzf-tab ~/.oh-my-zsh/plugins/fzf-tab
 run_silent "Installing powerlevel10k theme" git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
 rm -rf ~/.zshrc || error "Failed to remove old .zshrc"
