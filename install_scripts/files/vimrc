@@ -66,6 +66,14 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Remap esc to kj
+inoremap kj <Esc>
+vnoremap kj <Esc>
+cnoremap kj <C-C>
+
+" Disable esc key for muscle memory
+inoremap <Esc> <Nop>
+
 " Search for a word using Ctrl + f
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
