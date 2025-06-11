@@ -237,8 +237,14 @@ function lg()
 # In order: 1 current dir 2 previous dir 3 home
 CDPATH=:..:~
 
-# set vi as the input for terminal
-set -o vi
+# set the default editor to vim
+bindkey -v
+
+# set kj to escape in terminal
+bindkey -M viins 'kj' vi-cmd-mode
+
+# disable esc key in terminal
+bindkey -M viins '^[' vi-cmd-mode
 
 # set fzf-tab options
 
