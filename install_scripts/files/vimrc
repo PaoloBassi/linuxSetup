@@ -257,7 +257,7 @@ map <S-q> :tabclose<CR>
 " hightlight all the words similar to the one under the cursor
 augroup hightlight_current_word
   au!
-  au CursorHold * :exec 'match Search /\V\<' . expand ('<cword>') . '\>/'
+  autocmd CursorHold * :exec 'match Search /\V\<'. escape(expand('<cword>'), '\\/.*$^~[]') . '\>/'
 augroup END
 
 " Split directions
