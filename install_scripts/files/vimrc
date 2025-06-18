@@ -119,8 +119,18 @@ let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_position = 'right'
 
+" Coc
+" Trigger completion with Ctrl+Space (not working, lol)
+inoremap <silent><expr> <c-@> coc#refresh()
+
+" Confirm selection with enter (change it to tab when copilot is not active)
+inoremap <expr> <cr> pumvisible() ? coc#_select_confirm() : "\<CR>"
+
 " Airline theme
 let g:airline_theme='base16_gruvbox_dark_hard'
+
+" Remove lua support from polyglot to avoid loading errors on some files
+let g:polyglot_disabled = ['lua']
 
 " C++ better highlight
 let g:cpp_class_scope_highlight = 1
