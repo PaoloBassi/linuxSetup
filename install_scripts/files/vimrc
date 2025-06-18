@@ -129,6 +129,9 @@ inoremap <expr> <cr> pumvisible() ? coc#_select_confirm() : "\<CR>"
 " Airline theme
 let g:airline_theme='base16_gruvbox_dark_hard'
 
+" Remove lua support from polyglot to avoid loading errors on some files
+let g:polyglot_disabled = ['lua']
+
 " C++ better highlight
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
