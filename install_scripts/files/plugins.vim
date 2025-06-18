@@ -24,5 +24,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'easymotion/vim-easymotion'
     Plug 'ludovicchabant/vim-gutentags'
     Plug 'preservim/tagbar'
+    Plug 'slint-ui/vim-slint'
+    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "Plug 'lervag/vimtex', '{ 'tag': 'v2.15' }'
 call plug#end()
