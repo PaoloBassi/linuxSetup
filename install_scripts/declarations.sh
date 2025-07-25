@@ -29,6 +29,9 @@ error_counter=0
 # temp file for logging
 LOG_FILE="/tmp/install_script_$(date +%s).log"
 
+# file containing the list of applications to install
+APP_FILE="install_scripts/files/apps.txt"
+
 # functions to print errors, success, and info messages
 function info() { echo -e "${INFO_COLOR}${@}${RESET}"; }
 function error() { echo -e "${ERROR_COLOR}${CROSS} ${@}${RESET}"; ((error_counter++)); }
