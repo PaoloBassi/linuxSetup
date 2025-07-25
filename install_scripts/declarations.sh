@@ -14,7 +14,7 @@ for arg in "$@"; do
 done
 
 # various colors
-RROR_COLOR=$(tput setaf 1)
+ERROR_COLOR=$(tput setaf 1)
 SUCCESS_COLOR=$(tput setaf 2)
 INFO_COLOR=$(tput setaf 3)
 RESET=$(tput sgr0)
