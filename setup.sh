@@ -4,7 +4,6 @@ source install_scripts/declarations.sh
 
 ./install_scripts/install_apps.sh
 ./install_scripts/install_terminal.sh
-./install_scripts/install_glow.sh
 ./install_scripts/install_vim.sh
 ./install_scripts/install_tmux.sh
 ./install_scripts/install_themes.sh
