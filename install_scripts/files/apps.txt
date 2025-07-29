@@ -5,6 +5,7 @@ silversearcher-ag
 universal-ctags
 bat
 rofi
+input-remapper
 flameshot
 unzip
 x11-xserver-utils
