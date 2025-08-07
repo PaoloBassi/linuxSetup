@@ -14,7 +14,7 @@ for arg in "$@"; do
 done
 
 # various colors
-RROR_COLOR=$(tput setaf 1)
+ERROR_COLOR=$(tput setaf 1)
 SUCCESS_COLOR=$(tput setaf 2)
 INFO_COLOR=$(tput setaf 3)
 RESET=$(tput sgr0)
@@ -28,6 +28,9 @@ error_counter=0
 
 # temp file for logging
 LOG_FILE="/tmp/install_script_$(date +%s).log"
+
+# file containing the list of applications to install
+APP_FILE=$SCRIPT_DIR/files/apps.txt
 
 # functions to print errors, success, and info messages
 function info() { echo -e "${INFO_COLOR}${@}${RESET}"; }
