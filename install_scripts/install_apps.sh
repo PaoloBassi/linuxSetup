@@ -3,7 +3,7 @@
 source install_scripts/declarations.sh
 
 # Retrieve the apps vector from a file
-if [ -n $APP_FILE ]; then
+if [ ! -f "$APP_FILE" ]; then
     error "Application file not found. Please create it with the list of applications to install."
     exit 1
 fi

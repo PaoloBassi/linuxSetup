@@ -30,7 +30,7 @@ error_counter=0
 LOG_FILE="/tmp/install_script_$(date +%s).log"
 
 # file containing the list of applications to install
-APP_FILE="install_scripts/files/apps.txt"
+APP_FILE=$SCRIPT_DIR/files/apps.txt
 
 # functions to print errors, success, and info messages
 function info() { echo -e "${INFO_COLOR}${@}${RESET}"; }

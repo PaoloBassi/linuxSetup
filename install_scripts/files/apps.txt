@@ -4,7 +4,6 @@ git
 silversearcher-ag
 universal-ctags
 bat
-rofi
 input-remapper
 flameshot
 unzip
