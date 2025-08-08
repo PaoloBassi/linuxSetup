@@ -4,14 +4,11 @@ git
 silversearcher-ag
 universal-ctags
 bat
-input-remapper
 flameshot
 unzip
 x11-xserver-utils
 gpg
 software-properties-common
-gnome-tweaks
-gnome-shell-extensions
 build-essential
 make
 cmake
