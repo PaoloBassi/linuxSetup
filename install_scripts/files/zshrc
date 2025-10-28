@@ -137,9 +137,9 @@ alias pull="git pull --rebase origin"
 alias br="git branch -va"
 
 # ls aliases
-alias ls='ls -lh --color --group-directories-first'
-alias l='ls -CF'
-alias la='ls -la'
+alias ls='lsd -l'
+alias la='lsd -la'
+alias lt='lsd --tree'
 
 # other aliases
 alias cat='batcat --style=numbers --color=always --theme="gruvbox-dark"'
@@ -246,6 +246,14 @@ bindkey -M viins 'kj' vi-cmd-mode
 # disable esc key in terminal
 bindkey -M viins '^[' vi-cmd-mode
 
+# disable windows colors for 777 folders
+LS_COLORS=$LS_COLORS:'ow=1;34:'
+export LS_COLORS
+
+# zoxide path
+PATH=$PATH:~/.local/bin
+export PATH
+
 # set fzf-tab options
 
 # disable sort when completing `git checkout`
@@ -272,11 +280,14 @@ zstyle ':fzf-tab:*' popup-min-size 100 20
 export FZF_TMUX=1
 export FZF_TMUX_OPTS='-p 100%,50%'  # width,height popup
 
-# set fzf 
+# set fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # source zsh-syntax-highlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# eval zoxide
+eval "$(zoxide init zsh --cmd cd)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
