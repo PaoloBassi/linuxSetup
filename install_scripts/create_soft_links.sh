@@ -15,6 +15,11 @@ tar xf $SCRIPT_DIR/files/ulauncher-config.tar.gz -C $HOME/.config/ulauncher/ || 
 tar xf $SCRIPT_DIR/files/gruvbox-icons.tar.gz -C $HOME/.local/share/icons/ || error "Failed to extract cursor tar.gz file"
 tar xf $SCRIPT_DIR/files/gruvbox-theme.tar.gz -C $HOME/.themes/ || error "Failed to extract theme tar.gz file"
 
+# lsd config
+mkdir -p $HOME/.config/lsd
+
+ln -s $SCRIPT_DIR/files/config.yaml $HOME/.config/lsd/config.yaml || error "Failed to link lsd config"
+
 #if [ -z "$DISPLAY" ]; then
 #    export DISPLAY=:0
 #    if [ $? -ne 0 ]; then
