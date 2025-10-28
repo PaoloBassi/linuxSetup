@@ -6,6 +6,7 @@ universal-ctags
 bat
 input-remapper
 flameshot
+lsd
 unzip
 x11-xserver-utils
 gpg
