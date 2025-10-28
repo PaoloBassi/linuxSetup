@@ -10,6 +10,7 @@ source install_scripts/declarations.sh
 ./install_scripts/install_themes.sh
 ./install_scripts/create_soft_links.sh
 ./install_scripts/install_fzf_and_zsh.sh
+./install_scripts/install_extras.sh
 ./install_scripts/link_custom_exec.sh
 
 echo
