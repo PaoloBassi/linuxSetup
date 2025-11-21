@@ -139,7 +139,8 @@ alias br="git branch -va"
 # ls aliases
 alias ls='lsd -l'
 alias la='lsd -la'
-alias lt='la -t'
+alias lt='lsd --tree'
+alias lr='lsd -l --total-size'
 
 # other aliases
 alias cat='batcat --style=numbers --color=always --theme="gruvbox-dark"'
