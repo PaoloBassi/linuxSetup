@@ -127,6 +127,9 @@ nnoremap <silent><leader>f :YcmCompleter FixIt<CR>
 nnoremap <silent><leader>r :execute 'YcmCompleter RefactorRename ' . input('Rename to: ')<CR>
 nnoremap <silent><leader>o :YcmCompleter GoToAlternateFile<CR>
 
+" Remove popup when hovering functions
+let g:ycm_auto_hover=''
+
 " Airline theme
 let g:airline_theme='base16_gruvbox_dark_hard'
 
