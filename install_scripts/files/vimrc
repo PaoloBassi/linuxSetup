@@ -130,6 +130,9 @@ nnoremap <silent><leader>o :YcmCompleter GoToAlternateFile<CR>
 " Remove popup when hovering functions
 let g:ycm_auto_hover=''
 
+" Change mark recall for simplicity
+nnoremap <leader>m '
+
 " Airline theme
 let g:airline_theme='base16_gruvbox_dark_hard'
 
