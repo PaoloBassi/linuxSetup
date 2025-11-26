@@ -27,5 +27,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'slint-ui/vim-slint'
     Plug 'psliwka/vim-smoothie'
     Plug 'ycm-core/YouCompleteMe'
+    Plug 'kshenoy/vim-signature'
     "Plug 'lervag/vimtex', '{ 'tag': 'v2.15' }'
 call plug#end()

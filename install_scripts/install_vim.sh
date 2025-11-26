@@ -20,6 +20,5 @@ run_silent "Soft link to /usr/local/bin" sudo ln -s $(realpath ./build/bin/vim) 
 popd
 
 mkdir -p ~/.vim/plugin || error "Failed to create vim plugin directory"
-cp $SCRIPT_DIR/files/CurtineIncSw.vim ~/.vim/plugin/CurtineIncSw.vim || error "Failed to copy CurtineIncSw.vim"
-cp $SCRIPT_DIR/files/plugins.vim ~/.vim/plugins.vim || error "Failed to copy plugins.vim"
+ln -s $SCRIPT_DIR/files/plugins.vim ~/.vim/plugins.vim || error "Failed to link plugins.vim"
 # run_silent "Installing vim plugins" vim +PluginInstall +qall
