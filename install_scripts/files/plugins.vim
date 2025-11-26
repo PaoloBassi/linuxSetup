@@ -26,6 +26,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/tagbar'
     Plug 'slint-ui/vim-slint'
     Plug 'psliwka/vim-smoothie'
-    "Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'ycm-core/YouCompleteMe'
     "Plug 'lervag/vimtex', '{ 'tag': 'v2.15' }'
 call plug#end()
