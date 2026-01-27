@@ -4,12 +4,15 @@
 echo "Please select your preferred color scheme:"
 echo "1. gruvbox-material"
 echo "2. fahrenheit"
+echo "3. catppuccin_mocha"
 read -p "Enter your choice number: " color_choice
 
 if [[ $color_choice -eq 1 ]]; then
     color_scheme="gruvbox-material"
 elif [[ $color_choice -eq 2 ]]; then
     color_scheme="fahrenheit"
+elif [[ $color_choice -eq 3 ]]; then
+    color_scheme="catppuccin_mocha"
 else
     echo "Invalid choice. Defaulting to gruvbox-material color scheme."
     color_scheme="gruvbox-material"

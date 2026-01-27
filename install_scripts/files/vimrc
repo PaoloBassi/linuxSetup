@@ -33,9 +33,14 @@ set rnu
 
 set hidden
 
+set termguicolors
+
 filetype on
 filetype plugin on
 filetype indent on
+"
+" remove default INSERT/NORMAL/VISUAL since alredy provided by lightline plugin
+set noshowmode
 
 " When vim is opened, open NERDTree
 " autocmd VimEnter * NERDTree | wincmd p
@@ -99,16 +104,21 @@ let g:ctrlsf_auto_focus = {
     \ "at": "start"
     \ }
 
-" Add the filename to the status line
+" Lightline configuration
 let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename' ] ],
+      \ },
       \ 'component_function': {
-      \   'filename': 'FilenameForLightline'
-      \ }
+      \   'filename': 'LightlineFilename',
+      \ },
       \ }
 
-" Show full path of filename
-function! FilenameForLightline()
-    return expand('%')
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
 endfunction
 
 " Map a key to preview the markdown file
@@ -132,9 +142,6 @@ let g:ycm_auto_hover=''
 
 " Change mark recall for simplicity
 nnoremap <leader>m '
-
-" Airline theme
-let g:airline_theme='base16_gruvbox_dark_hard'
 
 " Remove lua support from polyglot to avoid loading errors on some files
 let g:polyglot_disabled = ['lua']
@@ -164,12 +171,15 @@ let g:ale_cpp_clangtidy_options = opts
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
+let g:ale_virtualtext_cursor = 'cursor'
 
 " workspace plugin
 let g:workspace_autocreate = 1
 let g:workspace_session_directory = expand('$HOME/.vim/workspace')
 let g:workspace_undodir = expand('$HOME/.vim/workspace/.undodir')
 let g:workspace_session_disable_on_args = 1
+" avoid overriding noshowmode
+let g:workspace_nocompatible = 0
 
 if !isdirectory(g:workspace_undodir)
     call mkdir(g:workspace_undodir, 'p')
@@ -293,20 +303,32 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>sp :BuffersSplit<CR>
 nnoremap <leader>vs :BuffersVSplit<CR>
 
+" Call :Ag command with ctrl+g
+nnoremap <silent> <C-g> :Ag<CR>
+
 " Source the plugins in the plugins.vim file
 so ~/.vim/plugins.vim
 
 " Load the color scheme and their settings at the end of the file to allow the
 " plugins to load first
-colorscheme gruvbox-material
+colorscheme catppuccin_mocha
+
+" Lightline theme depending on colorscheme
+if exists('g:colors_name')
+    if g:colors_name ==# 'gruvbox-material'
+        let g:lightline = {'colorscheme': 'gruvbox-material'}
+    elseif g:colors_name ==# 'catppuccin_mocha'
+        let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+    endif
+endif
 
 " set the highlight color of a search
-highlight Search cterm=bold,italic,underline ctermbg=NONE ctermfg=lightblue
+highlight! Search cterm=bold,italic,underline ctermbg=NONE guifg=lightblue
 
 " set the highlight color of various components
-highlight String ctermfg=109
-highlight cCustomClass ctermfg=214
-highlight cCustomClassName ctermfg=214
+highlight! String guifg=#87afff
+highlight! cCustomClass guifg=#87afff
+highlight! cCustomClassName guifg=#87afff
 
 " set the update time to 300ms
 set updatetime=300
