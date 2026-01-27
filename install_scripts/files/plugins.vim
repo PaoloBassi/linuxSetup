@@ -17,7 +17,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'morhetz/gruvbox'
     Plug 'fcpg/vim-fahrenheit'
-    Plug 'catpuccin/vim', { 'as': 'catpuccin' }
     Plug 'sheerun/vim-polyglot'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'thaerkh/vim-workspace'
