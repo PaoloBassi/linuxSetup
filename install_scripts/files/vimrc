@@ -105,10 +105,16 @@ let g:ctrlsf_auto_focus = {
     \ }
 
 " Add the filename to the status line
+
 let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
       \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
       \   'filename': 'FilenameForLightline'
-      \ }
+      \ },
       \ }
 
 " Show full path of filename
@@ -137,9 +143,6 @@ let g:ycm_auto_hover=''
 
 " Change mark recall for simplicity
 nnoremap <leader>m '
-
-" Airline theme
-let g:airline_theme='base16_gruvbox_dark_hard'
 
 " Remove lua support from polyglot to avoid loading errors on some files
 let g:polyglot_disabled = ['lua']
@@ -309,7 +312,16 @@ so ~/.vim/plugins.vim
 
 " Load the color scheme and their settings at the end of the file to allow the
 " plugins to load first
-colorscheme gruvbox-material
+colorscheme catppuccin_mocha
+
+" Lightline theme depending on colorscheme
+if exists('g:colors_name')
+    if g:colors_name ==# 'gruvbox-material'
+        let g:lightline = {'colorscheme': 'gruvbox-material'}
+    elseif g:colors_name ==# 'catppuccin_mocha'
+        let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+    endif
+endif
 
 " set the highlight color of a search
 highlight! Search cterm=bold,italic,underline ctermbg=NONE guifg=lightblue
