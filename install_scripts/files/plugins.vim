@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-fugitive'
     Plug 'dense-analysis/ale'
     Plug 'itspriddle/vim-shellcheck'
     Plug 'dyng/ctrlsf.vim'
@@ -18,8 +19,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'fcpg/vim-fahrenheit'
     Plug 'catpuccin/vim', { 'as': 'catpuccin' }
     Plug 'sheerun/vim-polyglot'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'thaerkh/vim-workspace'
     Plug 'easymotion/vim-easymotion'
