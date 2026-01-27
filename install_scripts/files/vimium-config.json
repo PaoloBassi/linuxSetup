@@ -1,0 +1,43 @@
+{
+	"name": "Vimium C",
+	"@time": "22/01/2026, 10:02:20",
+	"time": 1769072540659,
+	"environment": {
+		"extension": "2.12.2",
+		"platform": "win",
+		"chromium": 143
+	},
+	"exclusionRules": [],
+	"grabBackFocus": true,
+	"keyLayout": 2,
+	"keyMappings": [
+		"#!no-check",
+		"unmap d",
+		"unmap u",
+		"unmap K",
+		"unmap J",
+		"unmap H",
+		"unmap L",
+		"map <c-d> scrollPageDown",
+		"map <c-u> scrollPageUp",
+		"map <c-h> previousTab",
+		"map <c-l> nextTab",
+		"map u goBack",
+		"map r goForward",
+		""
+	],
+	"searchEngines": [
+		"w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia",
+		"",
+		"# More examples.",
+		"#",
+		"# (Vimium supports search completion Wikipedia, as",
+		"# above, and for these.)",
+		"#",
+		"g: https://www.google.com/search?q=%s Google",
+		"gm: https://www.google.com/maps?q=%s Google maps",
+		"p: https://www.perplexity.ai/search?q=%s",
+		""
+	],
+	"vimSync": true
+}
