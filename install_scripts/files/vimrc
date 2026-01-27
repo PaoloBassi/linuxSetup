@@ -104,22 +104,21 @@ let g:ctrlsf_auto_focus = {
     \ "at": "start"
     \ }
 
-" Add the filename to the status line
-
+" Lightline configuration
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'readonly', 'filename' ] ],
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'filename': 'FilenameForLightline'
+      \   'filename': 'LightlineFilename',
       \ },
       \ }
 
-" Show full path of filename
-function! FilenameForLightline()
-    return expand('%')
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
 endfunction
 
 " Map a key to preview the markdown file
