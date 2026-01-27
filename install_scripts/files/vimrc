@@ -296,6 +296,9 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>sp :BuffersSplit<CR>
 nnoremap <leader>vs :BuffersVSplit<CR>
 
+" Call :Ag command with ctrl+g
+nnoremap <silent> <C-g> :Ag<CR>
+
 " Source the plugins in the plugins.vim file
 so ~/.vim/plugins.vim
 
