@@ -298,6 +298,10 @@ command! BuffersVSplit call fzf#run(fzf#wrap('buffers', {
       \ 'sink':   { buf -> execute('vsplit ' . buf) }
       \ }))
 
+" When searching with ag for a file name with extensions, show only the
+" content inside the file
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " Remap calls to open buffers
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>sp :BuffersSplit<CR>
