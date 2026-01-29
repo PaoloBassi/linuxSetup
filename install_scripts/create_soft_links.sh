@@ -17,8 +17,10 @@ tar xf $SCRIPT_DIR/files/gruvbox-theme.tar.gz -C $HOME/.themes/ || error "Failed
 
 # lsd config
 mkdir -p $HOME/.config/lsd
-
 ln -s $SCRIPT_DIR/files/config.yaml $HOME/.config/lsd/config.yaml || error "Failed to link lsd config"
+
+# ag ignore file config
+ln -s $SCRIPT_DIR/files/agignore $HOME/.agignore || error "Failed to link agignore"
 
 #if [ -z "$DISPLAY" ]; then
 #    export DISPLAY=:0
