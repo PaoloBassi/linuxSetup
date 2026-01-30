@@ -477,6 +477,9 @@ set -g @extrakto_key 'e'
 
 # ------------------------------------------------------------------------------
 
+set-option -g default-shell /usr/bin/zsh
+set-option -g default-command /usr/bin/zsh
+
 # # /!\ do not remove the following line
 # EOF
 #
