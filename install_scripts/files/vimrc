@@ -142,6 +142,8 @@ let g:ycm_auto_hover=''
 
 " Change mark recall for simplicity
 nnoremap <leader>m '
+" onoremap allows the use of <leader>m inside operator-pending mode
+onoremap <leader>m '
 
 " Remove lua support from polyglot to avoid loading errors on some files
 let g:polyglot_disabled = ['lua']
