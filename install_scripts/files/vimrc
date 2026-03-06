@@ -42,6 +42,9 @@ filetype indent on
 " remove default INSERT/NORMAL/VISUAL since alredy provided by lightline plugin
 set noshowmode
 
+" yy into system clipboard and ctrl+c into paste register
+set clipboard=unnamedplus
+
 " When vim is opened, open NERDTree
 " autocmd VimEnter * NERDTree | wincmd p
 
