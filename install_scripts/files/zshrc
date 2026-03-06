@@ -128,7 +128,10 @@ alias du='du -kh'
 alias df='df -kTh'
 alias tree='tree -Csuh'
 alias ps='ps -ef'
-alias c='xclip -selection clipboard'
+
+# c is for plain text, cc strips the numbers at the beginning of the line if they appear
+alias c="sed 's/\x1b\[[0-9;]*[a-zA-Z]//g' | xclip -selection clipboard"
+alias cc="sed -e 's/\x1b\[[0-9;]*[a-zA-Z]//g' -e 's/^ *[0-9]\+ *//' | xclip -selection clipboard"
 
 # git aliases
 alias s='git status'
