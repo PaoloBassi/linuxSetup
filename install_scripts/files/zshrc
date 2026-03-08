@@ -258,6 +258,9 @@ export LS_COLORS
 PATH=$PATH:~/.local/bin
 export PATH
 
+# setup keyboard
+setxkbmap -layout us -variant intl -option ctrl:nocaps
+
 # set fzf-tab options
 
 # disable sort when completing `git checkout`
