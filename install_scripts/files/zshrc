@@ -140,10 +140,10 @@ alias pull="git pull --rebase origin"
 alias br="git branch -va"
 
 # ls aliases
-alias ls='lsd -l'
-alias la='lsd -la'
-alias lt='lsd --tree'
-alias lr='lsd -l --total-size'
+alias ls='eza -l --group-directories-first --header --git --color=always'
+alias la='eza -la --group-directories-first --header --git --color=always'
+alias lt='eza --tree --color=always'
+alias lr='eza -la --total-size --header --git --color=always'
 
 # other aliases
 alias cat='batcat --style=numbers --color=always --theme="gruvbox-dark"'
@@ -253,6 +253,9 @@ bindkey -M viins '^[' vi-cmd-mode
 # disable windows colors for 777 folders
 LS_COLORS=$LS_COLORS:'ow=1;34:'
 export LS_COLORS
+
+# source the LS_COLORS modification to override the custom theme with mocha
+source ~/.config/eza_colors.zsh
 
 # zoxide path
 PATH=$PATH:~/.local/bin
