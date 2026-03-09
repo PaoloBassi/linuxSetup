@@ -7,17 +7,14 @@ ln -s $SCRIPT_DIR/files/vimrc $HOME/.vimrc || error "Failed to link .vimrc"
 ln -s $SCRIPT_DIR/files/sakura.conf $HOME/.config/sakura/sakura.conf || error "Failed to link sakura config"
 
 # Create directories and extract files
-mkdir -p $HOME/.config/ulauncher || error "Failed to create ulauncher config directory"
 mkdir -p $HOME/.local/share/icons || error "Failed to create icons directory"
 mkdir -p $HOME/.themes || error "Failed to create themes directory"
 
-tar xf $SCRIPT_DIR/files/ulauncher-config.tar.gz -C $HOME/.config/ulauncher/ || error "Failed to extract ulauncher-config.tar.gz file"
 tar xf $SCRIPT_DIR/files/gruvbox-icons.tar.gz -C $HOME/.local/share/icons/ || error "Failed to extract cursor tar.gz file"
 tar xf $SCRIPT_DIR/files/gruvbox-theme.tar.gz -C $HOME/.themes/ || error "Failed to extract theme tar.gz file"
 
-# lsd config
-mkdir -p $HOME/.config/lsd
-ln -s $SCRIPT_DIR/files/config.yaml $HOME/.config/lsd/config.yaml || error "Failed to link lsd config"
+# eza config
+ln -s $SCRIPT_DIR/files/eza_colors.zsh $HOME/.config/eza_colors.zsh || error "Failed to link eza colors config"
 
 # ag ignore file config
 ln -s $SCRIPT_DIR/files/agignore $HOME/.agignore || error "Failed to link agignore"
