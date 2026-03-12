@@ -140,10 +140,14 @@ alias pull="git pull --rebase origin"
 alias br="git branch -va"
 
 # ls aliases
-alias ls='eza -l --group-directories-first --header --git --color=always'
-alias la='eza -la --group-directories-first --header --git --color=always'
+alias ls='eza -l --group-directories-first --header --color=always'
+alias la='eza -la --group-directories-first --header --color=always'
 alias lt='eza --tree --color=always'
-alias lr='eza -la --total-size --header --git --color=always'
+alias lr='eza -la --total-size --header --color=always'
+
+# add git option only when requested (it's slow on big repos)
+alias lsg='ls --git'
+alias lag='la --git'
 
 # other aliases
 alias cat='batcat --style=numbers --color=always --theme="gruvbox-dark"'
