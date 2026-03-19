@@ -20,5 +20,8 @@ run_silent "Installing hypridle" sudo apt install -y hypridle
 run_silent "Installing cliphist" sudo apt install -y cliphist
 run_silent "Installing thunar" sudo apt install -y thunar
 run_silent "Installing wlogout" sudo apt install -y wlogout
+run_silent "Installing slurp" sudo apt install -y slurp
+run_silent "Installing brightnessctl" sudo apt install -y brightnessctl
+run_silent "Installing wireplumber" sudo apt install -y wireplumber
 
 bash install_scripts/install_lightdm_theme.sh "$@"
