@@ -22,6 +22,7 @@ ln -s $SCRIPT_DIR/files/agignore $HOME/.agignore || error "Failed to link agigno
 # Hyprland config
 mkdir -p $HOME/.config/hypr
 ln -s $SCRIPT_DIR/files/hypr/hyprland.conf $HOME/.config/hypr/hyprland.conf || error "Failed to link hyprland config"
+ln -s $SCRIPT_DIR/files/wallpapers/evening-sky.png $HOME/.config/hypr/wallpaper.png || error "Failed to link hyprland wallpaper"
 ln -s $SCRIPT_DIR/files/hypr/hyprpaper.conf $HOME/.config/hypr/hyprpaper.conf || error "Failed to link hyprpaper config"
 ln -s $SCRIPT_DIR/files/hypr/hyprlock.conf $HOME/.config/hypr/hyprlock.conf || error "Failed to link hyprlock config"
 ln -s $SCRIPT_DIR/files/hypr/hypridle.conf $HOME/.config/hypr/hypridle.conf || error "Failed to link hypridle config"
