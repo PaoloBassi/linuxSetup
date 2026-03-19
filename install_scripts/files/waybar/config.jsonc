@@ -29,7 +29,7 @@
 
     "custom/launcher": {
         "interval": "once",
-        "format": "󰣇",
+        "format": "󰘸",
         "on-click": "rofi -show drun",
         "tooltip": false
     },
@@ -73,30 +73,31 @@
     },
 
     "clock#date": {
-        "format": " {:%A, %B %d, %Y}"
+        "format": "󰸗 {:%A, %B %d, %Y}"
     },
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth": "󰂰 {volume}%",
         "format-muted": "󰝟 muted",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
         },
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol"
     },
 
     "network": {
-        "format-wifi": " {signalStrength}%",
-        "format-ethernet": " connected",
-        "format-disconnected": "󰤭",
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀 connected",
+        "format-disconnected": "󰤭 offline",
+        "on-click": "rofi-wifi-menu",
         "on-click-right": "rofi-wifi-menu"
     },
 
@@ -109,9 +110,9 @@
             "critical": 15
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-full": " 100%",
-        "format-icons": ["", "", "", "", "", "", "", "", "", ""]
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-full": "󰁹 100%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     }
 }

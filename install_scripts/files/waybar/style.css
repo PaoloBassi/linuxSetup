@@ -1,24 +1,19 @@
-/* Catppuccin Mocha - summer-day-and-night style adaptation
- * Bar bg uses fg color (inverted), modules use base color
+/* Catppuccin Mocha - floating pills on transparent bar
  *
  * fg:      #cdd6f4   base:    #1e1e2e   crust:   #11111b
  * green:   #a6e3a1   red:     #f38ba8   blue:    #89b4fa
- * subtext: #a6adc8   surface1:#45475a
+ * mauve:   #cba6f7   yellow:  #f9e2af   surface1:#45475a
  */
 
 * {
-    font-family: "Iosevka Nerd Font", FontAwesome;
-    font-size: 16px;
+    font-family: "IosevkaTerm Nerd Font", "Font Awesome 6 Free";
+    font-size: 15px;
     font-weight: bold;
 }
 
 window#waybar {
-    background-color: #cdd6f4;
-    color: #1e1e2e;
-    transition-property: background-color;
-    transition-duration: 0.5s;
-    border-radius: 0 0 15px 15px;
-    border-bottom: 5px solid #a6adc8;
+    background-color: transparent;
+    color: #cdd6f4;
 }
 
 /* All floating module pills */
@@ -31,14 +26,14 @@ window#waybar {
 #custom-dunst,
 #custom-powermenu,
 #custom-mediaplayer {
-    background-color: #1e1e2e;
+    background-color: rgba(30, 30, 46, 0.88);
     color: #cdd6f4;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: 8px;
     margin-bottom: 12px;
     border-radius: 10px;
-    border-bottom: 5px solid #11111b;
+    border-bottom: 3px solid rgba(17, 17, 27, 0.9);
 }
 
 /* Workspaces */
@@ -48,7 +43,7 @@ window#waybar {
 
 #workspaces button {
     background-color: transparent;
-    color: #cdd6f4;
+    color: #6c7086;
     border-radius: 10px;
     padding: 0 8px;
     border: none;
@@ -56,14 +51,15 @@ window#waybar {
 
 #workspaces button:hover {
     background-color: #313244;
+    color: #cdd6f4;
 }
 
 #workspaces button.active {
     background-color: #89b4fa;
     color: #1e1e2e;
     border-radius: 10px;
-    margin-bottom: -5px;
-    border-bottom: 5px solid #4d7ce0;
+    margin-bottom: -3px;
+    border-bottom: 3px solid #4d7ce0;
 }
 
 #workspaces button.urgent {
@@ -71,11 +67,11 @@ window#waybar {
     color: #1e1e2e;
 }
 
-/* Launcher - green pill */
+/* Launcher - mauve pill */
 #custom-launcher {
-    background-color: #a6e3a1;
+    background-color: #cba6f7;
     color: #1e1e2e;
-    border-bottom-color: #4a8f55;
+    border-bottom-color: #9272c4;
     margin-left: 15px;
     padding-left: 20px;
     padding-right: 21px;
@@ -104,12 +100,20 @@ window#waybar {
     color: #f9e2af;
 }
 
+#custom-dunst.paused {
+    color: #6c7086;
+}
+
 /* Clock */
 #clock {
     color: #cdd6f4;
 }
 
 /* Battery states */
+#battery {
+    color: #a6e3a1;
+}
+
 #battery.warning {
     color: #f9e2af;
 }
@@ -136,11 +140,19 @@ window#waybar {
 }
 
 /* Network */
+#network {
+    color: #89b4fa;
+}
+
 #network.disconnected {
     color: #f38ba8;
 }
 
-/* Pulseaudio muted */
+/* Pulseaudio */
+#pulseaudio {
+    color: #cba6f7;
+}
+
 #pulseaudio.muted {
     color: #585b70;
 }
