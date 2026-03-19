@@ -109,6 +109,23 @@ window#waybar {
     color: #cdd6f4;
 }
 
+/* Calendar popup */
+calendar {
+    background-color: rgba(30, 30, 46, 0.96);
+    color: #cdd6f4;
+    border-radius: 10px;
+    border: 1px solid #45475a;
+    padding: 8px;
+    font-family: "IosevkaTerm Nerd Font";
+    font-size: 14px;
+}
+
+calendar:selected {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+    border-radius: 6px;
+}
+
 /* Battery states */
 #battery {
     color: #a6e3a1;

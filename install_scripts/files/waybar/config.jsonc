@@ -73,7 +73,25 @@
     },
 
     "clock#date": {
-        "format": "󰸗 {:%A, %B %d, %Y}"
+        "format": "󰸗 {:%A, %B %d, %Y}",
+        "actions": {
+            "on-click": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        },
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "left",
+            "on-scroll": 1,
+            "format": {
+                "months":   "<span color='#cba6f7'><b>{}</b></span>",
+                "days":     "<span color='#cdd6f4'>{}</span>",
+                "weeks":    "<span color='#585b70'><b>W{}</b></span>",
+                "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
+                "today":    "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "tooltip-format": "<tt>{calendar}</tt>"
     },
 
     "pulseaudio": {
