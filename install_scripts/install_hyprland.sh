@@ -15,3 +15,7 @@ run_silent "Installing hyprpaper" sudo apt install -y hyprpaper
 run_silent "Installing hyprpicker" sudo apt install -y hyprpicker
 run_silent "Installing playerctl" sudo apt install -y playerctl
 run_silent "Installing network-manager" sudo apt install -y network-manager
+run_silent "Installing hyprlock" sudo apt install -y hyprlock
+run_silent "Installing hypridle" sudo apt install -y hypridle
+run_silent "Installing cliphist" sudo apt install -y cliphist
+run_silent "Installing thunar" sudo apt install -y thunar

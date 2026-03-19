@@ -23,6 +23,12 @@ ln -s $SCRIPT_DIR/files/agignore $HOME/.agignore || error "Failed to link agigno
 mkdir -p $HOME/.config/hypr
 ln -s $SCRIPT_DIR/files/hypr/hyprland.conf $HOME/.config/hypr/hyprland.conf || error "Failed to link hyprland config"
 ln -s $SCRIPT_DIR/files/hypr/hyprpaper.conf $HOME/.config/hypr/hyprpaper.conf || error "Failed to link hyprpaper config"
+ln -s $SCRIPT_DIR/files/hypr/hyprlock.conf $HOME/.config/hypr/hyprlock.conf || error "Failed to link hyprlock config"
+ln -s $SCRIPT_DIR/files/hypr/hypridle.conf $HOME/.config/hypr/hypridle.conf || error "Failed to link hypridle config"
+
+# Dunst config
+mkdir -p $HOME/.config/dunst
+ln -s $SCRIPT_DIR/files/dunst/dunstrc $HOME/.config/dunst/dunstrc || error "Failed to link dunst config"
 
 # Waybar config
 mkdir -p $HOME/.config/waybar
