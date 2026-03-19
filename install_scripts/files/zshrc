@@ -265,8 +265,8 @@ source ~/.config/eza_colors.zsh
 PATH=$PATH:~/.local/bin
 export PATH
 
-# setup keyboard
-setxkbmap -layout us -variant intl -option ctrl:nocaps
+# setup keyboard on X11
+# setxkbmap -layout us -variant intl -option ctrl:nocaps
 
 # set fzf-tab options
 

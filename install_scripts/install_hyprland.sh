@@ -11,3 +11,7 @@ run_silent "Installing grim" sudo apt install -y grim
 run_silent "Installing slurp" sudo apt install -y slurp
 run_silent "Installing xdg-desktop-portal-hyprland" sudo apt install -y xdg-desktop-portal-hyprland
 run_silent "Installing jq" sudo apt install -y jq
+run_silent "Installing hyprpaper" sudo apt install -y hyprpaper
+run_silent "Installing hyprpicker" sudo apt install -y hyprpicker
+run_silent "Installing playerctl" sudo apt install -y playerctl
+run_silent "Installing network-manager" sudo apt install -y network-manager
