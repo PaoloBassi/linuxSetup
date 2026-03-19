@@ -1,0 +1,271 @@
+/* Catppuccin Mocha — LightDM GTK Greeter theme */
+
+/* ── Palette ─────────────────────────────────────────────── */
+@define-color base     #1e1e2e;
+@define-color mantle   #181825;
+@define-color crust    #11111b;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+@define-color overlay0 #6c7086;
+@define-color overlay1 #7f849c;
+@define-color overlay2 #9399b2;
+@define-color subtext0 #a6adc8;
+@define-color subtext1 #bac2de;
+@define-color text     #cdd6f4;
+@define-color mauve    #cba6f7;
+@define-color blue     #89b4fa;
+@define-color green    #a6e3a1;
+@define-color red      #f38ba8;
+@define-color yellow   #f9e2af;
+@define-color peach    #fab387;
+
+/* ── Base window ─────────────────────────────────────────── */
+* {
+    font-family: "IosevkaTerm Nerd Font", "Noto Sans", sans-serif;
+    font-size: 14px;
+    color: @text;
+    -gtk-icon-style: regular;
+}
+
+window,
+.window,
+GtkWindow {
+    background-color: transparent;
+    color: @text;
+}
+
+/* ── Top panel (clock / session / power indicators) ──────── */
+#panel_window,
+.panel {
+    background-color: alpha(@crust, 0.95);
+    border-bottom: 1px solid alpha(@mauve, 0.20);
+    padding: 4px 12px;
+    color: @subtext1;
+}
+
+#panel_window label,
+.panel label {
+    color: @subtext1;
+    font-size: 14px;
+}
+
+/* ── Login box container ──────────────────────────────────── */
+#content,
+.login-frame,
+GtkBox#login-area {
+    background-color: alpha(@base, 0.88);
+    border-radius: 16px;
+    border: 2px solid @mauve;
+    padding: 36px 32px;
+    margin: 8px;
+}
+
+/* ── Text entries (username / password) ───────────────────── */
+entry,
+GtkEntry {
+    background-color: alpha(@base, 0.94);
+    color: @text;
+    border: 3px solid @mauve;
+    border-radius: 12px;
+    padding: 10px 16px;
+    caret-color: @mauve;
+    selection-background-color: @mauve;
+    selection-color: @crust;
+}
+
+entry:focus,
+GtkEntry:focus {
+    border-color: @mauve;
+    box-shadow: 0 0 0 3px alpha(@mauve, 0.30);
+    outline: none;
+}
+
+entry:hover,
+GtkEntry:hover {
+    border-color: alpha(@mauve, 0.75);
+}
+
+entry.error,
+GtkEntry.error {
+    border-color: @red;
+    box-shadow: 0 0 0 3px alpha(@red, 0.25);
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+button,
+GtkButton {
+    background-image: none;
+    background-color: @surface0;
+    color: @text;
+    border: 1px solid @surface1;
+    border-radius: 8px;
+    padding: 7px 18px;
+    transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+button:hover,
+GtkButton:hover {
+    background-color: @surface1;
+    border-color: @overlay0;
+}
+
+button:active,
+GtkButton:active {
+    background-color: @mauve;
+    color: @crust;
+    border-color: @mauve;
+}
+
+button.suggested-action,
+button#login-button {
+    background-color: @mauve;
+    color: @crust;
+    border-color: @mauve;
+    font-weight: bold;
+}
+
+button.suggested-action:hover,
+button#login-button:hover {
+    background-color: alpha(@mauve, 0.80);
+    border-color: @mauve;
+}
+
+/* ── Labels ───────────────────────────────────────────────── */
+label {
+    color: @text;
+}
+
+label.dim-label {
+    color: @subtext0;
+}
+
+#message-label,
+.message {
+    color: @subtext1;
+    font-size: 13px;
+}
+
+#error-label,
+.error-message {
+    color: @red;
+    font-size: 13px;
+}
+
+/* ── ComboBox / DropDown (session / language selector) ────── */
+combobox,
+GtkComboBox,
+comboboxtext,
+GtkComboBoxText {
+    background-color: @surface0;
+    color: @text;
+    border: 1px solid @surface1;
+    border-radius: 8px;
+}
+
+combobox:hover,
+GtkComboBox:hover {
+    border-color: @overlay0;
+}
+
+combobox button,
+GtkComboBox button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: @text;
+}
+
+/* Dropdown popup */
+.popup,
+menu,
+GtkMenu {
+    background-color: @surface0;
+    color: @text;
+    border: 1px solid @surface1;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+menuitem,
+GtkMenuItem {
+    border-radius: 6px;
+    padding: 5px 10px;
+    color: @text;
+}
+
+menuitem:hover,
+GtkMenuItem:hover,
+menuitem:selected,
+GtkMenuItem:selected {
+    background-color: @surface1;
+    color: @text;
+}
+
+menuitem:selected > label,
+GtkMenuItem:selected > label {
+    color: @mauve;
+}
+
+/* ── Scrollbars ───────────────────────────────────────────── */
+scrollbar {
+    background-color: @surface0;
+    border-radius: 4px;
+}
+
+scrollbar slider {
+    background-color: @surface2;
+    border-radius: 4px;
+    min-width: 6px;
+    min-height: 6px;
+}
+
+scrollbar slider:hover {
+    background-color: @overlay0;
+}
+
+/* ── Check / Radio ────────────────────────────────────────── */
+checkbutton check,
+radiobutton radio {
+    background-color: @surface0;
+    border: 1px solid @surface1;
+    border-radius: 4px;
+    transition: all 150ms ease;
+}
+
+checkbutton check:checked,
+radiobutton radio:checked {
+    background-color: @mauve;
+    border-color: @mauve;
+    color: @crust;
+}
+
+/* ── Headerbars / Titlebars ───────────────────────────────── */
+headerbar,
+.titlebar {
+    background-color: @mantle;
+    border-bottom: 1px solid @surface0;
+    color: @text;
+}
+
+/* ── Tooltips ─────────────────────────────────────────────── */
+tooltip {
+    background-color: @surface0;
+    color: @text;
+    border: 1px solid @surface1;
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+/* ── Progress / Spinner ───────────────────────────────────── */
+progressbar trough,
+GtkProgressBar.trough {
+    background-color: @surface0;
+    border-radius: 4px;
+}
+
+progressbar progress,
+GtkProgressBar.progressbar {
+    background-color: @mauve;
+    border-radius: 4px;
+}

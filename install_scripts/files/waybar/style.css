@@ -1,0 +1,185 @@
+/* Catppuccin Mocha - floating pills on transparent bar
+ *
+ * fg:      #cdd6f4   base:    #1e1e2e   crust:   #11111b
+ * green:   #a6e3a1   red:     #f38ba8   blue:    #89b4fa
+ * mauve:   #cba6f7   yellow:  #f9e2af   surface1:#45475a
+ */
+
+* {
+    font-family: "IosevkaTerm Nerd Font", "Font Awesome 6 Free";
+    font-size: 15px;
+    font-weight: bold;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: #cdd6f4;
+}
+
+/* All floating module pills */
+#custom-launcher,
+#clock,
+#workspaces,
+#pulseaudio,
+#network,
+#battery,
+#custom-dunst,
+#custom-powermenu,
+#custom-mediaplayer {
+    background-color: rgba(30, 30, 46, 0.88);
+    color: #cdd6f4;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border-bottom: 3px solid rgba(17, 17, 27, 0.9);
+}
+
+/* Workspaces */
+#workspaces {
+    padding: 0;
+}
+
+#workspaces button {
+    background-color: transparent;
+    color: #6c7086;
+    border-radius: 10px;
+    padding: 0 8px;
+    border: none;
+}
+
+#workspaces button:hover {
+    background-color: #313244;
+    color: #cdd6f4;
+}
+
+#workspaces button.active {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+    border-radius: 10px;
+    margin-bottom: -3px;
+    border-bottom: 3px solid #4d7ce0;
+}
+
+#workspaces button.urgent {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+}
+
+/* Launcher - mauve pill */
+#custom-launcher {
+    background-color: #cba6f7;
+    color: #1e1e2e;
+    border-bottom-color: #9272c4;
+    margin-left: 15px;
+    padding-left: 15px;
+    padding-right: 21px;
+    font-size: 18px;
+}
+
+#custom-launcher label {
+    margin-bottom: 4px;
+}
+
+/* Power menu - red pill */
+#custom-powermenu {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+    border-bottom-color: #c4607b;
+    margin-right: 15px;
+    padding-left: 20px;
+    padding-right: 23px;
+}
+
+/* Media player */
+#custom-mediaplayer {
+    color: #a6e3a1;
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Dunst */
+#custom-dunst {
+    color: #f9e2af;
+    padding-left: 9px;
+}
+
+#custom-dunst label {
+    margin-bottom: 3px;
+}
+
+#custom-dunst.paused {
+    color: #6c7086;
+}
+
+/* Clock */
+#clock {
+    color: #cdd6f4;
+    padding-left: 5px;
+}
+
+/* Calendar popup */
+calendar {
+    background-color: rgba(30, 30, 46, 0.96);
+    color: #cdd6f4;
+    border-radius: 10px;
+    border: 1px solid #45475a;
+    padding: 8px;
+    font-family: "IosevkaTerm Nerd Font";
+    font-size: 14px;
+}
+
+calendar:selected {
+    background-color: #89b4fa;
+    color: #1e1e2e;
+    border-radius: 6px;
+}
+
+/* Battery states */
+#battery {
+    color: #a6e3a1;
+}
+
+#battery.warning {
+    color: #f9e2af;
+}
+
+#battery.critical {
+    color: #f38ba8;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #a6e3a1;
+}
+
+@keyframes blink {
+    to {
+        color: #1e1e2e;
+        background-color: #f38ba8;
+    }
+}
+
+/* Network */
+#network {
+    color: #89b4fa;
+}
+
+#network.disconnected {
+    color: #f38ba8;
+}
+
+/* Pulseaudio */
+#pulseaudio {
+    color: #cba6f7;
+}
+
+#pulseaudio.muted {
+    color: #585b70;
+}

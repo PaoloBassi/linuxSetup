@@ -7,6 +7,7 @@ source install_scripts/declarations.sh
 ./install_scripts/install_vim.sh
 ./install_scripts/install_tmux.sh
 ./install_scripts/install_themes.sh
+./install_scripts/install_hyprland.sh
 ./install_scripts/create_soft_links.sh
 ./install_scripts/install_fzf_and_zsh.sh
 ./install_scripts/install_extras.sh

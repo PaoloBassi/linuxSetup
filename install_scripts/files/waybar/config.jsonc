@@ -1,0 +1,133 @@
+{
+    "margin-top": 0,
+    "margin-left": 120,
+    "margin-bottom": 0,
+    "margin-right": 120,
+    "height": 60,
+    "layer": "top",
+    "position": "top",
+    "spacing": 15,
+
+    "modules-left": [
+        "custom/launcher",
+        "clock",
+        "clock#date",
+        "custom/mediaplayer"
+    ],
+
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "battery",
+        "custom/dunst",
+        "custom/powermenu"
+    ],
+
+    "custom/launcher": {
+        "interval": "once",
+        "format": "󰘸",
+        "on-click": "rofi -show drun",
+        "tooltip": false
+    },
+
+    "custom/powermenu": {
+        "format": "⏻",
+        "on-click": "powermenu",
+        "tooltip": false
+    },
+
+    "custom/mediaplayer": {
+        "exec": "mediaplayer",
+        "interval": 2,
+        "format": "{}",
+        "max-length": 50,
+        "on-click": "playerctl play-pause"
+    },
+
+    "custom/dunst": {
+        "exec": "dunst-status",
+        "return-type": "json",
+        "interval": 2,
+        "on-click": "dunstctl set-paused toggle",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+
+    "clock": {
+        "format": " {:%H:%M}"
+    },
+
+    "clock#date": {
+        "format": "󰸗 {:%A, %B %d, %Y}",
+        "actions": {
+            "on-click": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        },
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "left",
+            "on-scroll": 4,
+            "format": {
+                "months":   "<span color='#cba6f7'><b>{}</b></span>",
+                "days":     "<span color='#cdd6f4'>{}</span>",
+                "weeks":    "<span color='#585b70'><b>W{}</b></span>",
+                "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
+                "today":    "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "tooltip-format": "<tt>{calendar}</tt>"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "󰂰 {volume}%",
+        "format-muted": "󰝟 muted",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀 connected",
+        "format-disconnected": "󰤭 offline",
+        "on-click": "rofi-wifi-menu",
+        "on-click-right": "rofi-wifi-menu"
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "adapter": "ADP0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-full": "󰁹 100%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    }
+}
