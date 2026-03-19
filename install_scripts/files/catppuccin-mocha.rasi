@@ -13,7 +13,7 @@
 }
 
 window {
-    background-color:   @fg;
+    background-color:   rgba(205, 214, 244, 0.8);
     text-color:         @bg;
     border-radius:      15px;
     border:             0 0 5px 0;
@@ -28,7 +28,7 @@ mainbox {
 }
 
 inputbar {
-    background-color:   @green;
+    background-color:   rgba(166, 227, 161, 0.8);
     text-color:         @bg;
     border-radius:      10px;
     border:             0 0 5px 0;
@@ -71,7 +71,7 @@ element {
 }
 
 element.selected {
-    background-color:   @bg;
+    background-color:   rgba(30, 30, 46, 0.8);
     text-color:         @fg;
     border:             0 0 5px 0;
     border-color:       @crust;
