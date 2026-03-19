@@ -61,11 +61,7 @@
         "all-outputs": true,
         "on-click": "activate",
         "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "persistent-workspaces": {
-            "1": [], "2": [], "3": [], "4": [], "5": [],
-            "6": [], "7": [], "8": [], "9": [], "10": []
-        }
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
 
     "clock": {
@@ -82,7 +78,7 @@
         "calendar": {
             "mode": "month",
             "weeks-pos": "left",
-            "on-scroll": 1,
+            "on-scroll": 4,
             "format": {
                 "months":   "<span color='#cba6f7'><b>{}</b></span>",
                 "days":     "<span color='#cdd6f4'>{}</span>",
