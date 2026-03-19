@@ -108,6 +108,7 @@
     },
 
     "network": {
+        "interval": 5,
         "format-wifi": "󰤨 {signalStrength}%",
         "format-ethernet": "󰈀 connected",
         "format-disconnected": "󰤭 offline",
