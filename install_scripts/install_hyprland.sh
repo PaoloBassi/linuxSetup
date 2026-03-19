@@ -24,4 +24,12 @@ run_silent "Installing slurp" sudo apt install -y slurp
 run_silent "Installing brightnessctl" sudo apt install -y brightnessctl
 run_silent "Installing wireplumber" sudo apt install -y wireplumber
 
+run_silent "Installing IosevkaTerm Nerd Font" bash -c \
+    'mkdir -p ~/.local/share/fonts && \
+     tmp=$(mktemp -d) && \
+     curl -sL "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.zip" -o "$tmp/IosevkaTerm.zip" && \
+     unzip -o "$tmp/IosevkaTerm.zip" "*.ttf" -d ~/.local/share/fonts/ && \
+     rm -rf "$tmp" && \
+     fc-cache -f'
+
 bash install_scripts/install_lightdm_theme.sh "$@"
