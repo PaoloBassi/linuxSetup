@@ -19,6 +19,19 @@ ln -s $SCRIPT_DIR/files/eza_colors.zsh $HOME/.config/eza_colors.zsh || error "Fa
 # ag ignore file config
 ln -s $SCRIPT_DIR/files/agignore $HOME/.agignore || error "Failed to link agignore"
 
+# Hyprland config
+mkdir -p $HOME/.config/hypr
+ln -s $SCRIPT_DIR/files/hypr/hyprland.conf $HOME/.config/hypr/hyprland.conf || error "Failed to link hyprland config"
+
+# Waybar config
+mkdir -p $HOME/.config/waybar
+ln -s $SCRIPT_DIR/files/waybar/config.jsonc $HOME/.config/waybar/config.jsonc || error "Failed to link waybar config"
+ln -s $SCRIPT_DIR/files/waybar/style.css $HOME/.config/waybar/style.css || error "Failed to link waybar style"
+
+# Rofi config
+mkdir -p $HOME/.config/rofi
+ln -s $SCRIPT_DIR/files/config.rasi $HOME/.config/rofi/config.rasi || error "Failed to link rofi config"
+
 #if [ -z "$DISPLAY" ]; then
 #    export DISPLAY=:0
 #    if [ $? -ne 0 ]; then
