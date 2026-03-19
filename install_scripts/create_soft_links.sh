@@ -29,6 +29,10 @@ mkdir -p $HOME/.config/waybar
 ln -s $SCRIPT_DIR/files/waybar/config.jsonc $HOME/.config/waybar/config.jsonc || error "Failed to link waybar config"
 ln -s $SCRIPT_DIR/files/waybar/style.css $HOME/.config/waybar/style.css || error "Failed to link waybar style"
 
+# Flameshot config
+mkdir -p $HOME/.config/flameshot
+ln -s $SCRIPT_DIR/files/flameshot.ini $HOME/.config/flameshot/flameshot.ini || error "Failed to link flameshot config"
+
 # Rofi config
 mkdir -p $HOME/.config/rofi
 ln -s $SCRIPT_DIR/files/config.rasi $HOME/.config/rofi/config.rasi || error "Failed to link rofi config"
