@@ -20,3 +20,5 @@ run_silent "Installing hypridle" sudo apt install -y hypridle
 run_silent "Installing cliphist" sudo apt install -y cliphist
 run_silent "Installing thunar" sudo apt install -y thunar
 run_silent "Installing wlogout" sudo apt install -y wlogout
+
+bash install_scripts/install_lightdm_theme.sh "$@"
