@@ -1,16 +1,7 @@
 #!/bin/bash
 
-REBOOT="⭮  Reboot"
-SHUTDOWN="⏻  Shutdown"
-LOGOUT="⇠  Logout"
-SUSPEND="⏾  Suspend"
-
-CHOICE=$(printf "%s\n%s\n%s\n%s" "$REBOOT" "$SHUTDOWN" "$LOGOUT" "$SUSPEND" \
-    | rofi -dmenu -p "Power:")
-
-case "$CHOICE" in
-    "$REBOOT")   systemctl reboot ;;
-    "$SHUTDOWN")  systemctl poweroff ;;
-    "$LOGOUT")   hyprctl dispatch exit ;;
-    "$SUSPEND")  systemctl suspend ;;
-esac
+wlogout -p layer-shell -b 5 \
+    -T 390 -B 390 -L 200 -R 200 \
+    -c 10 -r 0 \
+    --layout ~/.config/wlogout/layout \
+    --css ~/.config/wlogout/style.css

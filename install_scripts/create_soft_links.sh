@@ -30,6 +30,11 @@ ln -s $SCRIPT_DIR/files/hypr/hypridle.conf $HOME/.config/hypr/hypridle.conf || e
 mkdir -p $HOME/.config/dunst
 ln -s $SCRIPT_DIR/files/dunst/dunstrc $HOME/.config/dunst/dunstrc || error "Failed to link dunst config"
 
+# Wlogout config
+mkdir -p $HOME/.config/wlogout
+ln -s $SCRIPT_DIR/files/wlogout/layout $HOME/.config/wlogout/layout || error "Failed to link wlogout layout"
+ln -s $SCRIPT_DIR/files/wlogout/style.css $HOME/.config/wlogout/style.css || error "Failed to link wlogout style"
+
 # Waybar config
 mkdir -p $HOME/.config/waybar
 ln -s $SCRIPT_DIR/files/waybar/config.jsonc $HOME/.config/waybar/config.jsonc || error "Failed to link waybar config"
