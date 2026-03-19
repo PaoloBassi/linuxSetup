@@ -73,9 +73,13 @@ window#waybar {
     color: #1e1e2e;
     border-bottom-color: #9272c4;
     margin-left: 15px;
-    padding-left: 20px;
+    padding-left: 15px;
     padding-right: 21px;
     font-size: 18px;
+}
+
+#custom-launcher label {
+    margin-bottom: 4px;
 }
 
 /* Power menu - red pill */
@@ -98,6 +102,11 @@ window#waybar {
 /* Dunst */
 #custom-dunst {
     color: #f9e2af;
+    padding-left: 9px;
+}
+
+#custom-dunst label {
+    margin-bottom: 3px;
 }
 
 #custom-dunst.paused {
@@ -107,6 +116,7 @@ window#waybar {
 /* Clock */
 #clock {
     color: #cdd6f4;
+    padding-left: 5px;
 }
 
 /* Calendar popup */
