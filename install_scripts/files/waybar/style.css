@@ -1,0 +1,178 @@
+/* Catppuccin Mocha palette
+ * Base:     #1e1e2e   Mantle:   #181825   Crust:    #11111b
+ * Surface0: #313244   Surface1: #45475a   Surface2: #585b70
+ * Text:     #cdd6f4   Subtext1: #bac2de   Subtext0: #a6adc8
+ * Blue:     #89b4fa   Lavender: #b4befe   Sapphire: #74c7ec
+ * Green:    #a6e3a1   Yellow:   #f9e2af   Peach:    #fab387
+ * Red:      #f38ba8   Mauve:    #cba6f7   Pink:     #f5c2e7
+ */
+
+* {
+    font-family: "Iosevka Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    border-bottom: 2px solid #313244;
+}
+
+tooltip {
+    background: #181825;
+    border: 1px solid #45475a;
+    border-radius: 6px;
+    color: #cdd6f4;
+}
+
+tooltip label {
+    color: #cdd6f4;
+}
+
+/* Workspaces */
+#workspaces {
+    margin: 0 4px;
+}
+
+#workspaces button {
+    padding: 2px 8px;
+    color: #a6adc8;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background-color: #313244;
+    color: #cdd6f4;
+}
+
+#workspaces button.active {
+    background-color: #313244;
+    color: #89b4fa;
+    border-bottom: 2px solid #89b4fa;
+}
+
+#workspaces button.urgent {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+}
+
+#workspaces button.empty {
+    color: #585b70;
+}
+
+/* Window title */
+#window {
+    padding: 0 10px;
+    color: #a6adc8;
+    font-style: italic;
+}
+
+/* Clock */
+#clock {
+    padding: 0 12px;
+    color: #89b4fa;
+    background-color: #313244;
+    border-radius: 0 0 6px 6px;
+    font-weight: bold;
+}
+
+/* Right-side modules shared */
+#cpu,
+#memory,
+#temperature,
+#battery,
+#network,
+#pulseaudio,
+#tray {
+    padding: 0 10px;
+}
+
+/* CPU */
+#cpu {
+    color: #fab387;
+}
+
+/* Memory */
+#memory {
+    color: #cba6f7;
+}
+
+/* Temperature */
+#temperature {
+    color: #f9e2af;
+}
+
+#temperature.critical {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+    border-radius: 4px;
+    padding: 0 6px;
+}
+
+/* Battery */
+#battery {
+    color: #a6e3a1;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    color: #f9e2af;
+}
+
+#battery.critical:not(.charging) {
+    color: #f38ba8;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        color: #1e1e2e;
+        background-color: #f38ba8;
+        border-radius: 4px;
+    }
+}
+
+/* Network */
+#network {
+    color: #74c7ec;
+}
+
+#network.disconnected {
+    color: #f38ba8;
+}
+
+/* Pulseaudio */
+#pulseaudio {
+    color: #89b4fa;
+}
+
+#pulseaudio.muted {
+    color: #585b70;
+}
+
+/* Tray */
+#tray {
+    padding: 0 6px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #f38ba8;
+    border-radius: 4px;
+}
