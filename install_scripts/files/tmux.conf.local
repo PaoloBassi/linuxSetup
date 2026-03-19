@@ -465,7 +465,7 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'laktak/extrakto'
 set -g @continuum-restore 'on'
 set -g @extrakto_key 'e'
-set -g @extrakto_fzf_tool "/home/monpbass/.fzf/bin/fzf"
+set -g @extrakto_fzf_tool "${HOME}/.fzf/bin/fzf"
 
 # -- custom variables ----------------------------------------------------------
 
