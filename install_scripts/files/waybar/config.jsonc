@@ -1,104 +1,85 @@
 {
+    "margin-top": 0,
+    "margin-left": 120,
+    "margin-bottom": 0,
+    "margin-right": 120,
+    "height": 60,
     "layer": "top",
     "position": "top",
-    "height": 32,
-    "spacing": 4,
-    "margin-top": 0,
-    "margin-left": 0,
-    "margin-right": 0,
+    "spacing": 15,
 
     "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/window"
+        "custom/launcher",
+        "clock",
+        "clock#date",
+        "custom/mediaplayer"
     ],
 
     "modules-center": [
-        "clock"
+        "hyprland/workspaces"
     ],
 
     "modules-right": [
         "pulseaudio",
         "network",
-        "cpu",
-        "memory",
-        "temperature",
         "battery",
-        "tray"
+        "custom/dunst",
+        "custom/powermenu"
     ],
 
+    "custom/launcher": {
+        "interval": "once",
+        "format": "󰣇",
+        "on-click": "rofi -show drun",
+        "tooltip": false
+    },
+
+    "custom/powermenu": {
+        "format": "⏻",
+        "on-click": "powermenu",
+        "tooltip": false
+    },
+
+    "custom/mediaplayer": {
+        "exec": "mediaplayer",
+        "interval": 2,
+        "format": "{}",
+        "max-length": 50,
+        "on-click": "playerctl play-pause"
+    },
+
+    "custom/dunst": {
+        "exec": "dunst-status",
+        "return-type": "json",
+        "interval": 2,
+        "on-click": "dunstctl set-paused toggle",
+        "tooltip": false
+    },
+
     "hyprland/workspaces": {
-        "format": "{name}",
+        "disable-scroll": true,
+        "all-outputs": true,
         "on-click": "activate",
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
-        },
         "persistent-workspaces": {
-            "*": 5
+            "1": [], "2": [], "3": [], "4": [], "5": [],
+            "6": [], "7": [], "8": [], "9": [], "10": []
         }
     },
 
-    "hyprland/window": {
-        "format": "{}",
-        "max-length": 60,
-        "separate-outputs": true
-    },
-
     "clock": {
-        "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": " {:%H:%M}",
-        "format-alt": " {:%Y-%m-%d}"
+        "format": " {:%H:%M}"
     },
 
-    "cpu": {
-        "format": " {usage}%",
-        "tooltip": true,
-        "interval": 2
-    },
-
-    "memory": {
-        "format": " {percentage}%",
-        "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
-        "interval": 5
-    },
-
-    "temperature": {
-        "critical-threshold": 80,
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""],
-        "interval": 5
-    },
-
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-icons": ["", "", "", "", ""],
-        "interval": 30
-    },
-
-    "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": " {ipaddr}/{cidr}",
-        "tooltip-format": " {ifname} via {gwaddr}",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "⚠ Disconnected",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "clock#date": {
+        "format": " {:%A, %B %d, %Y}"
     },
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-bluetooth": " {icon} {volume}%",
-        "format-bluetooth-muted": "  {icon}",
-        "format-muted": " muted",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": "󰝟 muted",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -108,11 +89,29 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol"
     },
 
-    "tray": {
-        "spacing": 8,
-        "icon-size": 16
+    "network": {
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " connected",
+        "format-disconnected": "󰤭",
+        "on-click-right": "rofi-wifi-menu"
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "adapter": "ADP0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-full": " 100%",
+        "format-icons": ["", "", "", "", "", "", "", "", "", ""]
     }
 }
