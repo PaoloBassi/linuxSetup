@@ -266,7 +266,7 @@ PATH=$PATH:~/.local/bin
 export PATH
 
 # setup keyboard on X11
-# setxkbmap -layout us -variant intl -option ctrl:nocaps
+# setxkbmap -layout us -variant intl -option ctrl:nocaps &>/dev/null
 
 # set fzf-tab options
 
