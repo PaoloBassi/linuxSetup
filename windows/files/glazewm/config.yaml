@@ -431,3 +431,5 @@ keybindings:
     bindings: ['alt+shift+9']
   - commands: ['shell-exec powershell -WindowStyle Hidden -File C:\Users\MONPBASS\scripts\renameWorkspace.ps1']
     bindings: ['alt+shift+,']
+  - commands: ['shell-exec powershell -WindowStyle Hidden -File C:\Users\MONPBASS\scripts\toggleGaps.ps1']
+    bindings: ['alt+g']

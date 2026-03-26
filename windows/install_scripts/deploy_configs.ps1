@@ -25,6 +25,21 @@ try {
     Log-Error "Failed to deploy GlazeWM config: $_"
 }
 
+# --- Custom scripts ---
+Log-Info "Deploying custom scripts..."
+
+$scriptsDir = "$env:USERPROFILE\scripts"
+if (-not (Test-Path $scriptsDir)) {
+    New-Item -ItemType Directory -Path $scriptsDir -Force | Out-Null
+}
+
+try {
+    Copy-Item "$FILES_DIR\scripts\toggleGaps.ps1" "$scriptsDir\toggleGaps.ps1" -Force
+    Log-Success "toggleGaps.ps1 deployed to $scriptsDir"
+} catch {
+    Log-Error "Failed to deploy toggleGaps.ps1: $_"
+}
+
 # --- Zebar styles ---
 Log-Info "Deploying Zebar styles..."
 
