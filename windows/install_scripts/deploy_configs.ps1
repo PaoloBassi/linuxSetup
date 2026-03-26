@@ -64,18 +64,27 @@ try {
     Log-Error "Failed to deploy toggleGaps.ps1: $_"
 }
 
-# --- Flow Launcher hotkey ---
-Log-Info "Configuring Flow Launcher hotkey..."
+# --- Flow Launcher theme + hotkey ---
+Log-Info "Configuring Flow Launcher..."
 
 $flowSettingsPath = "$env:APPDATA\FlowLauncher\Settings\Settings.json"
+$flowThemesDir   = "$env:APPDATA\FlowLauncher\Themes"
+
 if (Test-Path $flowSettingsPath) {
     try {
+        # Deploy Catppuccin Mocha theme file
+        if (-not (Test-Path $flowThemesDir)) {
+            New-Item -ItemType Directory -Path $flowThemesDir -Force | Out-Null
+        }
+        Copy-Item "$FILES_DIR\flowlauncher\themes\Catppuccin Mocha.xaml" "$flowThemesDir\Catppuccin Mocha.xaml" -Force
+
         $settings = Get-Content $flowSettingsPath -Raw | ConvertFrom-Json
-        $settings.Hotkey = "Alt+R"
+        $settings.Hotkey = "Alt + R"
+        $settings.Theme  = "Catppuccin Mocha"
         $settings | ConvertTo-Json -Depth 32 | Set-Content $flowSettingsPath -Encoding UTF8
-        Log-Success "Flow Launcher hotkey set to Alt+R"
+        Log-Success "Flow Launcher: theme set to Catppuccin Mocha, hotkey set to Alt+R"
     } catch {
-        Log-Error "Failed to configure Flow Launcher hotkey: $_"
+        Log-Error "Failed to configure Flow Launcher: $_"
     }
 } else {
     Log-Info "Flow Launcher settings not found — run it once, then re-run this script."
