@@ -301,6 +301,7 @@ export FZF_TMUX_OPTS='-p 100%,50%'  # width,height popup
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # eval zoxide
+export _ZO_DOCTOR=0
 eval "$(zoxide init zsh --cmd cd)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
