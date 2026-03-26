@@ -8,8 +8,9 @@ while ($true) {
     Write-Host "Windows setup — press a number to run a step, or q to quit."
     Write-Host "1. Install GlazeWM"
     Write-Host "2. Install Zebar"
-    Write-Host "3. Deploy config files"
-    Write-Host "4. Full setup (all of the above)"
+    Write-Host "3. Install Flow Launcher"
+    Write-Host "4. Deploy config files"
+    Write-Host "5. Full setup (all of the above)"
     Write-Host "==================================================="
 
     $choice = Read-Host "Choice"
@@ -17,10 +18,12 @@ while ($true) {
     switch ($choice) {
         "1" { . "$PSScriptRoot\install_scripts\install_glazewm.ps1" }
         "2" { . "$PSScriptRoot\install_scripts\install_zebar.ps1" }
-        "3" { . "$PSScriptRoot\install_scripts\deploy_configs.ps1" }
-        "4" {
+        "3" { . "$PSScriptRoot\install_scripts\install_flowlauncher.ps1" }
+        "4" { . "$PSScriptRoot\install_scripts\deploy_configs.ps1" }
+        "5" {
             . "$PSScriptRoot\install_scripts\install_glazewm.ps1"
             . "$PSScriptRoot\install_scripts\install_zebar.ps1"
+            . "$PSScriptRoot\install_scripts\install_flowlauncher.ps1"
             . "$PSScriptRoot\install_scripts\deploy_configs.ps1"
         }
         "q" { break }

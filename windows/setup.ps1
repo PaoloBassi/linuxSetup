@@ -4,6 +4,7 @@
 
 . "$PSScriptRoot\install_scripts\install_glazewm.ps1"
 . "$PSScriptRoot\install_scripts\install_zebar.ps1"
+. "$PSScriptRoot\install_scripts\install_flowlauncher.ps1"
 . "$PSScriptRoot\install_scripts\deploy_configs.ps1"
 
 Write-Host ""

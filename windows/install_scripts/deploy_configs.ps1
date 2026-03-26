@@ -64,6 +64,23 @@ try {
     Log-Error "Failed to deploy toggleGaps.ps1: $_"
 }
 
+# --- Flow Launcher hotkey ---
+Log-Info "Configuring Flow Launcher hotkey..."
+
+$flowSettingsPath = "$env:APPDATA\FlowLauncher\Settings\Settings.json"
+if (Test-Path $flowSettingsPath) {
+    try {
+        $settings = Get-Content $flowSettingsPath -Raw | ConvertFrom-Json
+        $settings.Hotkey = "Alt+R"
+        $settings | ConvertTo-Json -Depth 32 | Set-Content $flowSettingsPath -Encoding UTF8
+        Log-Success "Flow Launcher hotkey set to Alt+R"
+    } catch {
+        Log-Error "Failed to configure Flow Launcher hotkey: $_"
+    }
+} else {
+    Log-Info "Flow Launcher settings not found — run it once, then re-run this script."
+}
+
 # --- Zebar styles ---
 Log-Info "Deploying Zebar styles..."
 
