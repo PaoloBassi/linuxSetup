@@ -25,6 +25,30 @@ try {
     Log-Error "Failed to deploy GlazeWM config: $_"
 }
 
+# --- Wallpaper ---
+Log-Info "Deploying wallpaper..."
+
+$picturesDir = "$env:USERPROFILE\Pictures"
+if (-not (Test-Path $picturesDir)) {
+    New-Item -ItemType Directory -Path $picturesDir -Force | Out-Null
+}
+
+try {
+    $wallpaperDest = "$picturesDir\catpuccinWallpaper.jpg"
+    Copy-Item "$FILES_DIR\wallpaper\catpuccinWallpaper.jpg" $wallpaperDest -Force
+    Add-Type @'
+using System; using System.Runtime.InteropServices;
+public class W {
+    [DllImport("user32.dll", CharSet=CharSet.Auto)]
+    public static extern int SystemParametersInfo(int a, int b, string c, int d);
+}
+'@
+    [W]::SystemParametersInfo(20, 0, $wallpaperDest, 3) | Out-Null
+    Log-Success "Wallpaper set to $wallpaperDest"
+} catch {
+    Log-Error "Failed to set wallpaper: $_"
+}
+
 # --- Custom scripts ---
 Log-Info "Deploying custom scripts..."
 
