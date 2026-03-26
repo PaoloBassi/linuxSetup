@@ -57,11 +57,13 @@ if (-not (Test-Path $scriptsDir)) {
     New-Item -ItemType Directory -Path $scriptsDir -Force | Out-Null
 }
 
-try {
-    Copy-Item "$FILES_DIR\scripts\toggleGaps.ps1" "$scriptsDir\toggleGaps.ps1" -Force
-    Log-Success "toggleGaps.ps1 deployed to $scriptsDir"
-} catch {
-    Log-Error "Failed to deploy toggleGaps.ps1: $_"
+foreach ($script in @('toggleGaps.ps1', 'openStart.ps1', 'showPowerMenu.ps1', 'showCalendar.ps1', 'renameWorkspace.ps1', 'run_hidden.vbs')) {
+    try {
+        Copy-Item "$FILES_DIR\scripts\$script" "$scriptsDir\$script" -Force
+        Log-Success "$script deployed to $scriptsDir"
+    } catch {
+        Log-Error "Failed to deploy $script`: $_"
+    }
 }
 
 # --- Flow Launcher theme + hotkey ---
@@ -98,10 +100,11 @@ $zebarPackDir = Get-ChildItem "$env:APPDATA\zebar\downloads" -Directory -Filter 
 
 if ($zebarPackDir) {
     try {
-        Copy-Item "$FILES_DIR\zebar\styles.css" "$($zebarPackDir.FullName)\styles.css" -Force
-        Log-Success "Zebar styles deployed to $($zebarPackDir.FullName)"
+        Copy-Item "$FILES_DIR\zebar\styles.css"        "$($zebarPackDir.FullName)\styles.css"        -Force
+        Copy-Item "$FILES_DIR\zebar\with-glazewm.html" "$($zebarPackDir.FullName)\with-glazewm.html" -Force
+        Log-Success "Zebar files deployed to $($zebarPackDir.FullName)"
     } catch {
-        Log-Error "Failed to deploy Zebar styles: $_"
+        Log-Error "Failed to deploy Zebar files: $_"
     }
 } else {
     Log-Error "Zebar starter pack not found under $env:APPDATA\zebar\downloads. Run Zebar at least once before deploying configs."
