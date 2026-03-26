@@ -1,6 +1,6 @@
 [user]
         name = Paolo Bassi
-        email = bassi.paolo90@gmail.com
+        email = paolo.bassi2@flex.com
 [alias]
         co = checkout
         fa = fetch --all --prune
@@ -41,6 +41,10 @@
 # a matter of taste (uncomment if you dare)
 
 [core]
+	fsmonitor = true
+	untrackedCache = true
+	preloadIndex = true
+	checkStat = minimal
         # fsmonitor = true
         # untrackedCache = true
 [merge]
