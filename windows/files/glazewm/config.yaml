@@ -231,6 +231,7 @@ workspaces:
   - name: '2'
     display_name: 'Code'
   - name: '3'
+    display_name: 'Browser'
   - name: '4'
   - name: '5'
   - name: '6'
@@ -263,6 +264,8 @@ window_rules:
         window_class: { not_regex: 'OpusApp' }
       - window_process: { equals: 'POWERPNT' }
         window_class: { not_regex: 'PPTFrameClass' }
+      - window_title: { equals: 'PowerMenu' }
+      - window_title: { equals: 'CalendarPopup' }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
@@ -310,12 +313,6 @@ keybindings:
     bindings: ['alt+o']
   - commands: ['resize --height -2%']
     bindings: ['alt+i']
-
-  # As an alternative to the resize keybindings above, resize mode enables
-  # resizing via arrow keys or HJKL. The binding mode is defined above with
-  # the name 'resize'.
-  - commands: ['wm-enable-binding-mode --name resize']
-    bindings: ['alt+r']
 
   # Disables window management and all other keybindings until alt+shift+p
   # is pressed again.
@@ -429,7 +426,7 @@ keybindings:
     bindings: ['alt+shift+8']
   - commands: ['move --workspace 9', 'focus --workspace 9']
     bindings: ['alt+shift+9']
-  - commands: ['shell-exec powershell -WindowStyle Hidden -File C:\Users\MONPBASS\scripts\renameWorkspace.ps1']
+  - commands: ['shell-exec wscript //nologo C:\Users\MONPBASS\scripts\run_hidden.vbs C:\Users\MONPBASS\scripts\renameWorkspace.ps1']
     bindings: ['alt+shift+,']
-  - commands: ['shell-exec powershell -WindowStyle Hidden -File C:\Users\MONPBASS\scripts\toggleGaps.ps1']
+  - commands: ['shell-exec wscript //nologo C:\Users\MONPBASS\scripts\run_hidden.vbs C:\Users\MONPBASS\scripts\toggleGaps.ps1']
     bindings: ['alt+g']
