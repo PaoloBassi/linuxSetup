@@ -1,19 +1,24 @@
 /**
- * Catppuccin Mocha theme for Zebar.
- * Ref https://github.com/catppuccin/glazewm
+ * Catppuccin Mocha — floating pill bar for Zebar
  */
 @import 'https://www.nerdfonts.com/assets/css/webfont.css';
 @import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
 
 :root {
-  --text-size: 12px;
-  --icon-size: 12px;
+  --text-size:   12px;
+  --icon-size:   13px;
+  --pill-bg:     var(--ctp-mocha-surface0);
+  --pill-hover:  var(--ctp-mocha-surface1);
+  --pill-radius: 8px;
+  --pill-pad:    5px 14px;
+  --gap:         6px;
 }
 
-i {
-  color: var(--ctp-mocha-surface2);
-  margin-right: 7px;
-  font-size: var(--icon-size);
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  background: transparent;
 }
 
 body {
@@ -23,109 +28,194 @@ body {
   overflow: hidden;
 }
 
-div,
-span,
-p {
-  cursor: default;
-  user-select: none;
-}
+div, span, p { cursor: default; user-select: none; }
 
-html,
-body,
-#root {
-  height: 100%;
-}
+i { font-size: var(--icon-size); }
 
-#root {
-  background: var(--ctp-mocha-crust);
-}
+/* ── Layout ──────────────────────────────────── */
 
 .app {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   height: 100%;
-  padding: 4px 1.5vw;
+  padding: 4px 10px;
+  background: transparent;
 }
 
-.left,
-.center,
-.right {
+.left {
   display: flex;
   align-items: center;
+  gap: var(--gap);
 }
 
 .center {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
   justify-self: center;
 }
 
 .right {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
   justify-self: end;
 }
 
-.logo,
-.binding-mode,
-.tiling-direction,
-.paused-button,
-.network,
-.memory,
-.cpu,
-.battery {
-  margin-right: 20px;
-}
+/* ── Pill base ───────────────────────────────── */
 
-.workspaces {
+.pill {
   display: flex;
   align-items: center;
+  gap: 7px;
+  background: var(--pill-bg);
+  border-radius: var(--pill-radius);
+  padding: var(--pill-pad);
+  border: none;
+  color: var(--ctp-mocha-text);
+  font-family: ui-monospace, monospace;
+  font-size: var(--text-size);
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+button.pill:hover { background: var(--pill-hover); }
+
+/* ── Start / Power ───────────────────────────── */
+
+.btn-start {
+  padding: 5px 13px;
+  color: var(--ctp-mocha-mauve);
+}
+
+.btn-start i { font-size: 15px; }
+
+.btn-start:hover {
+  background: var(--ctp-mocha-mauve) !important;
+  color: var(--ctp-mocha-crust);
+}
+
+/* ── Workspaces ──────────────────────────────── */
+
+.workspaces {
+  gap: 3px;
+  padding: 4px 7px;
+  cursor: default;
 }
 
 .workspace {
-  background: var(--ctp-mocha-surface0);
-  margin-right: 4px;
-  padding: 4px 8px;
-  color: var(--ctp-mocha-text);
+  background: transparent;
   border: none;
-  border-radius: 2px;
+  border-radius: 6px;
+  padding: 3px 10px;
+  color: var(--ctp-mocha-subtext0);
+  font-family: ui-monospace, monospace;
+  font-size: var(--text-size);
   cursor: pointer;
-
-  &.displayed {
-    background: var(--ctp-mocha-surface2);
-  }
-
-  &.focused,
-  &:hover {
-    background: var(--ctp-mocha-mauve);
-    color: var(--ctp-mocha-crust);
-  }
-}
-
-.binding-mode,
-.tiling-direction,
-.paused-button {
-  background: var(--ctp-mocha-surface0);
-  color: var(--ctp-mocha-text);
-  border-radius: 2px;
   line-height: 1;
-  padding: 4px 8px;
-  border: 0;
+}
+
+.workspace.displayed { color: var(--ctp-mocha-text); }
+
+.workspace.focused,
+.workspace:hover {
+  background: var(--ctp-mocha-mauve);
+  color: var(--ctp-mocha-crust);
+}
+
+/* ── Date ────────────────────────────────────── */
+
+.date { cursor: default; }
+
+/* ── Binding mode / paused ───────────────────── */
+
+.btn-binding-mode,
+.btn-paused {
+  background: var(--ctp-mocha-peach);
+  color: var(--ctp-mocha-crust);
+}
+
+.btn-binding-mode:hover,
+.btn-paused:hover {
+  filter: brightness(1.1);
+  background: var(--ctp-mocha-peach) !important;
+}
+
+/* ── Tiling direction ────────────────────────── */
+
+.btn-tiling { color: var(--ctp-mocha-overlay1); }
+
+/* ── Bluetooth ───────────────────────────────── */
+
+.btn-bluetooth { color: var(--ctp-mocha-blue); }
+
+.btn-bluetooth:hover {
+  background: var(--ctp-mocha-blue) !important;
+  color: var(--ctp-mocha-crust);
+}
+
+/* ── Volume ──────────────────────────────────── */
+
+.volume { cursor: default; }
+
+.btn-vol-icon {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--ctp-mocha-text);
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.btn-vol-icon:hover i { color: var(--ctp-mocha-mauve); }
+
+.volume-label {
+  min-width: 28px;
+  text-align: right;
+  color: var(--ctp-mocha-subtext1);
+  font-size: 11px;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 72px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ctp-mocha-surface2);
+  outline: none;
   cursor: pointer;
 }
 
-.binding-mode {
-  margin-right: 4px;
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ctp-mocha-mauve);
+  cursor: pointer;
 }
 
-.cpu .high-usage {
-  color: var(--ctp-mocha-red);
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ctp-mocha-mauve);
+  cursor: pointer;
+  border: none;
 }
 
-.battery {
-  position: relative;
-}
+/* ── Network ─────────────────────────────────── */
 
-.battery .charging-icon {
-  position: absolute;
-  font-size: 7px;
-  left: -8px;
-  top: 3px;
-}
+.btn-network { gap: 5px; }
+
+/* ── Battery ─────────────────────────────────── */
+
+.battery { cursor: default; gap: 5px; }
+
+.charging-icon { color: var(--ctp-mocha-yellow); }

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <script
+      src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"
+      integrity="sha256-aS0B0wnsaDByLfE16h4MDCP1fQFccysd1YWOcV+gbBo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect } from 'https://esm.sh/react@18?dev';
+      import { createRoot } from 'https://esm.sh/react-dom@18/client?dev';
+      import * as zebar from 'https://esm.sh/zebar@3.0';
+
+      const providers = zebar.createProviderGroup({
+        glazewm: { type: 'glazewm' },
+        date:    { type: 'date', formatting: 'EEE d MMM t' },
+        network: { type: 'network' },
+        battery: { type: 'battery' },
+        audio:   { type: 'audio' },
+      });
+
+      createRoot(document.getElementById('root')).render(<App />);
+
+      function App() {
+        const [output, setOutput] = useState(providers.outputMap);
+
+        useEffect(() => {
+          providers.onOutput(() => setOutput(providers.outputMap));
+        }, []);
+
+        function runCmd(cmd) {
+          output.glazewm?.runCommand(cmd);
+        }
+
+        function shell(script) {
+          runCmd(`shell-exec wscript //nologo C:\\Users\\MONPBASS\\scripts\\run_hidden.vbs C:\\Users\\MONPBASS\\scripts\\${script}`);
+        }
+
+        function getNetworkIcon(net) {
+          switch (net.defaultInterface?.type) {
+            case 'ethernet':           return <i className="nf nf-md-ethernet_cable" />;
+            case 'proprietary_virtual': return <i className="nf nf-md-shield_lock_outline" />;
+            case 'wifi': {
+              const s = net.defaultGateway?.signalStrength ?? 0;
+              if (s >= 80) return <i className="nf nf-md-wifi_strength_4" />;
+              if (s >= 65) return <i className="nf nf-md-wifi_strength_3" />;
+              if (s >= 40) return <i className="nf nf-md-wifi_strength_2" />;
+              if (s >= 25) return <i className="nf nf-md-wifi_strength_1" />;
+              return <i className="nf nf-md-wifi_strength_outline" />;
+            }
+            default: return <i className="nf nf-md-wifi_strength_off_outline" />;
+          }
+        }
+
+        function getBatteryIcon(bat) {
+          if (bat.chargePercent > 90) return <i className="nf nf-fa-battery_4" />;
+          if (bat.chargePercent > 70) return <i className="nf nf-fa-battery_3" />;
+          if (bat.chargePercent > 40) return <i className="nf nf-fa-battery_2" />;
+          if (bat.chargePercent > 20) return <i className="nf nf-fa-battery_1" />;
+          return <i className="nf nf-fa-battery_0" />;
+        }
+
+        function getVolumeIcon(dev) {
+          if (!dev || dev.isMuted || dev.volume === 0)
+            return <i className="nf nf-md-volume_off" />;
+          if (dev.volume < 33) return <i className="nf nf-md-volume_low" />;
+          if (dev.volume < 66) return <i className="nf nf-md-volume_medium" />;
+          return <i className="nf nf-md-volume_high" />;
+        }
+
+        const audioDev = output.audio?.defaultPlaybackDevice;
+        const volume   = Math.round(audioDev?.volume ?? 0);
+        const isMuted  = audioDev?.isMuted ?? false;
+
+        const tilingIcon = output.glazewm?.tilingDirection === 'horizontal'
+          ? 'nf-md-swap_horizontal'
+          : 'nf-md-swap_vertical';
+
+        return (
+          <div className="app">
+
+            {/* ── LEFT ─────────────────────────────── */}
+            <div className="left">
+              <button
+                className="pill btn-start"
+                onClick={() => shell('showPowerMenu.ps1')}
+                title="Power"
+              >
+                <i className="nf nf-fa-windows" />
+              </button>
+
+              {output.glazewm && (
+                <div className="pill workspaces">
+                  {output.glazewm.currentWorkspaces.map(ws => (
+                    <button
+                      key={ws.name}
+                      className={`workspace ${ws.hasFocus ? 'focused' : ''} ${ws.isDisplayed ? 'displayed' : ''}`}
+                      onClick={() => runCmd(`focus --workspace ${ws.name}`)}
+                    >
+                      {ws.displayName ?? ws.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* ── CENTER ───────────────────────────── */}
+            <div className="center">
+              <div className="pill date">
+                {output.date?.formatted}
+              </div>
+
+              {output.glazewm?.bindingModes.map(bm => (
+                <button
+                  key={bm.name}
+                  className="pill btn-binding-mode"
+                  onClick={() => runCmd(`wm-disable-binding-mode --name ${bm.name}`)}
+                >
+                  {bm.displayName ?? bm.name}
+                </button>
+              ))}
+
+              {output.glazewm?.isPaused && (
+                <button
+                  className="pill btn-paused"
+                  onClick={() => runCmd('wm-toggle-pause')}
+                >
+                  PAUSED
+                </button>
+              )}
+            </div>
+
+            {/* ── RIGHT ────────────────────────────── */}
+            <div className="right">
+
+              {output.glazewm && (
+                <button
+                  className="pill btn-tiling"
+                  onClick={() => runCmd('toggle-tiling-direction')}
+                  title="Toggle tiling direction"
+                >
+                  <i className={`nf ${tilingIcon}`} />
+                </button>
+              )}
+
+              <button
+                className="pill btn-bluetooth"
+                onClick={() => runCmd('shell-exec explorer.exe ms-settings:bluetooth')}
+                title="Bluetooth settings"
+              >
+                <i className="nf nf-md-bluetooth" />
+              </button>
+
+              {output.audio && (
+                <div className="pill volume">
+                  <button
+                    className="btn-vol-icon"
+                    onClick={() => output.audio.setMute(!isMuted)}
+                    title={isMuted ? 'Unmute' : 'Mute'}
+                  >
+                    {getVolumeIcon(audioDev)}
+                  </button>
+                  <input
+                    type="range"
+                    className="volume-slider"
+                    min="0"
+                    max="100"
+                    value={volume}
+                    onChange={e => output.audio.setVolume(parseFloat(e.target.value))}
+                  />
+                  <span className="volume-label">{volume}%</span>
+                </div>
+              )}
+
+              {output.network && (
+                <button
+                  className="pill btn-network"
+                  onClick={() => runCmd('shell-exec explorer.exe ms-settings:network-wifi')}
+                  title="WiFi settings"
+                >
+                  {getNetworkIcon(output.network)}
+                  {output.network.defaultInterface?.type === 'wifi' && (
+                    <span>{output.network.defaultGateway?.ssid}</span>
+                  )}
+                </button>
+              )}
+
+              {output.battery && (
+                <div className="pill battery">
+                  {output.battery.isCharging && (
+                    <i className="nf nf-md-power_plug charging-icon" />
+                  )}
+                  {getBatteryIcon(output.battery)}
+                  <span>{Math.round(output.battery.chargePercent)}%</span>
+                </div>
+              )}
+            </div>
+
+          </div>
+        );
+      }
+    </script>
+  </body>
+</html>
