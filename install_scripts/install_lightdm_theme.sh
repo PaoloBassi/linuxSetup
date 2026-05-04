@@ -5,8 +5,8 @@ source install_scripts/declarations.sh
 THEME_NAME="Catppuccin-Mocha-LightDM"
 THEME_DIR="/usr/share/themes/${THEME_NAME}"
 FILES_DIR="$SCRIPT_DIR/files/lightdm"
-WALLPAPER_SRC="$SCRIPT_DIR/files/wallpapers/evening-sky.png"
-WALLPAPER_DEST="/usr/share/lightdm/evening-sky.png"
+WALLPAPER_SRC="$SCRIPT_DIR/files/wallpapers/catpuccinWallpaper.jpg"
+WALLPAPER_DEST="/usr/share/lightdm/catpuccinWallpaper.jpg"
 
 # ── Copy wallpaper to system path (LightDM runs as its own user) ─────────────
 
