@@ -8,8 +8,6 @@ set mouse=a
 
 set background=dark
 
-syntax enable
-
 syntax on
 
 set hlsearch
@@ -162,16 +160,15 @@ let g:ale_pattern_options_enabled = 1
 let g:ale_linters_explicit = 1
 let opts = '-std=c++17 -Wall -Wextra --compile-commands-dir=./build-Debug'
 let g:ale_pattern_options = {
-\   '\.h$':   { 'ale_linters': { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] } },
-\   '\.c$':   { 'ale_linters': { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] } },
-\   '\.cpp$': { 'ale_linters': { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] } },
-\   '\.hpp$': { 'ale_linters': { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] } },
+\   '\.h$':   { 'ale_linters': { 'cpp': ['cppcheck', 'clangtidy'] } },
+\   '\.c$':   { 'ale_linters': { 'cpp': ['cppcheck', 'clangtidy'] } },
+\   '\.cpp$': { 'ale_linters': { 'cpp': ['cppcheck', 'clangtidy'] } },
+\   '\.hpp$': { 'ale_linters': { 'cpp': ['cppcheck', 'clangtidy'] } },
 \}
-let g:ale_linters = { 'cpp': ['clangd', 'cppcheck', 'clangtidy'] }
+let g:ale_linters = { 'cpp': ['cppcheck', 'clangtidy'] }
 let g:ale_cpp_cc_options    = opts
 let g:ale_cpp_gcc_options   = opts
 let g:ale_cpp_clang_options = opts
-let g:ale_cpp_clangd_options = opts
 let g:ale_cpp_clangtidy_options = opts
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 1
@@ -261,8 +258,6 @@ let g:gutentags_ctags_exclude = [
 " Default view method for vimtex
 let g:vimtex_view_method = 'zathura'
 
-" Apply Ctags to the project when it is modified
-autocmd BufWritePost *.c,*.h,*.cpp,*.hpp silent! !ctags -R . &
 
 " Swap between header and source
 " map <Esc>o <A-o>
@@ -325,9 +320,9 @@ colorscheme catppuccin_mocha
 " Lightline theme depending on colorscheme
 if exists('g:colors_name')
     if g:colors_name ==# 'gruvbox-material'
-        let g:lightline = {'colorscheme': 'gruvbox-material'}
+        let g:lightline.colorscheme = 'gruvbox-material'
     elseif g:colors_name ==# 'catppuccin_mocha'
-        let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+        let g:lightline.colorscheme = 'catppuccin_mocha'
     endif
 endif
 
