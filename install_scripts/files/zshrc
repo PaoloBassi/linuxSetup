@@ -151,7 +151,7 @@ alias lsg='ls --git'
 alias lag='la --git'
 
 # other aliases
-alias cat='batcat --style=numbers --color=always --theme="gruvbox-dark"'
+alias cat='batcat --style=numbers --color=always --theme="Catppuccin Mocha"'
 alias sak='sakura -s'
 
 # functions
@@ -159,7 +159,7 @@ alias sak='sakura -s'
 ff() {
   local selected
   selected=$(fzf --reverse --inline-info \
-    --preview 'batcat --style=numbers --color=always --theme="gruvbox-dark" {}' \
+    --preview 'batcat --style=numbers --color=always --theme="Catppuccin Mocha" {}' \
     --preview-window 'down:55%:wrap' \
     --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
   [ -z "$selected" ] && return
@@ -171,7 +171,7 @@ rg() {
   local selected file line
   selected=$(command rg --column --line-number --no-heading --color=always . \
     | fzf --reverse --inline-info --ansi --delimiter ':' \
-        --preview 'batcat --style=numbers --color=always --theme="gruvbox-dark" --highlight-line {2} -- {1}' \
+        --preview 'batcat --style=numbers --color=always --theme="Catppuccin Mocha" --highlight-line {2} -- {1}' \
         --preview-window 'down:55%:wrap' \
         --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
   [ -z "$selected" ] && return

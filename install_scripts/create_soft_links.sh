@@ -20,6 +20,11 @@ ln -s $SCRIPT_DIR/files/eza_colors.zsh $HOME/.config/eza_colors.zsh || error "Fa
 # ag ignore file config
 ln -s $SCRIPT_DIR/files/agignore $HOME/.agignore || error "Failed to link agignore"
 
+# bat catppuccin theme
+mkdir -p $HOME/.config/bat/themes
+cp $SCRIPT_DIR/files/bat/themes/*.tmTheme $HOME/.config/bat/themes/
+bat cache --build 2>/dev/null || batcat cache --build 2>/dev/null || true
+
 # Hyprland config
 mkdir -p $HOME/.config/hypr
 ln -s $SCRIPT_DIR/files/hypr/hyprland.conf $HOME/.config/hypr/hyprland.conf || error "Failed to link hyprland config"
