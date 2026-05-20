@@ -10,9 +10,13 @@ local on_attach = function(_, bufnr)
     map("n", "<leader>t", vim.lsp.buf.hover,        opts)
     map("n", "<leader>f", vim.lsp.buf.code_action,  opts)
     map("n", "<leader>r", vim.lsp.buf.rename,       opts)
-    -- header/source switch via clangd command (mirrors <leader>o → GoToAlternateFile)
+    -- header/source switch via clangd (mirrors <leader>o → GoToAlternateFile)
     map("n", "<leader>o", function()
-        vim.lsp.buf.execute_command({ command = "clangd.switchSourceHeader" })
+        vim.lsp.buf_request(0, "textDocument/switchSourceHeader",
+            { uri = vim.uri_from_bufnr(0) },
+            function(_, result)
+                if result then vim.cmd("e " .. vim.uri_to_fname(result)) end
+            end)
     end, opts)
 end
 
