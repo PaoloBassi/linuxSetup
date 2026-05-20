@@ -23,6 +23,14 @@ opt.splitbelow    = true
 opt.updatetime    = 300
 opt.undofile      = true
 
+vim.diagnostic.config({
+    virtual_text   = { prefix = "●", spacing = 4 },
+    signs          = true,
+    underline      = true,
+    severity_sort  = true,
+    float          = { border = "rounded", source = true },
+})
+
 local undodir = vim.fn.expand("$HOME/.config/nvim/.undodir")
 opt.undodir = undodir
 if vim.fn.isdirectory(undodir) == 0 then

@@ -18,12 +18,13 @@ return {
                     border          = true,
                     -- disable treesitter preview highlighting (ft_to_lang removed in nvim 0.12)
                     preview = { treesitter = false },
-                    -- mirror zshrc fzf bindings: ctrl-j/k for navigation, kj to close
+                    -- mirror zshrc fzf bindings: ctrl-j/k for navigation, kj/esc to close
                     mappings = {
                         i = {
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
                             ["kj"]    = actions.close,
+                            ["<Esc>"] = actions.close,
                         },
                         n = {
                             ["<C-j>"] = actions.move_selection_next,
