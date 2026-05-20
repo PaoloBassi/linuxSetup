@@ -10,8 +10,19 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    spec = { { import = "plugins" } },
-    -- do not import this file itself
+    spec = {
+        { import = "plugins.colorscheme" },
+        { import = "plugins.ui"          },
+        { import = "plugins.lsp"         },
+        { import = "plugins.completion"  },
+        { import = "plugins.linting"     },
+        { import = "plugins.treesitter"  },
+        { import = "plugins.telescope"   },
+        { import = "plugins.git"         },
+        { import = "plugins.editing"     },
+        { import = "plugins.navigation"  },
+        { import = "plugins.workspace"   },
+    },
     performance = {
         rtp = {
             disabled_plugins = {
