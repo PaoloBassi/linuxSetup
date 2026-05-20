@@ -4,6 +4,7 @@ source install_scripts/declarations.sh
 
 ln -s $SCRIPT_DIR/files/gitconfig $HOME/.gitconfig || error "Failed to link .gitconfig"
 ln -s $SCRIPT_DIR/files/vimrc $HOME/.vimrc || error "Failed to link .vimrc"
+ln -s $SCRIPT_DIR/files/nvim $HOME/.config/nvim || error "Failed to link nvim config"
 ln -s $SCRIPT_DIR/files/sakura.conf $HOME/.config/sakura/sakura.conf || error "Failed to link sakura config"
 
 # Create directories and extract files
