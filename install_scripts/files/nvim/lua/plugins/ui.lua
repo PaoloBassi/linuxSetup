@@ -2,7 +2,7 @@ return {
     -- Status line (replaces lightline) ----------------------------------------
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
         config = function()
             local function diag_count(severity)
                 return #vim.diagnostic.get(0, { severity = severity })

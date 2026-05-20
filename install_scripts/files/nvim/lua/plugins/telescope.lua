@@ -16,6 +16,8 @@ return {
                     layout_strategy = "vertical",
                     layout_config   = { height = 0.6, preview_height = 0.4 },
                     border          = true,
+                    -- disable treesitter preview highlighting (ft_to_lang removed in nvim 0.12)
+                    preview = { treesitter = false },
                     -- mirror zshrc fzf bindings: ctrl-j/k for navigation, kj to close
                     mappings = {
                         i = {
