@@ -35,10 +35,10 @@ return {
             vim.api.nvim_set_hl(0, "Search", { bold = true, italic = true, underline = true, fg = "lightblue" })
             vim.api.nvim_set_hl(0, "String", { fg = "#87afff" })
             -- diagnostic line background tints (catppuccin-mocha base: #1e1e2e)
-            vim.api.nvim_set_hl(0, "DiagnosticLineError", { bg = "#4a1e28" })
-            vim.api.nvim_set_hl(0, "DiagnosticLineWarn",  { bg = "#4a3816" })
-            vim.api.nvim_set_hl(0, "DiagnosticLineInfo",  { bg = "#1e304a" })
-            vim.api.nvim_set_hl(0, "DiagnosticLineHint",  { bg = "#1e4a30" })
+            vim.api.nvim_set_hl(0, "DiagnosticLineError", { bg = "#66202e" })
+            vim.api.nvim_set_hl(0, "DiagnosticLineWarn",  { bg = "#664010" })
+            vim.api.nvim_set_hl(0, "DiagnosticLineInfo",  { bg = "#203668" })
+            vim.api.nvim_set_hl(0, "DiagnosticLineHint",  { bg = "#205535" })
         end,
     },
     -- alternative colorschemes (kept as in current setup)

@@ -54,19 +54,22 @@ local diag_line_groups = {
     [vim.diagnostic.severity.INFO]  = "DiagnosticLineInfo",
     [vim.diagnostic.severity.HINT]  = "DiagnosticLineHint",
 }
-vim.api.nvim_create_autocmd("DiagnosticChanged", {
-    callback = function(args)
-        local buf = args.buf
-        vim.api.nvim_buf_clear_namespace(buf, diag_line_ns, 0, -1)
-        for _, d in ipairs(vim.diagnostic.get(buf)) do
-            local hl = diag_line_groups[d.severity]
-            if hl then
-                vim.api.nvim_buf_set_extmark(buf, diag_line_ns, d.lnum, 0, {
-                    line_hl_group = hl,
-                    priority      = 10,
-                })
-            end
+local function apply_diag_line_hl(buf)
+    if not vim.api.nvim_buf_is_valid(buf) then return end
+    vim.api.nvim_buf_clear_namespace(buf, diag_line_ns, 0, -1)
+    for _, d in ipairs(vim.diagnostic.get(buf)) do
+        local hl = diag_line_groups[d.severity]
+        if hl then
+            pcall(vim.api.nvim_buf_set_extmark, buf, diag_line_ns, d.lnum, 0, {
+                line_hl_group = hl,
+                priority      = 200,
+            })
         end
+    end
+end
+vim.api.nvim_create_autocmd({ "DiagnosticChanged", "BufEnter" }, {
+    callback = function(args)
+        vim.schedule(function() apply_diag_line_hl(args.buf) end)
     end,
 })
 

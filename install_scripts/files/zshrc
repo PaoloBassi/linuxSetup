@@ -162,10 +162,10 @@ ff() {
 
   [ -z "$selected" ] && return
 
-  vim "$selected"
+  nvim "$selected"
 }
 
-# call ag with fzf, a nice preview and open the file in vim
+# call ag with fzf, a nice preview and open the file in nvim
 ag() {
   local selected file line
   selected=$(/usr/bin/ag --nobreak --noheading . | fzf --reverse --inline-info \
@@ -176,7 +176,7 @@ ag() {
 
   file=$(echo "$selected" | cut -d: -f1)
   line=$(echo "$selected" | cut -d: -f2)
-  vim +"$line" "$file"
+  nvim +"$line" "$file"
 }
 
 # git diff with fzf
