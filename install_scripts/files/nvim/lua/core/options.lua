@@ -33,6 +33,12 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.INFO]  = "●",
             [vim.diagnostic.severity.HINT]  = "◈",
         },
+        linehl = {
+            [vim.diagnostic.severity.ERROR] = "DiagnosticLineError",
+            [vim.diagnostic.severity.WARN]  = "DiagnosticLineWarn",
+            [vim.diagnostic.severity.INFO]  = "DiagnosticLineInfo",
+            [vim.diagnostic.severity.HINT]  = "DiagnosticLineHint",
+        },
     },
     underline     = true,
     severity_sort = true,
