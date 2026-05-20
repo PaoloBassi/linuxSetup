@@ -33,22 +33,40 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.INFO]  = "●",
             [vim.diagnostic.severity.HINT]  = "◈",
         },
-        linehl = {
-            [vim.diagnostic.severity.ERROR] = "DiagnosticLineError",
-            [vim.diagnostic.severity.WARN]  = "DiagnosticLineWarn",
-            [vim.diagnostic.severity.INFO]  = "DiagnosticLineInfo",
-            [vim.diagnostic.severity.HINT]  = "DiagnosticLineHint",
-        },
     },
     underline     = true,
     severity_sort = true,
     float         = { border = "rounded", source = true, focusable = false },
 })
 
--- show diagnostic float in command area when cursor rests on a diagnostic line
+-- show diagnostic float when cursor rests on a diagnostic line
 vim.api.nvim_create_autocmd("CursorHold", {
     callback = function()
         vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
+    end,
+})
+
+-- highlight diagnostic lines via extmarks (linehl in signs config is unreliable in nvim 0.12)
+local diag_line_ns = vim.api.nvim_create_namespace("diagnostic_line_hl")
+local diag_line_groups = {
+    [vim.diagnostic.severity.ERROR] = "DiagnosticLineError",
+    [vim.diagnostic.severity.WARN]  = "DiagnosticLineWarn",
+    [vim.diagnostic.severity.INFO]  = "DiagnosticLineInfo",
+    [vim.diagnostic.severity.HINT]  = "DiagnosticLineHint",
+}
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
+    callback = function(args)
+        local buf = args.buf
+        vim.api.nvim_buf_clear_namespace(buf, diag_line_ns, 0, -1)
+        for _, d in ipairs(vim.diagnostic.get(buf)) do
+            local hl = diag_line_groups[d.severity]
+            if hl then
+                vim.api.nvim_buf_set_extmark(buf, diag_line_ns, d.lnum, 0, {
+                    line_hl_group = hl,
+                    priority      = 10,
+                })
+            end
+        end
     end,
 })
 
