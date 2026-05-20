@@ -1,7 +1,6 @@
 curl
 tmux
 git 
-silversearcher-ag
 ripgrep
 universal-ctags
 bat
