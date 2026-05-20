@@ -90,7 +90,14 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-export FZF_DEFAULT_OPTS="--height 95% --reverse --inline-info --border --margin=1 --padding=1 --preview-window=down:55%:wrap"
+FZF_DEFAULT_OPTS="--height 95% --reverse --inline-info --border=bold --margin=1 --padding=1"
+FZF_DEFAULT_OPTS+=" --preview-window=down:55%:wrap:border-bold"
+FZF_DEFAULT_OPTS+=" --color=bg:#1e1e2e,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4"
+FZF_DEFAULT_OPTS+=" --color=hl:#f38ba8,hl+:#f38ba8,info:#cba6f7,marker:#a6e3a1"
+FZF_DEFAULT_OPTS+=" --color=prompt:#89b4fa,spinner:#f5c2e7,pointer:#f5c2e7,header:#f38ba8"
+FZF_DEFAULT_OPTS+=" --color=border:#6c7086,separator:#6c7086,scrollbar:#6c7086"
+FZF_DEFAULT_OPTS+=" --color=gutter:#1e1e2e,label:#cba6f7,preview-bg:#1e1e2e"
+export FZF_DEFAULT_OPTS
 export FZF_DEFAULT_COMMAND='command rg --files --hidden --follow --glob "!.git/*"'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
