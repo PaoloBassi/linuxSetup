@@ -27,7 +27,7 @@ return {
                         },
                     },
                     illuminate  = { enabled = true },
-                    lualine     = true,
+                    lualine     = {},   -- true would crash utils/lualine.lua:55 (tries overrides.all on boolean)
                 },
             })
             vim.cmd.colorscheme("catppuccin-mocha")

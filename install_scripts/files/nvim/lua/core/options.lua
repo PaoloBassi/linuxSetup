@@ -24,11 +24,25 @@ opt.updatetime    = 300
 opt.undofile      = true
 
 vim.diagnostic.config({
-    virtual_text   = { prefix = "●", spacing = 4 },
-    signs          = true,
-    underline      = true,
-    severity_sort  = true,
-    float          = { border = "rounded", source = true },
+    virtual_text  = false,
+    signs         = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN]  = "",
+            [vim.diagnostic.severity.INFO]  = "",
+            [vim.diagnostic.severity.HINT]  = "",
+        },
+    },
+    underline     = true,
+    severity_sort = true,
+    float         = { border = "rounded", source = true, focusable = false },
+})
+
+-- show diagnostic float in command area when cursor rests on a diagnostic line
+vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function()
+        vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
+    end,
 })
 
 local undodir = vim.fn.expand("$HOME/.config/nvim/.undodir")

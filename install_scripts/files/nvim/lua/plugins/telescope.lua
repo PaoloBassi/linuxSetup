@@ -37,8 +37,7 @@ return {
                     find_files  = { hidden = true },
                     live_grep   = {
                         additional_args = { "--hidden" },
-                        -- mirrors ctrlsf_position = 'right'
-                        layout_config   = { preview_width = 0.5 },
+                        layout_config   = { height = 0.92, preview_height = 0.5 },
                     },
                     buffers     = {
                         sort_mru          = true,
