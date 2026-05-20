@@ -37,7 +37,8 @@ return {
                     find_files  = { hidden = true },
                     live_grep   = {
                         additional_args = { "--hidden" },
-                        layout_config   = { height = 0.92, preview_height = 0.5 },
+                        layout_strategy = "vertical",
+                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55 } },
                     },
                     buffers     = {
                         sort_mru          = true,
