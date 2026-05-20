@@ -34,7 +34,11 @@ return {
                     selection_strategy = "reset",
                 },
                 pickers = {
-                    find_files  = { hidden = true },
+                    find_files  = {
+                        hidden          = true,
+                        layout_strategy = "vertical",
+                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55 } },
+                    },
                     live_grep   = {
                         additional_args = { "--hidden" },
                         layout_strategy = "vertical",

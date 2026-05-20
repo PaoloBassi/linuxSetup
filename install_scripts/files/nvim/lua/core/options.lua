@@ -24,7 +24,7 @@ opt.updatetime    = 300
 opt.undofile      = true
 
 vim.diagnostic.config({
-    virtual_text  = { prefix = "●", spacing = 4 },
+    virtual_text  = false,
     signs         = {
         text = {
             [vim.diagnostic.severity.ERROR] = "",
