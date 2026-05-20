@@ -2,6 +2,7 @@ curl
 tmux
 git 
 ripgrep
+npm
 universal-ctags
 bat
 input-remapper
