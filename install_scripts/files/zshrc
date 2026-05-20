@@ -90,8 +90,8 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-FZF_DEFAULT_OPTS="--height 95% --reverse --inline-info --border=rounded --margin=1 --padding=1"
-FZF_DEFAULT_OPTS+=" --preview-window=down:55%:wrap:border-rounded"
+FZF_DEFAULT_OPTS="--height 95% --inline-info --border=rounded --margin=1 --padding=1"
+FZF_DEFAULT_OPTS+=" --preview-window=up:55%:wrap:border-rounded"
 FZF_DEFAULT_OPTS+=" --color=bg:#181825,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4"
 FZF_DEFAULT_OPTS+=" --color=hl:#89b4fa,hl+:#89b4fa,info:#cba6f7,marker:#a6e3a1"
 FZF_DEFAULT_OPTS+=" --color=prompt:#f2cdcd,spinner:#f2cdcd,pointer:#f2cdcd,header:#cba6f7"
@@ -165,9 +165,9 @@ alias sak='sakura -s'
 # ff: fuzzy file finder with bat preview, opens in nvim (uses rg for file listing)
 ff() {
   local selected
-  selected=$(fzf --reverse --inline-info \
+  selected=$(fzf \
     --preview 'batcat --style=numbers --color=always --theme="Catppuccin Mocha" {}' \
-    --preview-window 'down:55%:wrap' \
+    --preview-window 'up:55%:wrap:border-rounded' \
     --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
   [ -z "$selected" ] && return
   nvim "$selected"
@@ -177,9 +177,9 @@ ff() {
 rg() {
   local selected file line
   selected=$(command rg --column --line-number --no-heading --color=always . \
-    | fzf --reverse --inline-info --ansi --delimiter ':' \
+    | fzf --ansi --delimiter ':' \
         --preview 'batcat --style=numbers --color=always --theme="Catppuccin Mocha" --highlight-line {2} -- {1}' \
-        --preview-window 'down:55%:wrap' \
+        --preview-window 'up:55%:wrap:border-rounded' \
         --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
   [ -z "$selected" ] && return
   file=$(echo "$selected" | cut -d: -f1)

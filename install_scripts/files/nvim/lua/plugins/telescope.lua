@@ -12,9 +12,8 @@ return {
 
             telescope.setup({
                 defaults = {
-                    -- mirrors FZF_DEFAULT_OPTS: --height 60% --reverse --border
                     layout_strategy = "vertical",
-                    layout_config   = { height = 0.6, preview_height = 0.4 },
+                    layout_config   = { height = 0.6, preview_height = 0.4, prompt_position = "bottom" },
                     border          = true,
                     -- disable treesitter preview highlighting (ft_to_lang removed in nvim 0.12)
                     preview = { treesitter = false },
@@ -37,16 +36,16 @@ return {
                     find_files  = {
                         hidden          = true,
                         layout_strategy = "vertical",
-                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55 } },
+                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55, prompt_position = "bottom" } },
                     },
                     live_grep   = {
                         additional_args = { "--hidden" },
                         layout_strategy = "vertical",
-                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55 } },
+                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55, prompt_position = "bottom" } },
                     },
                     grep_string = {
                         layout_strategy = "vertical",
-                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55 } },
+                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55, prompt_position = "bottom" } },
                     },
                     buffers     = {
                         sort_mru          = true,
