@@ -22,15 +22,16 @@ opt.splitright    = true
 opt.splitbelow    = true
 opt.updatetime    = 300
 opt.undofile      = true
+opt.signcolumn    = "yes"
 
 vim.diagnostic.config({
     virtual_text  = false,
     signs         = {
         text = {
-            [vim.diagnostic.severity.ERROR] = "",
-            [vim.diagnostic.severity.WARN]  = "",
-            [vim.diagnostic.severity.INFO]  = "",
-            [vim.diagnostic.severity.HINT]  = "",
+            [vim.diagnostic.severity.ERROR] = "✘",
+            [vim.diagnostic.severity.WARN]  = "▲",
+            [vim.diagnostic.severity.INFO]  = "●",
+            [vim.diagnostic.severity.HINT]  = "◈",
         },
     },
     underline     = true,
