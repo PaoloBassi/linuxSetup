@@ -92,6 +92,7 @@ source $ZSH/oh-my-zsh.sh
 
 FZF_DEFAULT_OPTS="--height 95% --inline-info --border=rounded --margin=1 --padding=1"
 FZF_DEFAULT_OPTS+=" --preview-window=up:55%:wrap:border-rounded"
+FZF_DEFAULT_OPTS+=" --input-border=rounded"
 FZF_DEFAULT_OPTS+=" --color=bg:#181825,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4"
 FZF_DEFAULT_OPTS+=" --color=hl:#89b4fa,hl+:#89b4fa,info:#cba6f7,marker:#a6e3a1"
 FZF_DEFAULT_OPTS+=" --color=prompt:#f2cdcd,spinner:#f2cdcd,pointer:#f2cdcd,header:#cba6f7"
