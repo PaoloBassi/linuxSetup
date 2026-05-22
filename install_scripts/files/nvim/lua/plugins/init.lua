@@ -22,6 +22,7 @@ require("lazy").setup({
         { import = "plugins.editing"     },
         { import = "plugins.navigation"  },
         { import = "plugins.workspace"   },
+        { import = "plugins.terminal"    },
     },
     performance = {
         rtp = {

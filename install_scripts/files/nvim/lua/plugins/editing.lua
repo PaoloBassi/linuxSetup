@@ -76,23 +76,23 @@ return {
             { "P",     function() require("undo-glow").paste_above() end, mode = "n", noremap = true },
             {
                 "n",
-                function() require("undo-glow").search_next({ animation = { animation_type = "strobe" } }) end,
-                mode = "n", noremap = true,
+                function() require("undo-glow").search_next({ animation = { animation_type = "zoom" } }) end,
+                mode = "n", desc = "Search next with highlight", noremap = true,
             },
             {
                 "N",
-                function() require("undo-glow").search_prev({ animation = { animation_type = "strobe" } }) end,
-                mode = "n", noremap = true,
+                function() require("undo-glow").search_prev({ animation = { animation_type = "zoom" } }) end,
+                mode = "n", desc = "Search prev with highlight", noremap = true,
             },
             {
                 "*",
-                function() require("undo-glow").search_star({ animation = { animation_type = "strobe" } }) end,
-                mode = "n", noremap = true,
+                function() require("undo-glow").search_star({ animation = { animation_type = "zoom" } }) end,
+                mode = "n", desc = "Search star with highlight", noremap = true,
             },
             {
                 "#",
-                function() require("undo-glow").search_hash({ animation = { animation_type = "strobe" } }) end,
-                mode = "n", noremap = true,
+                function() require("undo-glow").search_hash({ animation = { animation_type = "zoom" } }) end,
+                mode = "n", desc = "Search hash with highlight", noremap = true,
             },
             -- comment glow (wraps Comment.nvim's gc/gcc operators)
             {

@@ -29,4 +29,18 @@ return {
 
     -- Git commands in vim (unchanged, works natively in neovim) ---------------
     { "tpope/vim-fugitive" },
+
+    -- Git log for selected code -----------------------------------------------
+    {
+        "niuiic/git-log.nvim",
+        dependencies = { "niuiic/omega.nvim" },
+        keys = {
+            {
+                "<leader>l",
+                function() require("git-log").check_log() end,
+                mode = "v",
+                desc = "Git log for selection",
+            },
+        },
+    },
 }
