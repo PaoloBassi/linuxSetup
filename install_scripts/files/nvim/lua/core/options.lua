@@ -23,6 +23,7 @@ opt.splitbelow    = true
 opt.updatetime    = 300
 opt.undofile      = true
 opt.signcolumn    = "yes"
+opt.guicursor     = "n-v-c-i-ci-ve-r-cr-o:block"
 
 vim.diagnostic.config({
     virtual_text  = false,
