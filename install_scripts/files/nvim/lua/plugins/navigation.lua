@@ -43,6 +43,13 @@ return {
         end,
     },
 
+    -- Jump to file paths, URLs and Markdown links in buffer -------------------
+    {
+        "nolleh/warp.nvim",
+        keys = { "<leader>w" },
+        config = true,
+    },
+
     -- Ctags fallback (unchanged, still useful for projects without LSP) -------
     {
         "ludovicchabant/vim-gutentags",
