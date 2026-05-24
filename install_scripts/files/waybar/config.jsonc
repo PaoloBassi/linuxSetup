@@ -5,28 +5,21 @@
     "spacing": 7,
 
     "modules-left": [
-        "custom/launcher",
-        "custom/dunst"
+        "hyprland/workspaces"
     ],
 
     "modules-center": [
-        "hyprland/workspaces"
+        "clock"
     ],
 
     "modules-right": [
         "pulseaudio",
         "network",
+        "bluetooth",
         "battery",
-        "clock",
+        "custom/dunst",
         "custom/powermenu"
     ],
-
-    "custom/launcher": {
-        "interval": "once",
-        "format": "󰘸",
-        "on-click": "fuzzel",
-        "tooltip": false
-    },
 
     "custom/powermenu": {
         "format": "⏻",
@@ -83,6 +76,16 @@
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol"
+    },
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-connected": "󰂱 {num_connections}",
+        "format-disabled": "󰂲",
+        "tooltip-format": "{controller_alias}  {controller_address}",
+        "tooltip-format-connected": "{controller_alias}  {controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}  {device_address}",
+        "on-click": "blueman-manager"
     },
 
     "network": {

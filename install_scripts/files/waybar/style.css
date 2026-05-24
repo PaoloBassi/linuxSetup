@@ -25,6 +25,10 @@ window#waybar.hidden {
 }
 
 /* Workspaces */
+#workspaces {
+    margin-left: 10px;
+}
+
 #workspaces button {
     color: #cdd6f4;
     background: transparent;
@@ -51,13 +55,13 @@ window#waybar.hidden {
 }
 
 /* Shared pill style */
-#custom-launcher,
 #cpu,
 #temperature,
 #memory,
 #custom-dunst,
 #pulseaudio,
 #network,
+#bluetooth,
 #battery,
 #clock,
 #custom-powermenu {
@@ -66,14 +70,6 @@ window#waybar.hidden {
     border-radius: 8px;
     color: #11111b;
 }
-
-/* Left modules */
-#custom-launcher {
-    padding: 0px 25px 0px 20px;
-    margin: 7px 0px 10px 20px;
-    background-color: #cba6f7; /* mauve */
-}
-
 
 #custom-dunst {
     padding: 0px 20px 0px 13px;
@@ -99,6 +95,15 @@ window#waybar.hidden {
 #network {
     padding: 0px 15px 0px 20px;
     background-color: #a6e3a1; /* green */
+}
+
+#bluetooth {
+    background-color: #89b4fa; /* blue */
+}
+
+#bluetooth.off {
+    background-color: #585b70;
+    color: #cdd6f4;
 }
 
 #network.disconnected {
