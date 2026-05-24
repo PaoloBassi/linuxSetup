@@ -1,18 +1,12 @@
 {
-    "margin-top": 0,
-    "margin-left": 120,
-    "margin-bottom": 0,
-    "margin-right": 120,
-    "height": 60,
+    "height": 50,
     "layer": "top",
     "position": "top",
-    "spacing": 15,
+    "spacing": 7,
 
     "modules-left": [
         "custom/launcher",
-        "clock",
-        "clock#date",
-        "custom/mediaplayer"
+        "custom/dunst"
     ],
 
     "modules-center": [
@@ -23,14 +17,14 @@
         "pulseaudio",
         "network",
         "battery",
-        "custom/dunst",
+        "clock",
         "custom/powermenu"
     ],
 
     "custom/launcher": {
         "interval": "once",
         "format": "󰘸",
-        "on-click": "rofi -show drun",
+        "on-click": "fuzzel",
         "tooltip": false
     },
 
@@ -38,14 +32,6 @@
         "format": "⏻",
         "on-click": "powermenu",
         "tooltip": false
-    },
-
-    "custom/mediaplayer": {
-        "exec": "mediaplayer",
-        "interval": 2,
-        "format": "{}",
-        "max-length": 50,
-        "on-click": "playerctl play-pause"
     },
 
     "custom/dunst": {
@@ -65,20 +51,13 @@
     },
 
     "clock": {
-        "format": " {:%H:%M}"
-    },
-
-    "clock#date": {
-        "format": "󰸗 {:%A, %B %d, %Y}",
-        "actions": {
-            "on-click": "mode",
-            "on-scroll-up": "shift_up",
-            "on-scroll-down": "shift_down"
-        },
+        "format": "  {:%H:%M  |  %d/%m/%Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",
             "weeks-pos": "left",
-            "on-scroll": 4,
+            "on-scroll": 1,
+            "on-click-right": "mode",
             "format": {
                 "months":   "<span color='#cba6f7'><b>{}</b></span>",
                 "days":     "<span color='#cdd6f4'>{}</span>",
@@ -86,8 +65,7 @@
                 "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
                 "today":    "<span color='#f38ba8'><b><u>{}</u></b></span>"
             }
-        },
-        "tooltip-format": "<tt>{calendar}</tt>"
+        }
     },
 
     "pulseaudio": {

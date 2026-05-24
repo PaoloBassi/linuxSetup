@@ -9,6 +9,7 @@ input-remapper
 flameshot
 eza
 unzip
+fuzzel
 x11-xserver-utils
 gpg
 software-properties-common
