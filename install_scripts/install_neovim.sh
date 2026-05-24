@@ -15,7 +15,10 @@ run_silent "Linking neovim binary" ln -sf "$HOME/.local/nvim-linux-x86_64/bin/nv
 run_silent "Cleaning archive" rm -f "$NVIM_ARCHIVE"
 
 # tree-sitter CLI is required by nvim-treesitter to compile parsers
-run_silent "Configuring npm prefix to ~/.local" npm config set prefix "$HOME/.local"
+# Skip prefix change when nvm is active: nvm manages the prefix per node version
+if [ -z "$NVM_DIR" ]; then
+    run_silent "Configuring npm prefix to ~/.local" npm config set prefix "$HOME/.local"
+fi
 run_silent "Installing tree-sitter-cli" npm install -g tree-sitter-cli
 
 success "Neovim ${NVIM_VERSION} installed at $HOME/.local/bin/nvim"
