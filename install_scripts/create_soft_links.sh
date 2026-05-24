@@ -4,6 +4,7 @@ source install_scripts/declarations.sh
 
 ln -s $SCRIPT_DIR/files/gitconfig $HOME/.gitconfig || error "Failed to link .gitconfig"
 ln -s $SCRIPT_DIR/files/vimrc $HOME/.vimrc || error "Failed to link .vimrc"
+ln -s $SCRIPT_DIR/files/nvim $HOME/.config/nvim || error "Failed to link nvim config"
 ln -s $SCRIPT_DIR/files/sakura.conf $HOME/.config/sakura/sakura.conf || error "Failed to link sakura config"
 
 # Create directories and extract files
@@ -18,6 +19,11 @@ ln -s $SCRIPT_DIR/files/eza_colors.zsh $HOME/.config/eza_colors.zsh || error "Fa
 
 # ag ignore file config
 ln -s $SCRIPT_DIR/files/agignore $HOME/.agignore || error "Failed to link agignore"
+
+# bat catppuccin theme
+mkdir -p $HOME/.config/bat/themes
+cp $SCRIPT_DIR/files/bat/themes/*.tmTheme $HOME/.config/bat/themes/
+bat cache --build 2>/dev/null || batcat cache --build 2>/dev/null || true
 
 # Hyprland config
 mkdir -p $HOME/.config/hypr

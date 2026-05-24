@@ -90,7 +90,16 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-export FZF_DEFAULT_OPTS="--height 60% --reverse --inline-info --border --margin=1 --padding=1"
+FZF_DEFAULT_OPTS="--height 95% --inline-info --border=rounded --margin=1 --padding=1"
+FZF_DEFAULT_OPTS+=" --preview-window=up:55%:wrap:border-rounded"
+FZF_DEFAULT_OPTS+=" --input-border=rounded"
+FZF_DEFAULT_OPTS+=" --color=bg:#181825,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4"
+FZF_DEFAULT_OPTS+=" --color=hl:#89b4fa,hl+:#89b4fa,info:#cba6f7,marker:#a6e3a1"
+FZF_DEFAULT_OPTS+=" --color=prompt:#f2cdcd,spinner:#f2cdcd,pointer:#f2cdcd,header:#cba6f7"
+FZF_DEFAULT_OPTS+=" --color=border:#6c7086,separator:#6c7086,scrollbar:#6c7086"
+FZF_DEFAULT_OPTS+=" --color=gutter:#181825,label:#cba6f7,preview-bg:#181825"
+export FZF_DEFAULT_OPTS
+export FZF_DEFAULT_COMMAND='command rg --files --hidden --follow --glob "!.git/*"'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -150,33 +159,33 @@ alias lsg='ls --git'
 alias lag='la --git'
 
 # other aliases
-alias cat='batcat --style=numbers --color=always --theme="gruvbox-dark"'
+alias cat='batcat --style=numbers --color=always --theme="Catppuccin Mocha"'
 alias sak='sakura -s'
 
 # functions
-# ff function augmented with batcat that opens the file in vim
+# ff: fuzzy file finder with bat preview, opens in nvim (uses rg for file listing)
 ff() {
   local selected
-  selected=$(fzf --reverse --inline-info --preview 'batcat --style=numbers --color=always --theme="gruvbox-dark" {}' \
+  selected=$(fzf \
+    --preview 'batcat --style=numbers --color=always --theme="Catppuccin Mocha" {}' \
+    --preview-window 'up:55%:wrap:border-rounded' \
     --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
-
   [ -z "$selected" ] && return
-
-  vim "$selected"
+  nvim "$selected"
 }
 
-# call ag with fzf, a nice preview and open the file in vim
-ag() {
+# rg: ripgrep with fzf picker, bat preview on matching line, opens in nvim
+rg() {
   local selected file line
-  selected=$(/usr/bin/ag --nobreak --noheading . | fzf --reverse --inline-info \
-    --preview 'batcat --style=numbers --color=always --theme="gruvbox-dark" "$(cut -d: -f1 <<< {})"' \
-    --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
-
+  selected=$(command rg --column --line-number --no-heading --color=always . \
+    | fzf --ansi --delimiter ':' \
+        --preview 'batcat --style=numbers --color=always --theme="Catppuccin Mocha" --highlight-line {2} -- {1}' \
+        --preview-window 'up:55%:wrap:border-rounded' \
+        --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
   [ -z "$selected" ] && return
-
   file=$(echo "$selected" | cut -d: -f1)
   line=$(echo "$selected" | cut -d: -f2)
-  vim +"$line" "$file"
+  nvim +"$line" "$file"
 }
 
 # git diff with fzf
@@ -292,7 +301,7 @@ zstyle ':fzf-tab:*' popup-min-size 100 20
 
 # Ensure FZF works in tmux
 export FZF_TMUX=1
-export FZF_TMUX_OPTS='-p 100%,50%'  # width,height popup
+export FZF_TMUX_OPTS='-p 100%,95%'  # width,height popup
 
 # set fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

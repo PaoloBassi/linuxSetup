@@ -423,6 +423,9 @@ bind -n C-q kill-window #!important
 set -g automatic-rename off #!important
 
 
+# set plugin path explicitly so TPM can resolve it synchronously
+run-shell 'tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.config/tmux/plugins/"'
+
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here

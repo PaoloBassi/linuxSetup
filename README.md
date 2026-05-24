@@ -17,7 +17,7 @@ p10k configure
 
 # What can you expect AFTER
 By default, the following packages will be installed:
-- curl tmux git silversearcher-ag universal-ctags bat rofi flameshot unzip x11-xserver-utils gpg software-properties-common build-essential make cmake clang cppcheck clang-tidy clangd libglib2.0-dev libgtk-3-dev libvte-2.91-dev
+- curl tmux git ripgrep npm universal-ctags bat rofi flameshot unzip x11-xserver-utils gpg software-properties-common build-essential make cmake clang cppcheck clang-tidy clangd libglib2.0-dev libgtk-3-dev libvte-2.91-dev
 - zsh + oh-my-zsh
 - fzf
 - glow

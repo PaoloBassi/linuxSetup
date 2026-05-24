@@ -92,6 +92,36 @@ if (Test-Path $flowSettingsPath) {
     Log-Info "Flow Launcher settings not found — run it once, then re-run this script."
 }
 
+# --- Windows Terminal settings ---
+Log-Info "Deploying Windows Terminal settings..."
+
+$wtSettingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+
+# Fallback: resolve package family name dynamically
+if (-not (Test-Path (Split-Path $wtSettingsPath))) {
+    $pkg = Get-AppxPackage -Name "Microsoft.WindowsTerminal" -ErrorAction SilentlyContinue
+    if ($pkg) {
+        $wtSettingsPath = "$env:LOCALAPPDATA\Packages\$($pkg.PackageFamilyName)\LocalState\settings.json"
+    }
+}
+
+$wtSettingsDir  = Split-Path $wtSettingsPath
+
+if (Test-Path $wtSettingsDir) {
+    if (Test-Path $wtSettingsPath) {
+        Copy-Item $wtSettingsPath "$wtSettingsPath.bak" -Force
+        Log-Info "Backed up existing settings to $wtSettingsPath.bak"
+    }
+    try {
+        Copy-Item "$FILES_DIR\windowsterminal\settings.json" $wtSettingsPath -Force
+        Log-Success "Windows Terminal settings deployed to $wtSettingsPath"
+    } catch {
+        Log-Error "Failed to deploy Windows Terminal settings: $_"
+    }
+} else {
+    Log-Info "Windows Terminal not found — skipping."
+}
+
 # --- Zebar styles ---
 Log-Info "Deploying Zebar styles..."
 
