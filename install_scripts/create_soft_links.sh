@@ -56,6 +56,10 @@ mkdir -p $HOME/.config/rofi
 ln -s $SCRIPT_DIR/files/config.rasi $HOME/.config/rofi/config.rasi || error "Failed to link rofi config"
 ln -s $SCRIPT_DIR/files/catppuccin-mocha.rasi $HOME/.config/rofi/catppuccin-mocha.rasi || error "Failed to link rofi theme"
 
+# Fuzzel config
+mkdir -p $HOME/.config/fuzzel
+ln -s $SCRIPT_DIR/files/fuzzel/fuzzel.ini $HOME/.config/fuzzel/fuzzel.ini || error "Failed to link fuzzel config"
+
 #if [ -z "$DISPLAY" ]; then
 #    export DISPLAY=:0
 #    if [ $? -ne 0 ]; then
