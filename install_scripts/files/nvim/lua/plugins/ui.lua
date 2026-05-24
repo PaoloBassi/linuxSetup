@@ -126,9 +126,9 @@ return {
         "nvim-zh/colorful-winsep.nvim",
         event = { "WinLeave" },
         opts = {
-            highlight = { fg = "#cba6f7" },
-            symbols   = { "─", "│", "╭", "╮", "╯", "╰" },
-            no_exec_files_pt = { "TelescopePrompt", "NvimTree", "aerial", "toggleterm" },
+            highlight   = "#cba6f7",
+            border      = "rounded",
+            excluded_ft = { "TelescopePrompt", "NvimTree", "aerial", "toggleterm" },
         },
     },
 
