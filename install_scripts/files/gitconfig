@@ -6,6 +6,7 @@
         fa = fetch --all --prune
 [core]
         editor = vim
+        pager = delta --paging=always
 [branch]
         sort = -committerdate
 [tag]
@@ -14,7 +15,7 @@
         defaultBranch = main
 [diff]
         algorithm = histogram
-        colorMoved = plain
+        colorMoved = zebra
         mnemonicPrefix = true
         renames = true
 [push]
@@ -47,9 +48,20 @@
 	checkStat = minimal
         # fsmonitor = true
         # untrackedCache = true
+[interactive]
+        diffFilter = delta --color-only
+
+[delta]
+        side-by-side = true
+        line-numbers = true
+        navigate = true
+        syntax-theme = Catppuccin Mocha
+        hyperlinks = true
+        tabs = 4
+
 [merge]
         # (just 'diff3' if git version < 2.3)
-        # conflictstyle = zdiff3
+        conflictstyle = zdiff3
 [pull]
         # rebase = true
 
