@@ -92,6 +92,7 @@ source $ZSH/oh-my-zsh.sh
 
 FZF_DEFAULT_OPTS="--height 95% --inline-info --border=rounded --margin=1 --padding=1"
 FZF_DEFAULT_OPTS+=" --preview-window=up:55%:wrap:border-rounded"
+FZF_DEFAULT_OPTS+=" --bind='ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up'"
 FZF_DEFAULT_OPTS+=" --input-border=rounded"
 FZF_DEFAULT_OPTS+=" --color=bg:#181825,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4"
 FZF_DEFAULT_OPTS+=" --color=hl:#89b4fa,hl+:#89b4fa,info:#cba6f7,marker:#a6e3a1"
@@ -170,7 +171,7 @@ ff() {
   selected=$(fzf \
     --preview 'batcat --style=numbers --color=always --theme="Catppuccin Mocha" {}' \
     --preview-window 'up:55%:wrap:border-rounded' \
-    --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
+    --bind 'enter:accept,ctrl-j:down,ctrl-k:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up')
   [ -z "$selected" ] && return
   nvim "$selected"
 }
@@ -182,7 +183,7 @@ rg() {
     | fzf --ansi --delimiter ':' \
         --preview 'batcat --style=numbers --color=always --theme="Catppuccin Mocha" --highlight-line {2} -- {1}' \
         --preview-window 'up:55%:wrap:border-rounded' \
-        --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
+        --bind 'enter:accept,ctrl-j:down,ctrl-k:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up')
   [ -z "$selected" ] && return
   file=$(echo "$selected" | cut -d: -f1)
   line=$(echo "$selected" | cut -d: -f2)
@@ -194,7 +195,7 @@ gdiff() {
   local selected file line
   selected=$(git diff --name-only | fzf --reverse --inline-info \
     --preview 'git diff $@ --color=always -- {-1}' \
-    --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up')
+    --bind 'enter:accept,ctrl-j:down,ctrl-k:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up')
 
   [ -z "$selected" ] && return
 
@@ -263,7 +264,7 @@ function lf()
         --all --color=always \
         | fzf --ansi --no-sort --reverse \
               --preview 'git show --color=always $(echo {} | grep -o "[a-f0-9]\{7,\}" | head -1)' \
-              --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up' \
+              --bind 'enter:accept,ctrl-j:down,ctrl-k:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up' \
         | grep -o '[a-f0-9]\{7,\}' | head -1)
     [ -z "$commit" ] && return
     git show "$commit"

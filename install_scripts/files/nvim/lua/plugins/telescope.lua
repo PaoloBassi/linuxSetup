@@ -27,11 +27,15 @@ return {
                         i = {
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
+                            ["<C-d>"] = function(b) require("telescope.actions.set").scroll_previewer(b, 5) end,
+                            ["<C-u>"] = function(b) require("telescope.actions.set").scroll_previewer(b, -5) end,
                             ["<Esc>"] = actions.close,
                         },
                         n = {
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
+                            ["<C-d>"] = function(b) require("telescope.actions.set").scroll_previewer(b, 5) end,
+                            ["<C-u>"] = function(b) require("telescope.actions.set").scroll_previewer(b, -5) end,
                         },
                     },
                     -- focus on result after selection (mirrors ctrlsf_auto_focus)
