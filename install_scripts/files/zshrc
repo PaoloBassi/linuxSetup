@@ -190,6 +190,18 @@ rg() {
   nvim +"$line" "$file"
 }
 
+# git add with fzf multi-select, preview shows diff or file content
+function ga() {
+    local files
+    files=$(git -c color.status=always status --short \
+        | fzf --ansi --multi --reverse \
+              --preview 'f=$(echo {} | cut -c4-); git --no-pager diff --color=always -- "$f" 2>/dev/null | grep . || batcat --style=numbers --color=always --theme="Catppuccin Mocha" "$f"' \
+              --bind 'ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up,enter:accept,ctrl-j:down,ctrl-k:up' \
+        | cut -c4-)
+    [ -z "$files" ] && return
+    echo "$files" | xargs -d '\n' git add
+}
+
 # git diff with fzf
 gdiff() {
   local selected file line
