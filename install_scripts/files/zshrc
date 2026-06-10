@@ -249,7 +249,24 @@ function log()
 # git log augmented
 function lg()
 {
-    git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - by %C(bold red)%cn%C(reset) %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    git log --graph --abbrev-commit --decorate \
+        --format=format:'%C(bold blue)%h%C(reset) %C(bold red)%cn%C(reset) %C(bold cyan)%as%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset)' \
+        --all "$@"
+}
+
+# git log with fzf picker, preview shows diff via delta
+function lf()
+{
+    local commit
+    commit=$(git log --graph --abbrev-commit --decorate \
+        --format=format:'%C(bold blue)%h%C(reset) %C(bold red)%cn%C(reset) %C(bold cyan)%as%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)  %C(white)%s%C(reset)' \
+        --all --color=always \
+        | fzf --ansi --no-sort --reverse \
+              --preview 'git show --color=always $(echo {} | grep -o "[a-f0-9]\{7,\}" | head -1)' \
+              --bind 'enter:accept,ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up' \
+        | grep -o '[a-f0-9]\{7,\}' | head -1)
+    [ -z "$commit" ] && return
+    git show "$commit"
 }
 
 # In order: 1 current dir 2 previous dir 3 home
