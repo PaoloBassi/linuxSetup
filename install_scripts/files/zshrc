@@ -147,6 +147,7 @@ alias s='git status'
 alias push="git push"
 alias pull="git pull --rebase origin"
 alias br="git branch -va"
+alias d="git diff"
 
 # ls aliases
 alias ls='eza -l --group-directories-first --header --color=always'
