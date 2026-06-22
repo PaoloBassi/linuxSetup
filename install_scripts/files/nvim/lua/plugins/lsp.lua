@@ -6,7 +6,7 @@ local on_attach = function(_, bufnr)
     local map  = vim.keymap.set
     -- mirrors YCM mappings
     map("n", "<leader>]", vim.lsp.buf.definition,  opts)
-    map("n", "<leader>p", vim.lsp.buf.references,  opts)
+    map("n", "<leader>p", require("telescope.builtin").lsp_references, opts)
     map("n", "<leader>t", vim.lsp.buf.hover,        opts)
     map("n", "<leader>f", vim.lsp.buf.code_action,  opts)
     map("n", "<leader>r", vim.lsp.buf.rename,       opts)

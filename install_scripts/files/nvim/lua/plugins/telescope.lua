@@ -56,6 +56,10 @@ return {
                         layout_strategy = "vertical",
                         layout_config   = { vertical = { height = 0.95, preview_height = 0.55, prompt_position = "bottom" } },
                     },
+                    lsp_references = {
+                        layout_strategy = "vertical",
+                        layout_config   = { vertical = { height = 0.95, preview_height = 0.55, prompt_position = "bottom" } },
+                    },
                     buffers     = {
                         sort_mru          = true,
                         ignore_current_buffer = true,
