@@ -6,6 +6,7 @@ return {
         config = function()
             require("catppuccin").setup({
                 flavour = "mocha",
+                term_colors = true,
                 integrations = {
                     nvimtree    = true,
                     telescope   = { enabled = true },
@@ -27,6 +28,7 @@ return {
                         },
                     },
                     illuminate  = { enabled = true },
+                toggleterm  = true,
                     lualine     = {},   -- true would crash utils/lualine.lua:55 (tries overrides.all on boolean)
                 },
             })
