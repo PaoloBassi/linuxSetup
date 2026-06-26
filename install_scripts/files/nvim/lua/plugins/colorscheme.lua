@@ -29,6 +29,8 @@ return {
                     },
                     illuminate  = { enabled = true },
                 toggleterm  = true,
+                notify      = true,
+                noice       = true,
                     lualine     = {},   -- true would crash utils/lualine.lua:55 (tries overrides.all on boolean)
                 },
             })
