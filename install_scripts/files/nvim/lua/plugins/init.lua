@@ -16,6 +16,7 @@ require("lazy").setup({
         { import = "plugins.lsp"         },
         { import = "plugins.completion"  },
         { import = "plugins.linting"     },
+        { import = "plugins.formatting"  },
         { import = "plugins.treesitter"  },
         { import = "plugins.telescope"   },
         { import = "plugins.git"         },
