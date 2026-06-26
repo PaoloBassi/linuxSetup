@@ -59,4 +59,7 @@ return {
             require("treesitter-context").setup({ max_lines = 3 })
         end,
     },
+
+    -- Colored matching brackets/delimiters ------------------------------------
+    { "HiPhish/rainbow-delimiters.nvim" },
 }
