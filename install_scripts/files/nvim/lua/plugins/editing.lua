@@ -146,4 +146,14 @@ return {
             })
         end,
     },
+
+    -- Highlight TODO/FIXME/HACK/NOTE and list them via Telescope -------------
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("todo-comments").setup()
+            vim.keymap.set("n", "<leader>td", "<cmd>TodoTelescope<CR>", { desc = "Search TODOs" })
+        end,
+    },
 }
