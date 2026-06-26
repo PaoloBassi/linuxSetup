@@ -156,4 +156,15 @@ return {
             vim.keymap.set("n", "<leader>td", "<cmd>TodoTelescope<CR>", { desc = "Search TODOs" })
         end,
     },
+
+    -- Project-wide find & replace with regex preview -------------------------
+    {
+        "nvim-pack/nvim-spectre",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        keys = {
+            { "<leader>sr", function() require("spectre").open() end,                              desc = "Search & replace (Spectre)" },
+            { "<leader>sw", function() require("spectre").open_visual({ select_word = true }) end, mode = "n", desc = "Search current word" },
+            { "<leader>sw", function() require("spectre").open_visual() end,                       mode = "v", desc = "Search selection" },
+        },
+    },
 }
