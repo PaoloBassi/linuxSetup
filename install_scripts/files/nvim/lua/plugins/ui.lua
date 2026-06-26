@@ -140,6 +140,25 @@ return {
         },
     },
 
+    -- Polish vim.ui.select / vim.ui.input with Telescope-style popups ---------
+    {
+        "stevearc/dressing.nvim",
+        event  = "VeryLazy",
+        config = function()
+            require("dressing").setup()
+        end,
+    },
+
+    -- Cursor smear trail with fire hazard preset -----------------------------
+    {
+        "sphamba/smear-cursor.nvim",
+        opts = {
+            stiffness              = 0.5,
+            trailing_stiffness     = 0.5,
+            matrix_pixel_threshold = 0.5,
+        },
+    },
+
     -- Enhanced UI: cmdline popup, notifications, LSP progress ----------------
     {
         "folke/noice.nvim",

@@ -31,6 +31,8 @@ return {
                 toggleterm  = true,
                 notify      = true,
                 noice       = true,
+                diffview    = true,
+                rainbow_delimiters = true,
                     lualine     = {},   -- true would crash utils/lualine.lua:55 (tries overrides.all on boolean)
                 },
             })

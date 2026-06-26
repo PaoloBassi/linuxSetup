@@ -51,4 +51,15 @@ return {
             vim.keymap.set("n", "[c", function() move.goto_previous_start("@class.outer", "textobjects") end)
         end,
     },
+
+    -- Sticky context header: shows current function/class while scrolling -----
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function()
+            require("treesitter-context").setup({ max_lines = 3 })
+        end,
+    },
+
+    -- Colored matching brackets/delimiters ------------------------------------
+    { "HiPhish/rainbow-delimiters.nvim" },
 }

@@ -43,4 +43,14 @@ return {
             },
         },
     },
+
+    -- Full-screen git diff and file history viewer ---------------------------
+    {
+        "sindrets/diffview.nvim",
+        keys = {
+            { "<leader>gd", "<cmd>DiffviewOpen<CR>",        desc = "Open diffview" },
+            { "<leader>gh", "<cmd>DiffviewFileHistory<CR>", desc = "File history" },
+            { "<leader>gD", "<cmd>DiffviewClose<CR>",       desc = "Close diffview" },
+        },
+    },
 }
