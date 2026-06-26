@@ -140,6 +140,15 @@ return {
         },
     },
 
+    -- Polish vim.ui.select / vim.ui.input with Telescope-style popups ---------
+    {
+        "stevearc/dressing.nvim",
+        event  = "VeryLazy",
+        config = function()
+            require("dressing").setup()
+        end,
+    },
+
     -- Enhanced UI: cmdline popup, notifications, LSP progress ----------------
     {
         "folke/noice.nvim",
