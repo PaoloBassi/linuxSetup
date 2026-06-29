@@ -10,12 +10,18 @@
 # sudo dpkg -i tabby-1.0.223-linux-x64.deb
 # rm -rf tabby-1.0.223-linux-x64.deb
 
-# download and install Iosevka font
+# download and install Nerd Fonts
 mkdir -p ~/.local/share/fonts/
 pushd ~/.local/share/fonts/
 curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.zip
 unzip IosevkaTerm.zip
 rm -rf IosevkaTerm.zip
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/RobotoMono.zip
+unzip RobotoMono.zip
+rm -rf RobotoMono.zip
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip JetBrainsMono.zip
+rm -rf JetBrainsMono.zip
 fc-cache -f -v
 popd
 
