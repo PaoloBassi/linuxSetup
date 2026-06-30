@@ -1,6 +1,5 @@
 [user]
         name = Paolo Bassi
-        email = bassi.paolo90@gmail.com
 [alias]
         co = checkout
         fa = fetch --all --prune
