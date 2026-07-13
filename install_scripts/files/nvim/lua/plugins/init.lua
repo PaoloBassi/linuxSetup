@@ -24,6 +24,7 @@ require("lazy").setup({
         { import = "plugins.navigation"  },
         { import = "plugins.workspace"   },
         { import = "plugins.terminal"    },
+        { import = "plugins.ai"          },
     },
     performance = {
         rtp = {
