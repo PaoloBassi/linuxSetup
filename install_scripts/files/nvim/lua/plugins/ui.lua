@@ -16,6 +16,16 @@ return {
                 return n > 0 and ("⚠ " .. n) or ""
             end
 
+            local palette = require("catppuccin.palettes").get_palette("mocha")
+
+            local filename_pill = {
+                "filename",
+                path    = 1,
+                symbols = { modified = " +", readonly = " ", unnamed = "[No Name]" },
+                padding = 1,
+                separator = { left = "", right = "" },
+            }
+
             require("lualine").setup({
                 options = {
                     theme = require("catppuccin.utils.lualine")("mocha"),
@@ -26,16 +36,23 @@ return {
                 sections = {
                     lualine_a = { "mode" },
                     lualine_b = { "branch" },
-                    lualine_c = {
-                        {
-                            "filename",
-                            path    = 1,
-                            symbols = { modified = " +", readonly = " ", unnamed = "[No Name]" },
-                        },
-                    },
                     lualine_x = { lsp_errors, lsp_warnings, "filetype" },
                     lualine_y = { "progress" },
                     lualine_z = { "location" },
+                },
+                winbar = {
+                    lualine_c = {
+                        vim.tbl_extend("force", filename_pill, {
+                            color = { bg = palette.surface0, fg = palette.text, gui = "bold" },
+                        }),
+                    },
+                },
+                inactive_winbar = {
+                    lualine_c = {
+                        vim.tbl_extend("force", filename_pill, {
+                            color = { bg = palette.mantle, fg = palette.overlay1 },
+                        }),
+                    },
                 },
             })
         end,
