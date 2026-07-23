@@ -176,6 +176,38 @@ return {
         },
     },
 
+    -- Dim inactive windows, complements colorful-winsep's active border -------
+    {
+        "levouh/tint.nvim",
+        event = "WinNew",
+        opts = {
+            -- tint.nvim's own `tint` transform adds a fixed offset per RGB channel;
+            -- once a channel clips at 0 it stops moving in lockstep with the others
+            -- and the hue visibly shifts. A multiplicative scale never clips while
+            -- darkening, so hue/saturation stay exactly identical, just dimmer.
+            transforms = {
+                function(r, g, b, _)
+                    local factor = 0.45
+                    -- rgb_to_hex packs r/g/b into a single int before formatting;
+                    -- non-integer channels bleed across byte boundaries and corrupt
+                    -- the colour, so floor each channel before returning it.
+                    return math.floor(r * factor), math.floor(g * factor), math.floor(b * factor)
+                end,
+            },
+            window_ignore_function = function(winid)
+                local ft = vim.bo[vim.api.nvim_win_get_buf(winid)].filetype
+                return vim.tbl_contains({ "NvimTree", "TelescopePrompt", "aerial", "toggleterm" }, ft)
+            end,
+        },
+    },
+
+    -- On-demand overlay showing keys as you press them (demos/pairing) --------
+    {
+        "nvzone/showkeys",
+        cmd = "ShowkeysToggle",
+        opts = { position = "bottom-right", maxkeys = 5 },
+    },
+
     -- Enhanced UI: cmdline popup, notifications, LSP progress ----------------
     {
         "folke/noice.nvim",
