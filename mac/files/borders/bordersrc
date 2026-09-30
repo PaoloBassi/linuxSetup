@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# same look as hyprland: mauve -> blue gradient on active window, surface1 on inactive
+options=(
+    style=round
+    width=4.0
+    hidpi=on
+    active_color="gradient(top_left=0xffcba6f7,bottom_right=0xff89b4fa)"
+    inactive_color=0xff45475a
+)
+
+borders "${options[@]}"

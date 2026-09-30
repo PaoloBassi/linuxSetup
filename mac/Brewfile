@@ -1,0 +1,56 @@
+tap "nikitabobko/tap"
+tap "FelixKratz/formulae"
+
+# core CLI (mirrors install_scripts/files/apps.txt)
+brew "git"
+brew "tmux"
+brew "ripgrep"
+brew "node"
+brew "universal-ctags"
+brew "bat"
+brew "eza"
+brew "gnupg"
+brew "cmake"
+brew "llvm"            # clang-tidy, clangd, clang-format
+brew "cppcheck"
+brew "jq"
+brew "tree"
+brew "glow"
+
+# shell
+brew "fzf"
+brew "zoxide"
+brew "git-delta"
+brew "zsh-syntax-highlighting"
+
+# editors
+brew "python"
+brew "vim"
+brew "neovim"
+brew "tree-sitter-cli"
+
+# desktop (Hyprland / Waybar / fuzzel equivalents)
+cask "aerospace"
+brew "sketchybar"
+brew "switchaudio-osx"  # sketchybar: volume popup = output devices
+brew "lua"              # sketchybar config is lua (SbarLua)
+brew "blueutil"         # sketchybar: bluetooth widget
+brew "borders"
+cask "ghostty"
+cask "raycast"
+
+# fonts (sketchybar: SF Pro/Mono + SF Symbols, app icons in the workspaces)
+cask "font-sf-pro"
+cask "font-sf-mono"
+cask "sf-symbols"
+cask "font-sketchybar-app-font"
+cask "font-iosevka-term-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-roboto-mono-nerd-font"
+
+# optional GUI apps (uncomment to install)
+cask "visual-studio-code"
+# cask "wireshark-app"
+# cask "firefox"
+# cask "stats"
+# cask "alt-tab"
