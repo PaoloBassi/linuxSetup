@@ -14,12 +14,14 @@ defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
 defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write -g NSAutomaticCapitalizationEnabled -bool false
 
-# -- modifier keys: swap option <-> command on the built-in keyboard ------------
-# alt ends up next to the space bar as on Linux (AeroSpace, zsh, tmux, nvim binds unchanged).
-# Merged into the existing mapping so remaps made from System Settings (e.g. caps lock) survive.
-info "Swapping option and command on the built-in keyboard..."
+# -- key remaps on the built-in keyboard ----------------------------------------
+# option <-> command: alt ends up next to the space bar as on Linux (AeroSpace, zsh, tmux, nvim
+# binds unchanged). Merged into the existing mapping so remaps made from System Settings
+# (e.g. caps lock) survive.
+# § (left of 1) -> ` (key left of Z): easier italian accents on US-Intl.
+info "Remapping keys on the built-in keyboard..."
 python3 - <<'EOF'
-import json, plistlib, subprocess
+import json, os, plistlib, subprocess
 
 KEY = "com.apple.keyboard.modifiermapping.0-0-0"  # vendor-product-0 of the built-in keyboard
 SWAP = {0x7000000E2: 0x7000000E3, 0x7000000E3: 0x7000000E2,  # left option <-> left command
@@ -36,10 +38,20 @@ value = plistlib.dumps(mapping, fmt=plistlib.FMT_XML).decode()
 value = value[value.index("<array>"):value.rindex("</array>") + len("</array>")]
 subprocess.run(["defaults", "-currentHost", "write", "-g", KEY, value], check=True)
 
-# apply now too, without waiting for a logout
-subprocess.run(["hidutil", "property", "--matching", '{"Built-In":1}',
-                "--set", json.dumps({"UserKeyMapping": mapping})],
-               stdout=subprocess.DEVNULL, check=True)
+# the modifier mapping above only takes modifiers: § -> ` goes through hidutil, together with
+# the modifiers so a single UserKeyMapping holds everything
+SECTION, GRAVE = 0x700000064, 0x700000035  # non-US backslash (§) -> grave accent (`)
+keymap = mapping + [{SRC: SECTION, DST: GRAVE}]
+hidutil = ["/usr/bin/hidutil", "property", "--matching", '{"Built-In":1}',
+           "--set", json.dumps({"UserKeyMapping": keymap})]
+
+# apply now, and at every login through a LaunchAgent (hidutil mappings don't survive a reboot)
+subprocess.run(hidutil, stdout=subprocess.DEVNULL, check=True)
+agent = os.path.expanduser("~/Library/LaunchAgents/com.linuxsetup.keymap.plist")
+os.makedirs(os.path.dirname(agent), exist_ok=True)
+with open(agent, "wb") as f:
+    plistlib.dump({"Label": "com.linuxsetup.keymap", "ProgramArguments": hidutil,
+                   "RunAtLoad": True}, f)
 EOF
 check_result
 

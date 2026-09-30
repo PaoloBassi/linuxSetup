@@ -64,3 +64,4 @@ Mac-only (`files/`): `zshrc`, `tmux.conf.local`, `ghostty/`, `aerospace/`, `sket
 - `vimcolors` works as on Linux (BSD `sed` variant)
 - Ghostty maps Option as Alt, so zsh vi-mode, tmux and nvim see `alt` as on Linux
 - Option and Command are swapped on the built-in keyboard (`macos_defaults.sh`): `alt` sits next to the space bar as on Linux, Command moves one key out. Revert from System Settings > Keyboard > Keyboard Shortcuts > Modifier Keys
+- `§` (left of `1`) types `` ` `` like the key left of `Z`, for italian accents on US-Intl. Applied at login by `~/Library/LaunchAgents/com.linuxsetup.keymap.plist` (hidutil); remove that file to revert
