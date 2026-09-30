@@ -1,0 +1,354 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+#
+# Homebrew (Apple Silicon)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME='kimwz'
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(fzf-tab colored-man-pages cp
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+FZF_DEFAULT_OPTS="--height 95% --inline-info --border=rounded --margin=1 --padding=1"
+FZF_DEFAULT_OPTS+=" --preview-window=up:55%:wrap:border-rounded"
+FZF_DEFAULT_OPTS+=" --bind='ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up'"
+FZF_DEFAULT_OPTS+=" --input-border=rounded"
+FZF_DEFAULT_OPTS+=" --color=bg:#181825,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4"
+FZF_DEFAULT_OPTS+=" --color=hl:#89b4fa,hl+:#89b4fa,info:#cba6f7,marker:#a6e3a1"
+FZF_DEFAULT_OPTS+=" --color=prompt:#f2cdcd,spinner:#f2cdcd,pointer:#f2cdcd,header:#cba6f7"
+FZF_DEFAULT_OPTS+=" --color=border:#6c7086,separator:#6c7086,scrollbar:#6c7086"
+FZF_DEFAULT_OPTS+=" --color=gutter:#181825,label:#cba6f7,preview-bg:#181825"
+export FZF_DEFAULT_OPTS
+export FZF_DEFAULT_COMMAND='command rg --files --hidden --follow --glob "!.git/*"'
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+# my alias definition
+alias ..='cd ..'
+alias ...='cd ..; cd ..'
+alias ....='cd ..; cd ..; cd ..'
+alias .....='cd ..; cd ..; cd ..; cd ..'
+alias shut='sudo shutdown -h now'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias reboot='sudo reboot'
+alias update='brew update'
+alias install='brew install'
+alias upgrade='brew upgrade'
+alias autoremove='brew autoremove && brew cleanup'
+alias remove='brew uninstall'
+alias root='sudo -i'
+alias su='sudo -i'
+alias op='open'
+alias here='op $(pwd)'
+alias bashrc='vim ~/.bashrc'
+alias zshrc='vim ~/.zshrc'
+alias h='history'
+alias path='echo -e ${PATH//:/\\n}'
+alias du='du -kh'
+alias df='df -kh'
+alias tree='tree -Csuh'
+alias ps='ps -ef'
+
+# c is for plain text, cc strips the numbers at the beginning of the line if they appear
+alias c="perl -pe 's/\e\[[0-9;]*[a-zA-Z]//g' | pbcopy"
+alias cc="perl -pe 's/\e\[[0-9;]*[a-zA-Z]//g; s/^ *[0-9]+ *//' | pbcopy"
+
+# git aliases
+alias s='git status'
+alias push="git push"
+alias pull="git pull --rebase origin"
+alias br="git branch -va"
+alias d="git diff"
+alias gc="git commit -m"
+
+# ls aliases
+alias ls='eza -l --group-directories-first --header --color=always'
+alias la='eza -la --group-directories-first --header --color=always'
+alias lt='eza --tree --color=always'
+alias lr='eza -la --total-size --header --color=always'
+
+# add git option only when requested (it's slow on big repos)
+alias lsg='ls --git'
+alias lag='la --git'
+
+# other aliases
+alias cat='bat --style=numbers --color=always --theme="Catppuccin Mocha"'
+
+# functions
+# ff: fuzzy file finder with bat preview, opens in nvim (uses rg for file listing)
+ff() {
+  local selected
+  selected=$(fzf \
+    --preview 'bat --style=numbers --color=always --theme="Catppuccin Mocha" {}' \
+    --preview-window 'up:55%:wrap:border-rounded' \
+    --bind 'enter:accept,ctrl-j:down,ctrl-k:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up')
+  [ -z "$selected" ] && return
+  nvim "$selected"
+}
+
+# rg: ripgrep with fzf picker, bat preview on matching line, opens in nvim
+rg() {
+  local selected file line
+  selected=$(command rg --column --line-number --no-heading --color=always . \
+    | fzf --ansi --delimiter ':' \
+        --preview 'bat --style=numbers --color=always --theme="Catppuccin Mocha" --highlight-line {2} -- {1}' \
+        --preview-window 'up:55%:wrap:border-rounded' \
+        --bind 'enter:accept,ctrl-j:down,ctrl-k:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up')
+  [ -z "$selected" ] && return
+  file=$(echo "$selected" | cut -d: -f1)
+  line=$(echo "$selected" | cut -d: -f2)
+  nvim +"$line" "$file"
+}
+
+# git add with fzf multi-select, preview shows diff or file content
+function ga() {
+    local files
+    files=$(git -c color.status=always status --short \
+        | fzf --ansi --multi --reverse \
+              --preview 'f=$(echo {} | cut -c4-); git --no-pager diff --color=always -- "$f" 2>/dev/null | grep . || bat --style=numbers --color=always --theme="Catppuccin Mocha" "$f"' \
+              --bind 'ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up,enter:accept,ctrl-j:down,ctrl-k:up' \
+        | cut -c4-)
+    [ -z "$files" ] && return
+    echo "$files" | tr '\n' '\0' | xargs -0 git add
+}
+
+# git diff with fzf
+gdiff() {
+  local selected file line
+  selected=$(git diff --name-only | fzf --reverse --inline-info \
+    --preview 'git diff $@ --color=always -- {-1}' \
+    --bind 'enter:accept,ctrl-j:down,ctrl-k:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up')
+
+  [ -z "$selected" ] && return
+
+  file=$(echo "$selected" | cut -d: -f1)
+  vim "$file"
+}
+
+# kill fast
+killf()
+{
+  ps -ef | fzf --reverse --inline-info | awk '{print $2}' | xargs -r kill -9
+}
+
+# ps fast
+psf() {
+  ps -ef | fzf --reverse --inline-info | awk "{print \$2}"
+}
+
+function extract()      # Handy Extract Program
+{
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1     ;;
+            *.tar.gz)    tar xvzf $1     ;;
+            *.bz2)       bunzip2 $1      ;;
+            *.rar)       unrar x $1      ;;
+            *.gz)        gunzip $1       ;;
+            *.tar)       tar xvf $1      ;;
+            *.tbz2)      tar xvjf $1     ;;
+            *.tgz)       tar xvzf $1     ;;
+            *.zip)       unzip $1        ;;
+            *.Z)         uncompress $1   ;;
+            *.7z)        7z x $1         ;;
+            *)           echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+        echo "'$1' is not a valid file!"
+    fi
+}
+
+# git log function augmented with graphs and changed code from the previous $1 commits
+function log()
+{
+    if [ -z "$1" ];
+    then
+        git log --graph
+    else
+        git log --graph -p -$1
+    fi
+}
+
+# git log augmented
+function lg()
+{
+    git log --graph --abbrev-commit --decorate \
+        --format=format:'%C(bold blue)%h%C(reset) %C(bold red)%cn%C(reset) %C(bold cyan)%as%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset)' \
+        --all "$@"
+}
+
+# git log with fzf picker, preview shows diff via delta
+function lf()
+{
+    local commit
+    commit=$(git log --graph --abbrev-commit --decorate \
+        --format=format:'%C(bold blue)%h%C(reset) %C(bold red)%cn%C(reset) %C(bold cyan)%as%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)  %C(white)%s%C(reset)' \
+        --all --color=always \
+        | fzf --ansi --no-sort --reverse \
+              --preview 'git show --color=always $(echo {} | grep -o "[a-f0-9]\{7,\}" | head -1)' \
+              --bind 'enter:accept,ctrl-j:down,ctrl-k:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up' \
+        | grep -o '[a-f0-9]\{7,\}' | head -1)
+    [ -z "$commit" ] && return
+    git show "$commit"
+}
+
+# In order: 1 current dir 2 previous dir 3 home
+CDPATH=:..:~
+
+# set the default editor to vim
+bindkey -v
+
+# set kj to escape in terminal
+bindkey -M viins 'kj' vi-cmd-mode
+
+# disable esc key in terminal
+bindkey -M viins '^[' vi-cmd-mode
+
+# ctrl+v pastes the system clipboard at the prompt (vim keeps ctrl+v as visual block)
+paste-clipboard() { LBUFFER+="$(pbpaste)" }
+zle -N paste-clipboard
+bindkey -M viins '^V' paste-clipboard
+bindkey -M vicmd '^V' paste-clipboard
+
+# disable windows colors for 777 folders
+LS_COLORS=$LS_COLORS:'ow=1;34:'
+export LS_COLORS
+
+# source the LS_COLORS modification to override the custom theme with mocha
+source ~/.config/eza_colors.zsh
+
+# zoxide path
+PATH=$PATH:~/.local/bin
+# brew llvm is keg-only: append it so clang-tidy/clang-format resolve while Apple clang stays the default
+PATH=$PATH:$HOMEBREW_PREFIX/opt/llvm/bin
+export PATH
+
+
+# set fzf-tab options
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# custom fzf flags
+# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' fzf-bindings 'tab:accept'
+zstyle ':fzf-tab:*' fzf-preview ''
+zstyle ':fzf-tab:*' fzf-flags --height=60% --reverse --inline-info --border --margin=1 --padding=1
+
+zstyle ':fzf-tab:*' popup-min-size 100 20
+
+# Ensure FZF works in tmux
+export FZF_TMUX=1
+export FZF_TMUX_OPTS='-p 100%,95%'  # width,height popup
+
+# set fzf (brew)
+source <(fzf --zsh)
+
+# source zsh-syntax-highlighting
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# eval zoxide
+export _ZO_DOCTOR=0
+eval "$(zoxide init zsh --cmd cd)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

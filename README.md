@@ -2,6 +2,8 @@
 Personal startup setup for linux environment.
 Clone, fire and forget, everything is configured for you.
 
+For macOS (Apple Silicon) see [mac/README.md](mac/README.md).
+
 # How to use it
 - Close the repository in any directory you want
 - Then issue the following commands to run the setup script:

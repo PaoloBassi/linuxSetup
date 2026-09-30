@@ -1,0 +1,136 @@
+# AeroSpace config, keybindings mirror install_scripts/files/hypr/hyprland.conf ($mainMod = ALT)
+
+start-at-login = true
+
+# notify sketchybar on workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE'
+]
+# focus/move/layout changes refresh the sketchybar layout item and workspace app icons
+on-focus-changed = ['exec-and-forget sketchybar --trigger aerospace_windows_change']
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# mouse follows focus when switching monitor
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+automatically-unhide-macos-hidden-apps = true
+
+# brew and ~/.local/bin (custom scripts) are not in the launchd PATH
+[exec]
+inherit-env-vars = true
+[exec.env-vars]
+PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${HOME}/.local/bin:${PATH}'
+
+# same values as hyprland gaps_in/gaps_out; top leaves room for sketchybar (40pt).
+# built-in display: macOS always reserves the 38pt notch area, so 12 + 38 = 50 from the top
+[gaps]
+inner.horizontal = 10
+inner.vertical   = 10
+outer.left       = 10
+outer.bottom     = 10
+outer.top        = [{ monitor.built-in = 12 }, 50]
+outer.right      = 10
+
+[key-mapping]
+preset = 'qwerty'
+
+[mode.main.binding]
+# apps
+alt-enter       = 'exec-and-forget open -na Ghostty'
+alt-shift-enter = 'exec-and-forget open -na Ghostty'
+alt-r           = 'exec-and-forget open -a Raycast'
+alt-c           = 'exec-and-forget open raycast://extensions/raycast/clipboard-history/clipboard-history'
+alt-b           = 'exec-and-forget open ~'
+alt-ctrl-l      = 'exec-and-forget pmset displaysleepnow'
+
+# screenshots (region -> file + clipboard, region -> clipboard only)
+alt-s       = 'exec-and-forget screenshot'
+alt-shift-s = 'exec-and-forget screencapture -i -c'
+
+# windows
+alt-q       = 'close'
+alt-v       = ['layout floating tiling', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-f       = ['fullscreen', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-e       = ['layout tiles horizontal vertical', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-g       = 'exec-and-forget toggle-gaps'
+
+# rename the focused workspace in sketchybar (empty name = back to the number)
+alt-comma   = 'exec-and-forget rename-workspace'
+
+# focus
+alt-h     = 'focus left'
+alt-j     = 'focus down'
+alt-k     = 'focus up'
+alt-l     = 'focus right'
+alt-left  = 'focus left'
+alt-down  = 'focus down'
+alt-up    = 'focus up'
+alt-right = 'focus right'
+
+# move
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# resize
+alt-ctrl-right = 'resize width +30'
+alt-ctrl-left  = 'resize width -30'
+alt-ctrl-up    = 'resize height -30'
+alt-ctrl-down  = 'resize height +30'
+
+# workspaces
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+alt-0 = 'workspace 10'
+alt-tab = 'workspace-back-and-forth'
+
+alt-shift-1 = ['move-node-to-workspace 1', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-2 = ['move-node-to-workspace 2', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-3 = ['move-node-to-workspace 3', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-4 = ['move-node-to-workspace 4', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-5 = ['move-node-to-workspace 5', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-6 = ['move-node-to-workspace 6', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-7 = ['move-node-to-workspace 7', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-8 = ['move-node-to-workspace 8', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-9 = ['move-node-to-workspace 9', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+alt-shift-0 = ['move-node-to-workspace 10', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+
+# config
+alt-shift-r = ['reload-config', 'exec-and-forget sketchybar --reload']
+alt-shift-semicolon = 'mode service'
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_windows_change']
+backspace = ['close-all-windows-but-current', 'mode main']
+
+# system dialogs and utilities float
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.raycast.macos'
+run = 'layout floating'

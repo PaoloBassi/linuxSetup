@@ -1,0 +1,23 @@
+theme = Catppuccin Mocha
+
+font-family = IosevkaTerm Nerd Font
+font-size = 15
+
+window-padding-x = 8
+window-padding-y = 6
+window-decoration = none
+macos-titlebar-style = hidden
+background-opacity = 0.95
+background-blur = 20
+
+# Option works as Alt inside the terminal (vi-mode, tmux, nvim)
+macos-option-as-alt = true
+
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+confirm-close-surface = false
+quit-after-last-window-closed = true
