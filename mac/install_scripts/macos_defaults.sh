@@ -61,6 +61,12 @@ check_result
 # (hiding it leaves no way to reach the settings)
 defaults write com.notificationnanny.app hideMenuBarIcon -bool false
 
+# -- alt-tab (AltTab) -----------------------------------------------------------
+# native cmd-tab can't be rebound: AltTab takes over alt-tab (option next to the space bar
+# after the swap above) to cycle windows as on Linux/Windows
+defaults write com.lwouis.alt-tab-macos holdShortcut -string "⌥"
+defaults write com.lwouis.alt-tab-macos nextWindowShortcut -string "⇥"
+
 # -- trackpad (tap to click, as in hyprland) -----------------------------------
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true

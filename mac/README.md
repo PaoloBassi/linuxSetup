@@ -12,6 +12,7 @@ Manual steps after the script:
 - grant Accessibility permission to AeroSpace (System Settings > Privacy & Security > Accessibility)
 - open Raycast once and complete the onboarding
 - grant Accessibility to `sketchybar` too (app menus in the bar: click the front app name)
+- open AltTab and grant it Accessibility (Screen Recording is optional, only for thumbnails)
 - open NotificationNanny and grant it Accessibility, then right click the sketchybar bell for its menu > settings: top right with a vertical offset that clears sketchybar, and launch at login
 - allow AeroSpace to control Ghostty when asked on the first `alt-enter` (new windows open in the running instance)
 - grant Full Disk Access to the real sketchybar binary (`realpath $(which sketchybar)`, again after each `brew upgrade` of it: ad-hoc signed), then `brew services restart sketchybar`: the bell widget counts the notifications. Allow sketchybar to control System Events on the first click of the bell
@@ -56,13 +57,13 @@ Mac-only (`files/`): `zshrc`, `tmux.conf.local`, `ghostty/`, `aerospace/`, `sket
 | `alt-ctrl-arrows`          | resize                                  |
 | `alt-1..0`                 | workspace 1..10                         |
 | `alt-shift-1..0`           | move window to workspace                |
-| `alt-tab`                  | previous workspace                      |
 | `alt-s` / `alt-shift-s`    | screenshot region (file+clip / clip)    |
 | `alt-ctrl-l`               | lock                                    |
 | `alt-shift-r`              | reload AeroSpace + SketchyBar           |
 
 # Notes
 - Optional GUI apps are commented out at the bottom of the `Brewfile`
+- `alt-tab` cycles windows through [AltTab](https://github.com/lwouis/alt-tab-macos) (Option as hold key, set in `macos_defaults.sh`): native `cmd-tab` stays on the key one out. Needs Accessibility (and Screen Recording for thumbnails)
 - SketchyBar is [FelixKratz/dotfiles@0619040](https://github.com/FelixKratz/dotfiles/tree/0619040a8eebbf9896c5ce4fc9d312270426ed8f)'s lua config (SbarLua) in Catppuccin Mocha: yabai spaces ported to AeroSpace (only occupied + focused workspaces, `alt-,` names in `~/.local/state/sketchybar/workspace_names`), widgets limited to battery, volume, a bluetooth widget (blueutil) and a bell with the number of notifications still in Notification Center (click opens it, right click opens the NotificationNanny menu); no cpu/wifi/media. `helpers/app_icons.lua` matches sketchybar-app-font v3.0.5
 - `vimcolors` works as on Linux (BSD `sed` variant)
 - Ghostty maps Option as Alt, so zsh vi-mode, tmux and nvim see `alt` as on Linux
