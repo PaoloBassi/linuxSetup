@@ -3,7 +3,7 @@
 ## Decisions to confirm
 - [x] JankyBorders (mauve→blue border like Hyprland): keep?
 - [x] Hidden native menu bar (`_HIHideMenuBar` in `macos_defaults.sh`): keep?
-- [x] Extra binds `alt-e` (split orientation), `alt-tab` (prev workspace), `alt-shift-r` (reload): ok?
+- [x] Extra binds `alt-e` (split orientation), `alt-tab` (AltTab window switcher), `alt-shift-r` (reload): ok?
 - [x] Brewfile GUI apps: only VS Code enabled
 - [ ] Not ported: toggle-float all, pseudo, wifi menu, exit session
 
