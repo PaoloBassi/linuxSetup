@@ -10,7 +10,8 @@ local BELL_EMPTY = "󰂜"
 local BELL = "󰂚"
 
 local DB = '"$HOME/Library/Group Containers/group.com.apple.usernoted/db2/db"'
-local COUNT = "sqlite3 -readonly " .. DB .. " 'select count(*) from record;'"
+-- style 0 records (no alert style, e.g. Wallet) are never shown in Notification Center
+local COUNT = "sqlite3 -readonly " .. DB .. " 'select count(*) from record where style != 0;'"
 
 -- the clock menu extra opens Notification Center; matched by id, its name is localized
 local OPEN_NC = [[osascript -e '
