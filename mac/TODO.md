@@ -49,11 +49,17 @@ cd ~/linuxSetup/mac && ./setup.sh -v
 - [x] Battery: click = time remaining
 - [x] Bluetooth: icon grey/white/blue (off/on/connected), click = power switch + paired devices, right click = settings
 - [x] Nothing hidden behind the notch
+- [ ] Click on the clock opens Calendar
+- [ ] Bell: count matches Notification Center, click opens it
 
 **Ghostty**
 - [x] IosevkaTerm font, Catppuccin theme, Option works as Alt (zsh vi-mode `kj`)
+- [ ] `alt-enter` twice, then cmd-q closes every Ghostty window
+- [ ] `alt-q` closes a Ghostty window, titlebar still hidden
 
 **macOS defaults**
+- [ ] `§` types `` ` `` after a reboot
+- [ ] Notifications below sketchybar (NotificationNanny)
 - [ ] Fast key repeat (hjkl held down), Dock autohide, Finder shows hidden files
 
 ## Afterwards

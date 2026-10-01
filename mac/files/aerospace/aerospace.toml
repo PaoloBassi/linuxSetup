@@ -41,8 +41,8 @@ preset = 'qwerty'
 
 [mode.main.binding]
 # apps
-alt-enter       = 'exec-and-forget open -na Ghostty'
-alt-shift-enter = 'exec-and-forget open -na Ghostty'
+alt-enter       = 'exec-and-forget ghostty-window'
+alt-shift-enter = 'exec-and-forget ghostty-window'
 alt-r           = 'exec-and-forget open -a Raycast'
 alt-c           = 'exec-and-forget open raycast://extensions/raycast/clipboard-history/clipboard-history'
 alt-b           = 'exec-and-forget open ~'

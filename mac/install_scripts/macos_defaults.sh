@@ -38,12 +38,12 @@ value = plistlib.dumps(mapping, fmt=plistlib.FMT_XML).decode()
 value = value[value.index("<array>"):value.rindex("</array>") + len("</array>")]
 subprocess.run(["defaults", "-currentHost", "write", "-g", KEY, value], check=True)
 
-# the modifier mapping above only takes modifiers: § -> ` goes through hidutil, together with
-# the modifiers so a single UserKeyMapping holds everything
+# the modifier mapping above only takes modifiers: § -> ` goes through hidutil. Set globally:
+# after a reboot a per-service (--matching) UserKeyMapping is ignored for non-modifier keys,
+# and macOS owns the per-service one anyway (it writes the modifier mapping there at login)
 SECTION, GRAVE = 0x700000064, 0x700000035  # non-US backslash (§) -> grave accent (`)
-keymap = mapping + [{SRC: SECTION, DST: GRAVE}]
-hidutil = ["/usr/bin/hidutil", "property", "--matching", '{"Built-In":1}',
-           "--set", json.dumps({"UserKeyMapping": keymap})]
+hidutil = ["/usr/bin/hidutil", "property",
+           "--set", json.dumps({"UserKeyMapping": [{SRC: SECTION, DST: GRAVE}]})]
 
 # apply now, and at every login through a LaunchAgent (hidutil mappings don't survive a reboot)
 subprocess.run(hidutil, stdout=subprocess.DEVNULL, check=True)
@@ -54,6 +54,12 @@ with open(agent, "wb") as f:
                    "RunAtLoad": True}, f)
 EOF
 check_result
+
+# -- notifications (NotificationNanny) -----------------------------------------
+# banners land on sketchybar at the top right: NotificationNanny nudges them down. Its menu bar
+# icon would sit in the hidden menu bar, so hide it: `open -a NotificationNanny` while it's
+# running opens its settings (position/offset are per display, launch at login)
+defaults write com.notificationnanny.app hideMenuBarIcon -bool true
 
 # -- trackpad (tap to click, as in hyprland) -----------------------------------
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true

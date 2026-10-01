@@ -1,5 +1,6 @@
 tap "nikitabobko/tap"
 tap "FelixKratz/formulae"
+tap "chessper53/notificationnanny", "https://github.com/chessper53/NotificationNanny"
 
 # core CLI (mirrors install_scripts/files/apps.txt)
 brew "git"
@@ -38,6 +39,7 @@ brew "blueutil"         # sketchybar: bluetooth widget
 brew "borders"
 cask "ghostty"
 cask "raycast"
+cask "notificationnanny" # notification banners nudged below sketchybar
 
 # fonts (sketchybar: SF Pro/Mono + SF Symbols, app icons in the workspaces)
 cask "font-sf-pro"

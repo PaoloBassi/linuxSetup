@@ -22,6 +22,7 @@ local cal = sbar.add("item", {
   },
   position = "right",
   update_freq = 30,
+  click_script = "open -a Calendar",
   padding_left = 1,
   padding_right = 1,
   background = {
