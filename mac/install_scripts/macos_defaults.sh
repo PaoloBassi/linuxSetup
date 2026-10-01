@@ -56,10 +56,10 @@ EOF
 check_result
 
 # -- notifications (NotificationNanny) -----------------------------------------
-# banners land on sketchybar at the top right: NotificationNanny nudges them down. Its menu bar
-# icon would sit in the hidden menu bar, so hide it: `open -a NotificationNanny` while it's
-# running opens its settings (position/offset are per display, launch at login)
-defaults write com.notificationnanny.app hideMenuBarIcon -bool true
+# banners land on sketchybar at the top right: NotificationNanny nudges them down. Its icon
+# stays enabled even if the menu bar is hidden: right click on the sketchybar bell clicks it
+# (hiding it leaves no way to reach the settings)
+defaults write com.notificationnanny.app hideMenuBarIcon -bool false
 
 # -- trackpad (tap to click, as in hyprland) -----------------------------------
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true

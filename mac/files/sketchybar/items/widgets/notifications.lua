@@ -1,5 +1,6 @@
 -- Notifications widget (not in FelixKratz's config, written in the same style): bell with the
--- number of notifications still in Notification Center. Click: open Notification Center.
+-- number of notifications still in Notification Center. Left click: open Notification Center.
+-- Right click: NotificationNanny menu (settings).
 -- Reads the usernoted db: needs Full Disk Access for sketchybar; clicking the hidden menu bar
 -- clock needs Accessibility (already granted for the app menus).
 local colors = require("colors")
@@ -26,6 +27,12 @@ tell application "System Events" to tell process "ControlCenter"
   end repeat
 end tell']]
 
+-- NotificationNanny's status item sits in the hidden menu bar: click it through AX
+local OPEN_NANNY = [[osascript -e '
+tell application "System Events" to tell process "NotificationNanny"
+  click menu bar item 1 of menu bar 2
+end tell']]
+
 local notifications = sbar.add("item", "widgets.notifications", {
   position = "right",
   icon = {
@@ -41,7 +48,6 @@ local notifications = sbar.add("item", "widgets.notifications", {
     drawing = false,
   },
   update_freq = 10,
-  click_script = OPEN_NC,
 })
 
 sbar.add("bracket", "widgets.notifications.bracket", { notifications.name }, {
@@ -52,6 +58,10 @@ sbar.add("item", "widgets.notifications.padding", {
   position = "right",
   width = settings.group_paddings
 })
+
+notifications:subscribe("mouse.clicked", function(env)
+  sbar.exec(env.BUTTON == "right" and OPEN_NANNY or OPEN_NC)
+end)
 
 notifications:subscribe({ "routine", "forced", "system_woke" }, function()
   sbar.exec(COUNT, function(result)
