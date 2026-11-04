@@ -35,6 +35,10 @@ map("n", "<C-Up>",   ":split<CR>:Telescope find_files<CR>")
 -- Project-wide search (mirrors Ag/<C-g> and CtrlSF/<C-F>f)
 map("n", "<C-g>",   ":Telescope live_grep<CR>")
 map("n", "<C-p>",   ":Telescope grep_string<CR>")
+-- Same picker, but exact match: case-sensitive and whole word only
+map("n", "<leader>P", function()
+    require("telescope.builtin").grep_string({ word_match = "-w", additional_args = { "--case-sensitive" } })
+end)
 map("n", "<C-F>f",  ":Telescope live_grep<CR>")
 map("v", "<C-F>f",  ":Telescope grep_string<CR>")
 
