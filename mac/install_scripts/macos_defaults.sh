@@ -21,7 +21,7 @@ defaults write -g NSAutomaticCapitalizationEnabled -bool false
 # § (left of 1) -> ` (key left of Z): easier italian accents on US-Intl.
 info "Remapping keys on the built-in keyboard..."
 python3 - <<'EOF'
-import json, os, plistlib, subprocess
+import json, os, plistlib, shlex, subprocess
 
 KEY = "com.apple.keyboard.modifiermapping.0-0-0"  # vendor-product-0 of the built-in keyboard
 SWAP = {0x7000000E2: 0x7000000E3, 0x7000000E3: 0x7000000E2,  # left option <-> left command
@@ -47,10 +47,16 @@ hidutil = ["/usr/bin/hidutil", "property",
 
 # apply now, and at every login through a LaunchAgent (hidutil mappings don't survive a reboot)
 subprocess.run(hidutil, stdout=subprocess.DEVNULL, check=True)
+# at login the mapping can be stored but not applied by the keyboard driver, and setting the
+# same value again is a no-op: reset it first, then set it once the driver is up. The reset
+# must be a different non-empty mapping (§ -> §): an empty one leaves the real one ignored
+reset = ["/usr/bin/hidutil", "property",
+         "--set", json.dumps({"UserKeyMapping": [{SRC: SECTION, DST: SECTION}]})]
+login = f"{shlex.join(reset)} >/dev/null; sleep 5; {shlex.join(hidutil)} >/dev/null"
 agent = os.path.expanduser("~/Library/LaunchAgents/com.linuxsetup.keymap.plist")
 os.makedirs(os.path.dirname(agent), exist_ok=True)
 with open(agent, "wb") as f:
-    plistlib.dump({"Label": "com.linuxsetup.keymap", "ProgramArguments": hidutil,
+    plistlib.dump({"Label": "com.linuxsetup.keymap", "ProgramArguments": ["/bin/sh", "-c", login],
                    "RunAtLoad": True}, f)
 EOF
 check_result
