@@ -6,7 +6,7 @@ ln -s $SCRIPT_DIR/files/gitconfig $HOME/.gitconfig || error "Failed to link .git
 ln -s $SCRIPT_DIR/files/gitignore_global $HOME/.gitignore || error "Failed to link global .gitignore"
 ln -s $SCRIPT_DIR/files/vimrc $HOME/.vimrc || error "Failed to link .vimrc"
 ln -s $SCRIPT_DIR/files/nvim $HOME/.config/nvim || error "Failed to link nvim config"
-ln -s $SCRIPT_DIR/files/sakura.conf $HOME/.config/sakura/sakura.conf || error "Failed to link sakura config"
+ln -s $SCRIPT_DIR/files/ghostty/config $HOME/.config/ghostty/config || error "Failed to link ghostty config"
 
 # Create directories and extract files
 mkdir -p $HOME/.local/share/icons || error "Failed to create icons directory"

@@ -28,7 +28,6 @@ Manual steps after the script:
 | Hyprland borders          | JankyBorders (`borders`)               |
 | Waybar                    | SketchyBar (FelixKratz lua, Mocha)     |
 | fuzzel / rofi / cliphist  | Raycast                                |
-| Sakura                    | Ghostty                                |
 | grim + slurp              | `screencapture` (`screenshot` script)  |
 | hyprlock                  | `pmset displaysleepnow`                |
 | Vim compiled from source  | Homebrew vim                           |

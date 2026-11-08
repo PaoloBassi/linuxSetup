@@ -108,7 +108,7 @@ while true; do
         while true; do
             echo ""
             echo "##### Choose which terminal to install:"
-            echo "1. Sakura"
+            echo "1. Ghostty"
             echo "2. None"
             echo "3. Return to main menu"
             echo ""
@@ -118,7 +118,7 @@ while true; do
             TERMINAL_FILE="./install_scripts/install_terminal.sh"
 
             if [[ "$terminal_input" == "1" ]]; then
-                success "Sakura terminal will be installed."
+                success "Ghostty terminal will be installed."
                 # if there are # characters before the install_terminal.sh line in setup.sh, remove them
                 if grep -q "^[[:space:]]*#$TERMINAL_FILE" setup.sh; then
                     sed -i "s|^[[:space:]]*#$TERMINAL_FILE|$TERMINAL_FILE|" setup.sh
