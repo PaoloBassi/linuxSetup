@@ -20,6 +20,7 @@ run_step ./install_scripts/install_vim.sh "$@"
 run_step ./install_scripts/install_neovim.sh "$@"
 run_step ./install_scripts/create_soft_links.sh "$@"
 run_step ./install_scripts/link_custom_exec.sh "$@"
+run_step ./install_scripts/install_cursor_fx.sh "$@"
 run_step ./install_scripts/install_desktop.sh "$@"
 run_step ./install_scripts/macos_defaults.sh "$@"
 

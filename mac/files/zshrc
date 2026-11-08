@@ -352,3 +352,21 @@ eval "$(zoxide init zsh --cmd cd)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ghostty-cursor-fx: Enter signal before each command, done signal after commands longer than 5s
+if [[ -n $GHOSTTY_RESOURCES_DIR ]] && (( $+commands[cursor-fx] )); then
+  autoload -Uz add-zsh-hook
+  zmodload zsh/datetime
+  _cursor_fx_enter() {
+    _cursor_fx_t0=$EPOCHREALTIME
+    cursor-fx signal --tty "$TTY" &!
+  }
+  _cursor_fx_done() {
+    if [[ -n $_cursor_fx_t0 ]] && (( EPOCHREALTIME - _cursor_fx_t0 > 5 )); then
+      cursor-fx signal done --tty "$TTY" &!
+    fi
+    _cursor_fx_t0=
+  }
+  add-zsh-hook preexec _cursor_fx_enter
+  add-zsh-hook precmd _cursor_fx_done
+fi
