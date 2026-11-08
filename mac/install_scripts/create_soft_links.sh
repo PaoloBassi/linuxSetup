@@ -4,6 +4,7 @@ source "$(dirname "$0")/declarations.sh"
 
 # shared configs
 link "$SHARED_DIR/gitconfig" "$HOME/.gitconfig"
+link "$SHARED_DIR/gitignore_global" "$HOME/.gitignore"
 link "$SHARED_DIR/eza_colors.zsh" "$HOME/.config/eza_colors.zsh"
 link "$SHARED_DIR/agignore" "$HOME/.agignore"
 
