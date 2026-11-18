@@ -13,6 +13,7 @@ source install_scripts/declarations.sh
 ./install_scripts/install_cursor_fx.sh
 ./install_scripts/install_fzf_and_zsh.sh
 ./install_scripts/install_extras.sh
+./install_scripts/install_yazi.sh
 ./install_scripts/link_custom_exec.sh
 
 echo

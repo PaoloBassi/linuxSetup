@@ -282,6 +282,17 @@ function lf()
     git show "$commit"
 }
 
+# yazi: cd into the last visited directory on exit
+function y()
+{
+    local tmp cwd
+    tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    command yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+    command rm -f -- "$tmp"
+}
+
 # In order: 1 current dir 2 previous dir 3 home
 CDPATH=:..:~
 
@@ -303,6 +314,8 @@ source ~/.config/eza_colors.zsh
 
 # zoxide path
 PATH=$PATH:~/.local/bin
+# git fzf must win over the older apt one pulled in by yazi
+PATH=~/.fzf/bin:$PATH
 export PATH
 
 # setup keyboard on X11

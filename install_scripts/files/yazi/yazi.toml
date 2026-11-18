@@ -1,0 +1,9 @@
+[opener]
+edit = [
+    { run = "${EDITOR:-nvim} %s", desc = "Edit", for = "unix", block = true },
+]
+# WSL has no xdg-open by default: hand files to the Windows shell
+open = [
+    { run = 'if [ -n "$WSL_DISTRO_NAME" ]; then explorer.exe "$(wslpath -w %s1)"; else xdg-open %s1; fi', desc = "Open", for = "linux", orphan = true },
+    { run = "open %s", desc = "Open", for = "macos" },
+]

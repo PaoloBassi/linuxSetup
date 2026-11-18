@@ -23,6 +23,7 @@ By default, the following packages will be installed:
 - zsh + oh-my-zsh
 - fzf
 - glow
+- yazi file manager (`y` changes directory on exit)
 - ghostty terminal + [ghostty-cursor-fx](https://github.com/Avarce/ghostty-cursor-fx) cursor shaders (lightning by default, switch with `cursor-fx <effect>`)
 - 9.1 vim version with the following plugins:
    - airblade/vim-gitgutter

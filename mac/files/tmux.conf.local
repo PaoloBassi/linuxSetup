@@ -422,6 +422,11 @@ bind -n C-q kill-window #!important
 # nomi schede fissi — non sovrascrivere con hostname
 set -g automatic-rename off #!important
 
+# let yazi image previews reach the outer terminal
+set -g allow-passthrough on
+set -ga update-environment TERM
+set -ga update-environment TERM_PROGRAM
+
 
 # set plugin path explicitly so TPM can resolve it synchronously
 run-shell 'tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.config/tmux/plugins/"'

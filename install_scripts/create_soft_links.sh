@@ -26,6 +26,9 @@ mkdir -p $HOME/.config/bat/themes
 cp $SCRIPT_DIR/files/bat/themes/*.tmTheme $HOME/.config/bat/themes/
 bat cache --build 2>/dev/null || batcat cache --build 2>/dev/null || true
 
+# yazi config
+ln -s $SCRIPT_DIR/files/yazi $HOME/.config/yazi || error "Failed to link yazi config"
+
 # Hyprland config
 mkdir -p $HOME/.config/hypr
 ln -s $SCRIPT_DIR/files/hypr/hyprland.conf $HOME/.config/hypr/hyprland.conf || error "Failed to link hyprland config"
