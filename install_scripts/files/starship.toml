@@ -85,7 +85,19 @@ format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
 [git_status]
 style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+format = '[[($all_status$ahead_behind)](fg:crust bg:yellow)]($style)'
+# p10k-like counters
+# wide glyphs (⇡ ⇣ » ✘) get a space, otherwise they overlap the number
+ahead = "⇡ ${count} "
+behind = "⇣ ${count} "
+diverged = "⇡ ${ahead_count} ⇣ ${behind_count} "
+conflicted = "~${count} "
+stashed = "*${count} "
+staged = "+${count} "
+modified = "!${count} "
+renamed = "» ${count} "
+deleted = "✘ ${count} "
+untracked = "?${count} "
 
 [nodejs]
 symbol = ""
