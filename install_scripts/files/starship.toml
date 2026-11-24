@@ -21,7 +21,8 @@ $kotlin\
 $haskell\
 $python\
 [](fg:green bg:sapphire)\
-$conda\
+$status\
+$jobs\
 [](fg:sapphire bg:lavender)\
 $time\
 [ ](fg:lavender)\
@@ -163,11 +164,23 @@ symbol = ""
 style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
-[conda]
-symbol = "  "
-style = "fg:crust bg:sapphire"
-format = '[$symbol$environment ]($style)'
-ignore_base = false
+# shown only when the last command failed, with signal name (e.g. ✘ 139 SEGV)
+[status]
+disabled = false
+symbol = "✘ "
+style = "bg:sapphire"
+format = '[[ $symbol$status( $signal_name) ](fg:crust bg:sapphire)]($style)'
+pipestatus = true
+pipestatus_separator = "|"
+pipestatus_segment_format = "$status"
+pipestatus_format = '[[ $symbol\[$pipestatus\] ](fg:crust bg:sapphire)]($style)'
+
+# suspended/background jobs (e.g. vim after Ctrl-Z)
+[jobs]
+symbol = "✦ "
+number_threshold = 1
+style = "bg:sapphire"
+format = '[[ $symbol$number ](fg:crust bg:sapphire)]($style)'
 
 [time]
 disabled = false
