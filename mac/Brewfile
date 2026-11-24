@@ -25,6 +25,7 @@ brew "glow"
 # shell
 brew "fzf"
 brew "zoxide"
+brew "starship"
 brew "git-delta"
 brew "zsh-syntax-highlighting"
 

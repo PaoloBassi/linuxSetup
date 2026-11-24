@@ -8,6 +8,7 @@ link "$SHARED_DIR/gitignore_global" "$HOME/.gitignore"
 link "$SHARED_DIR/eza_colors.zsh" "$HOME/.config/eza_colors.zsh"
 link "$SHARED_DIR/agignore" "$HOME/.agignore"
 link "$SHARED_DIR/yazi" "$HOME/.config/yazi"
+link "$SHARED_DIR/starship.toml" "$HOME/.config/starship.toml"
 
 # bat catppuccin theme
 mkdir -p "$HOME/.config/bat/themes"

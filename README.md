@@ -12,10 +12,12 @@ cd linuxSetup
 ./setup.sh
 ```
 
-At the end of the script, the powerlevel10k theme asks to be configured. You can quit the procedure and configure it later by issuing the following command:
+The prompt is [starship](https://starship.rs) with a Catppuccin Mocha powerline theme (`install_scripts/files/starship.toml`).
+powerlevel10k is still installed as a fallback; switch to it with:
 ```bash
-p10k configure
+ZSH_PROMPT=p10k exec zsh
 ```
+To make it permanent, set `ZSH_PROMPT=p10k` at the top of the zshrc. Configure it with `p10k configure`.
 
 # What can you expect AFTER
 By default, the following packages will be installed:

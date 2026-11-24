@@ -26,6 +26,9 @@ mkdir -p $HOME/.config/bat/themes
 cp $SCRIPT_DIR/files/bat/themes/*.tmTheme $HOME/.config/bat/themes/
 bat cache --build 2>/dev/null || batcat cache --build 2>/dev/null || true
 
+# starship prompt config
+ln -s $SCRIPT_DIR/files/starship.toml $HOME/.config/starship.toml || error "Failed to link starship config"
+
 # yazi config
 ln -s $SCRIPT_DIR/files/yazi $HOME/.config/yazi || error "Failed to link yazi config"
 
